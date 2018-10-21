@@ -14,6 +14,7 @@
 		22345E1321758B4700E2FC9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22345E1221758B4700E2FC9B /* Assets.xcassets */; };
 		22345E1621758B4700E2FC9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22345E1421758B4700E2FC9B /* LaunchScreen.storyboard */; };
 		22345E2121758B4700E2FC9B /* Clueless_ClothesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22345E2021758B4700E2FC9B /* Clueless_ClothesTests.swift */; };
+		2285B1D0217BFBA200E14D15 /* Clothes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2285B1CF217BFBA200E14D15 /* Clothes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		22345E1C21758B4700E2FC9B /* Clueless ClothesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Clueless ClothesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22345E2021758B4700E2FC9B /* Clueless_ClothesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clueless_ClothesTests.swift; sourceTree = "<group>"; };
 		22345E2221758B4700E2FC9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2285B1CF217BFBA200E14D15 /* Clothes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clothes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				22345E1221758B4700E2FC9B /* Assets.xcassets */,
 				22345E1421758B4700E2FC9B /* LaunchScreen.storyboard */,
 				22345E1721758B4700E2FC9B /* Info.plist */,
+				2285B1CF217BFBA200E14D15 /* Clothes.swift */,
 			);
 			path = "Clueless Clothes";
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			files = (
 				22345E0E21758B4600E2FC9B /* SecondViewController.swift in Sources */,
 				22345E0A21758B4600E2FC9B /* AppDelegate.swift in Sources */,
+				2285B1D0217BFBA200E14D15 /* Clothes.swift in Sources */,
 				22345E0C21758B4600E2FC9B /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
