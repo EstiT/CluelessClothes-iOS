@@ -17,7 +17,7 @@ class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var clothingPicker: UIPickerView!
     
     var clothingOptions: [String] = ["Top", "Bottom"]
-    var selectedClothing = 0
+    static var selectedClothing = 0
     
     
     override func viewDidLoad() {
@@ -43,15 +43,15 @@ class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UI
     let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
     imageView.image = image
     print("\(String(describing: selectedClothing))")
-    if selectedClothing == 0 {
+    if FirstViewController.selectedClothing == 0 {
         let name = Clothes.shared.getNextTopName()
         saveImage(imageName: name)
         Clothes.shared.addTop(topName: name)
     }
     else{
         let name = Clothes.shared.getNextBottomName()
-        Clothes.shared.addBottom(bottomName: name)
         saveImage(imageName: name)
+        Clothes.shared.addBottom(bottomName: name)
     }
     dismiss(animated:true, completion: nil)
     }
@@ -112,6 +112,6 @@ class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedClothing = row
+        FirstViewController.selectedClothing = row
     }
 }

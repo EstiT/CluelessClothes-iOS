@@ -12,7 +12,7 @@ final class Clothes{
     static let shared = Clothes()
     
     
-    static var  topsImageNames = [String]()
+    static var topsImageNames = [String]()
     static var bottomsImageNames = [String]()
     
     private init() { }
@@ -31,20 +31,22 @@ final class Clothes{
         return Clothes.bottomsImageNames[index]
     }
     
-    func addBottom(bottomName: String){
-        Clothes.bottomsImageNames.append(bottomName)
-    }
-    
     func addTop(topName: String){
         Clothes.topsImageNames.append(topName)
+        print("\(Clothes.topsImageNames)")
+    }
+    
+    func addBottom(bottomName: String){
+        Clothes.bottomsImageNames.append(bottomName)
+        print("\(Clothes.bottomsImageNames)")
     }
     
     func getNextTopName() -> String{
-        return "image" + String(Clothes.topsImageNames.count)
+        return "top" + String(Clothes.topsImageNames.count)
     }
     
     func getNextBottomName() -> String{
-        return "image" + String(Clothes.bottomsImageNames.count)
+        return "bottom" + String(Clothes.bottomsImageNames.count)
     }
     
     func getNumberOfTops() -> Int{
