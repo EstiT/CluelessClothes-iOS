@@ -91,7 +91,7 @@ class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UI
     func saveImage(imageName: String){
         let fileManager = FileManager.default
         let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
-        let image = imageView.image!
+        let image = imageView.image!.fixOrientation()
         let data = image.pngData()
         //store it in the document directory
         fileManager.createFile(atPath: imagePath as String, contents: data, attributes: nil)
@@ -113,5 +113,21 @@ class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         FirstViewController.selectedClothing = row
+    }
+}
+
+//https://stackoverflow.com/questions/10850184/ios-image-get-rotated-90-degree-after-saved-as-png-representation-data
+extension UIImage {
+    func fixOrientation() -> UIImage {
+        if self.imageOrientation == UIImage.Orientation.up {
+            return self
+        }
+        
+        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
+        self.draw(in: CGRect(origin: .zero, size: self.size))
+        let normalizedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext() ?? self.images![0]
+        UIGraphicsEndImageContext()
+        
+        return normalizedImage
     }
 }
