@@ -37,17 +37,18 @@
                                     <action selector="takePhoto:" destination="9pv-A4-QxB" eventType="touchUpInside" id="6DB-Jj-12s"/>
                                 </connections>
                             </button>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3sg-Dj-iYz">
-                                <rect key="frame" x="16" y="356" width="343" height="109"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="p3Q-02-GQV">
+                                <rect key="frame" x="16" y="356" width="343" height="116"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
                     <connections>
-                        <outlet property="clothingPicker" destination="3sg-Dj-iYz" id="5kd-ZR-Ju3"/>
+                        <outlet property="clothingTable" destination="p3Q-02-GQV" id="6y3-l7-HmZ"/>
                         <outlet property="imageView" destination="QHq-bH-N3d" id="GCT-JR-jUU"/>
                     </connections>
                 </viewController>

@@ -9,12 +9,12 @@
 import UIKit
 import Photos
 
-class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
 
     @IBOutlet weak var imageView: UIImageView!
     let imagePicker = UIImagePickerController()
-    @IBOutlet weak var clothingPicker: UIPickerView!
+    @IBOutlet weak var clothingTable: UITableView!
     
     var clothingOptions: [String] = ["Top", "Bottom"]
     static var selectedClothing = 0
@@ -24,8 +24,8 @@ class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UI
         super.viewDidLoad()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-        clothingPicker.dataSource = self
-        clothingPicker.delegate = self
+        clothingTable.dataSource = self
+        clothingTable.delegate = self
         checkPermission()
     }
     
@@ -42,7 +42,6 @@ class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UI
 @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
     imageView.image = image
-    print("\(String(describing: selectedClothing))")
     if FirstViewController.selectedClothing == 0 {
         let name = Clothes.shared.getNextTopName()
         saveImage(imageName: name)
@@ -97,22 +96,29 @@ class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UI
         fileManager.createFile(atPath: imagePath as String, contents: data, attributes: nil)
     }
     
-    //MARK:- Pickerview
+    //MARK:- Tableview
     
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return clothingOptions.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return clothingOptions[row]
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        cell.textLabel?.text = clothingOptions[indexPath.row]
+        return cell
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        FirstViewController.selectedClothing = row
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        FirstViewController.selectedClothing = indexPath.row
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .checkmark
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) {
+            cell.accessoryType = .none
+        }
     }
 }
 
@@ -122,7 +128,6 @@ extension UIImage {
         if self.imageOrientation == UIImage.Orientation.up {
             return self
         }
-        
         UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
         self.draw(in: CGRect(origin: .zero, size: self.size))
         let normalizedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext() ?? self.images![0]
