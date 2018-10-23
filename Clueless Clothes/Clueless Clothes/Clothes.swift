@@ -33,12 +33,10 @@ final class Clothes{
     
     func addTop(topName: String){
         Clothes.topsImageNames.append(topName)
-        print("\(Clothes.topsImageNames)")
     }
     
     func addBottom(bottomName: String){
         Clothes.bottomsImageNames.append(bottomName)
-        print("\(Clothes.bottomsImageNames)")
     }
     
     func getNextTopName() -> String{

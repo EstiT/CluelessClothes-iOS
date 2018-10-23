@@ -11,8 +11,8 @@ import UIKit
 class SecondViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var topsCollection: UICollectionView!
-    
     @IBOutlet weak var bottomsCollection: UICollectionView!
+    var longPress = UILongPressGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +27,7 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
         bottomsCollection.delegate = self
         bottomsCollection.reloadData()
         
-        
+        longPress = UILongPressGestureRecognizer(target: self, action: #selector(deleteImage(_:)))
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -60,6 +60,8 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
+        cell.image.addGestureRecognizer(longPress)
+        cell.image.isUserInteractionEnabled = true
         if collectionView == self.topsCollection{
             cell.image.image = getImage(imageName: Clothes.shared.getTopName(index: indexPath.row))
         }
@@ -76,6 +78,28 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath){
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
+    }
+
+
+    @objc func deleteImage(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+            self.becomeFirstResponder()
+            print("long press")
+            sender.view?.shake()
+            
+        }
+    }
+}
+
+//https://stackoverflow.com/questions/3703922/how-do-you-create-a-wiggle-animation-similar-to-iphone-deletion-animation
+extension UIView {
+    func shake() {
+        let transformAnim  = CAKeyframeAnimation(keyPath:"transform")
+        transformAnim.values  = [NSValue(caTransform3D: CATransform3DMakeRotation(0.04, 0.0, 0.0, 1.0)),NSValue(caTransform3D: CATransform3DMakeRotation(-0.04 , 0, 0, 1))]
+        transformAnim.autoreverses = true
+        transformAnim.duration  = 0.115
+        transformAnim.repeatCount = Float.infinity
+        self.layer.add(transformAnim, forKey: "shake")
     }
 }
 
