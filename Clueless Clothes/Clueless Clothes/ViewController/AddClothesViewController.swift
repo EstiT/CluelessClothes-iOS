@@ -9,12 +9,11 @@
 import UIKit
 import Photos
 
-class AddClothesViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+class AddClothesViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
 
     @IBOutlet weak var imageView: UIImageView!
     let imagePicker = UIImagePickerController()
-    @IBOutlet weak var clothingTable: UITableView!
     
     var clothingOptions: [String] = ["Top", "Bottom"]
     static var selectedClothing = 0
@@ -26,8 +25,6 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
-        clothingTable.dataSource = self
-        clothingTable.delegate = self
         checkPermission()
     }
     
@@ -43,7 +40,7 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
 
 @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-    imageView.image = image
+
     //determine type of clothing, save image, add item TODO
 //    if AddClothesViewController.selectedClothing == 0 {
 //        let name = Clothes.shared.getNextTopName()
@@ -58,9 +55,24 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
     dismiss(animated:true, completion: nil)
     }
     
-    @IBAction func takePhoto(_ sender: Any) {
+    @IBAction func takeTopPicture(){
+        takePhoto()
+    }
+    
+    @IBAction func takeJacketPicture(){
+        takePhoto()
+    }
+    
+    @IBAction func takeBottomPicture(){
+        takePhoto()
+    }
+    
+    @IBAction func takeShoesPicture(){
+        takePhoto()
+    }
+    
+    func takePhoto() {
         imagePicker.sourceType = .camera
-        
         present(imagePicker, animated: true, completion: nil)
     }
   
@@ -99,30 +111,7 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
         fileManager.createFile(atPath: imagePath as String, contents: data, attributes: nil)
     }
     
-    //MARK:- Tableview
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return clothingOptions.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        cell.textLabel?.text = clothingOptions[indexPath.row]
-        return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        AddClothesViewController.selectedClothing = indexPath.row
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.accessoryType = .checkmark
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) {
-            cell.accessoryType = .none
-        }
-    }
+
 }
 
 //https://stackoverflow.com/questions/10850184/ios-image-get-rotated-90-degree-after-saved-as-png-representation-data
