@@ -9,7 +9,7 @@
 import UIKit
 import Photos
 
-class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
+class AddClothesViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource {
     
 
     @IBOutlet weak var imageView: UIImageView!
@@ -18,6 +18,8 @@ class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     var clothingOptions: [String] = ["Top", "Bottom"]
     static var selectedClothing = 0
+    
+    var clothes = [ClothingItem]()
     
     
     override func viewDidLoad() {
@@ -42,16 +44,17 @@ class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UI
 @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
     let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
     imageView.image = image
-    if FirstViewController.selectedClothing == 0 {
-        let name = Clothes.shared.getNextTopName()
-        saveImage(imageName: name)
-        Clothes.shared.addTop(topName: name)
-    }
-    else{
-        let name = Clothes.shared.getNextBottomName()
-        saveImage(imageName: name)
-        Clothes.shared.addBottom(bottomName: name)
-    }
+    //determine type of clothing, save image, add item TODO
+//    if AddClothesViewController.selectedClothing == 0 {
+//        let name = Clothes.shared.getNextTopName()
+//        saveImage(imageName: name)
+//        Clothes.shared.addTop(topName: name)
+//    }
+//    else{
+//        let name = Clothes.shared.getNextBottomName()
+//        saveImage(imageName: name)
+//        Clothes.shared.addBottom(bottomName: name)
+//    }
     dismiss(animated:true, completion: nil)
     }
     
@@ -109,7 +112,7 @@ class FirstViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        FirstViewController.selectedClothing = indexPath.row
+        AddClothesViewController.selectedClothing = indexPath.row
         if let cell = tableView.cellForRow(at: indexPath) {
             cell.accessoryType = .checkmark
         }

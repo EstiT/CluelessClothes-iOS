@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class CreateOutfitViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var topsCollection: UICollectionView!
     @IBOutlet weak var bottomsCollection: UICollectionView!
@@ -28,6 +28,12 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
         bottomsCollection.reloadData()
         
         longPress = UILongPressGestureRecognizer(target: self, action: #selector(deleteImage(_:)))
+        
+        topsCollection.addGestureRecognizer(longPress)
+        topsCollection.isUserInteractionEnabled = true
+        
+        bottomsCollection.addGestureRecognizer(longPress)
+        bottomsCollection.isUserInteractionEnabled = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -49,25 +55,30 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     //MARK:- CollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        if collectionView == self.topsCollection{
-            return Clothes.shared.getNumberOfTops()
-        }
-        else if collectionView == self.bottomsCollection{
-            return Clothes.shared.getNumberOfBottoms()
-        }
+        // number of each type of clothes
+//        if collectionView == self.topsCollection{
+//            return Clothes.shared.getNumberOfTops()
+//        }
+//        else if collectionView == self.bottomsCollection{
+//            return Clothes.shared.getNumberOfBottoms()
+//        }
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
-        cell.image.addGestureRecognizer(longPress)
+//        cell.image.addGestureRecognizer(longPress)
         cell.image.isUserInteractionEnabled = true
-        if collectionView == self.topsCollection{
-            cell.image.image = getImage(imageName: Clothes.shared.getTopName(index: indexPath.row))
-        }
-        else if collectionView == self.bottomsCollection{
-            cell.image.image = getImage(imageName: Clothes.shared.getBottomName(index: indexPath.row))
-        }
+        
+        //set image for colection view
+//        if collectionView == self.topsCollection{
+//            cell.image.image = getImage(imageName: Clothes.shared.getTopName(index: indexPath.row))
+//            
+//
+//        }
+//        else if collectionView == self.bottomsCollection{
+//            cell.image.image = getImage(imageName: Clothes.shared.getBottomName(index: indexPath.row))
+//        }
         
         return cell
     }
@@ -75,18 +86,29 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath){
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
     }
 
 
     @objc func deleteImage(_ sender: UILongPressGestureRecognizer) {
+        print("in handler")
         if sender.state == .began {
-            self.becomeFirstResponder()
-            print("long press")
-            sender.view?.shake()
-            
+            if let indexPath = self.topsCollection?.indexPathForItem(at: sender.location(in: self.topsCollection)) {
+                let cell = self.topsCollection?.cellForItem(at: indexPath) as! ImageCell
+                cell.image.shake()
+                print("top you can do something with the cell or index path here")
+            } else if let indexPath = self.bottomsCollection?.indexPathForItem(at: sender.location(in: self.bottomsCollection)) {
+                let cell = self.bottomsCollection?.cellForItem(at: indexPath) as! ImageCell
+                cell.image.shake()
+                print("bottom you can do something with the cell or index path here")
+            }
+            else {
+                self.becomeFirstResponder()
+                sender.view?.shake()
+                print("long press")
+            }
         }
     }
 }
