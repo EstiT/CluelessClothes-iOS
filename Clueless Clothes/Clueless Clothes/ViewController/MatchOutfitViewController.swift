@@ -8,32 +8,19 @@
 
 import UIKit
 
-class CreateOutfitViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var topsCollection: UICollectionView!
     @IBOutlet weak var bottomsCollection: UICollectionView!
+    @IBOutlet weak var shoesCollection: UICollectionView!
     var longPress = UILongPressGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        topsCollection.allowsSelection = true
-        topsCollection.dataSource = self
-        topsCollection.delegate = self
-        topsCollection.reloadData()
-    
-        bottomsCollection.allowsSelection = true
-        bottomsCollection.dataSource = self
-        bottomsCollection.delegate = self
-        bottomsCollection.reloadData()
         
-        longPress = UILongPressGestureRecognizer(target: self, action: #selector(deleteImage(_:)))
+        setUpCollectionsViews()
         
-        topsCollection.addGestureRecognizer(longPress)
-        topsCollection.isUserInteractionEnabled = true
         
-        bottomsCollection.addGestureRecognizer(longPress)
-        bottomsCollection.isUserInteractionEnabled = true
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,6 +41,36 @@ class CreateOutfitViewController: UIViewController, UICollectionViewDataSource, 
     }
     
     //MARK:- CollectionView
+    
+    func setUpCollectionsViews(){
+        topsCollection.allowsSelection = true
+        topsCollection.dataSource = self
+        topsCollection.delegate = self
+        topsCollection.reloadData()
+        
+        bottomsCollection.allowsSelection = true
+        bottomsCollection.dataSource = self
+        bottomsCollection.delegate = self
+        bottomsCollection.reloadData()
+        
+        shoesCollection.allowsSelection = true
+        shoesCollection.dataSource = self
+        shoesCollection.delegate = self
+        shoesCollection.reloadData()
+        
+        longPress = UILongPressGestureRecognizer(target: self, action: #selector(deleteImage(_:)))
+        
+        topsCollection.addGestureRecognizer(longPress)
+        topsCollection.isUserInteractionEnabled = true
+        
+        bottomsCollection.addGestureRecognizer(longPress)
+        bottomsCollection.isUserInteractionEnabled = true
+        
+        shoesCollection.addGestureRecognizer(longPress)
+        shoesCollection.isUserInteractionEnabled = true
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         // number of each type of clothes
 //        if collectionView == self.topsCollection{
@@ -67,18 +84,21 @@ class CreateOutfitViewController: UIViewController, UICollectionViewDataSource, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
-//        cell.image.addGestureRecognizer(longPress)
+        cell.image.addGestureRecognizer(longPress)
         cell.image.isUserInteractionEnabled = true
         
         //set image for colection view
-//        if collectionView == self.topsCollection{
+        if collectionView == self.topsCollection{
 //            cell.image.image = getImage(imageName: Clothes.shared.getTopName(index: indexPath.row))
 //            
 //
-//        }
-//        else if collectionView == self.bottomsCollection{
+        }
+        else if collectionView == self.bottomsCollection{
 //            cell.image.image = getImage(imageName: Clothes.shared.getBottomName(index: indexPath.row))
-//        }
+        }
+        else if collectionView == self.shoesCollection{
+            
+        }
         
         return cell
     }

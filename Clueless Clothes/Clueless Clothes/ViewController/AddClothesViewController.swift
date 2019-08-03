@@ -11,12 +11,12 @@ import Photos
 
 class AddClothesViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-
+    var image:UIImage!
     @IBOutlet weak var imageView: UIImageView!
     let imagePicker = UIImagePickerController()
     
-    var clothingOptions: [String] = ["Top", "Bottom"]
-    static var selectedClothing = 0
+    var clothingOptions: [String] = ["top", "jacket", "bottom", "dress", "shoes"]
+    var selectedClothingItem = 0
     
     var clothes = [ClothingItem]()
     
@@ -38,37 +38,63 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
     }
 
 
-@objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-    let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage // can be   used to display image
 
-    //determine type of clothing, save image, add item TODO
-//    if AddClothesViewController.selectedClothing == 0 {
-//        let name = Clothes.shared.getNextTopName()
-//        saveImage(imageName: name)
-//        Clothes.shared.addTop(topName: name)
-//    }
-//    else{
-//        let name = Clothes.shared.getNextBottomName()
-//        saveImage(imageName: name)
-//        Clothes.shared.addBottom(bottomName: name)
-//    }
-    dismiss(animated:true, completion: nil)
+        //determine type of clothing, save image, add item to closet
+        if selectedClothingItem == 0 { // top
+            let name = Closet.shared.getNextTopName()
+            let top = Top(imageName: name)
+            Closet.shared.addTop(top:top)
+            saveImage(imageName: name)
+        }
+        else if selectedClothingItem == 1 { //jacket
+            let name = Closet.shared.getNextJacketName()
+            let jacket = Jacket(imageName: name)
+            Closet.shared.addJacket(jacket:jacket)
+            saveImage(imageName: name)
+        }
+        else if selectedClothingItem == 2 { //dress
+            let name = Closet.shared.getNextDressName()
+            let dress = Dress(imageName: name)
+            Closet.shared.addDress(dress:dress)
+            saveImage(imageName: name)
+        }
+        else if selectedClothingItem == 3 { //bottom
+            let name = Closet.shared.getNextBottomName()
+            let bottom = Bottom(imageName: name)
+            Closet.shared.addBottom(bottom:bottom)
+            saveImage(imageName: name)
+        }
+        else if selectedClothingItem == 4 { //shoes
+            let name = Closet.shared.getNextShoesName()
+            let shoes = Shoes(imageName: name)
+            Closet.shared.addShoes(shoes:shoes)
+            saveImage(imageName: name)
+        }
+        dismiss(animated:true, completion:{
+            //TODO indicate success check mark/saved 
+            })
     }
     
     @IBAction func takeTopPicture(){
         takePhoto()
+        selectedClothingItem = 0
     }
     
     @IBAction func takeJacketPicture(){
         takePhoto()
+        selectedClothingItem = 1
     }
     
     @IBAction func takeBottomPicture(){
         takePhoto()
+        selectedClothingItem = 2
     }
     
     @IBAction func takeShoesPicture(){
         takePhoto()
+        selectedClothingItem = 3
     }
     
     func takePhoto() {
@@ -105,7 +131,7 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
     func saveImage(imageName: String){
         let fileManager = FileManager.default
         let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
-        let image = imageView.image!.fixOrientation()
+        image = image!.fixOrientation()
         let data = image.pngData()
         //store it in the document directory
         fileManager.createFile(atPath: imagePath as String, contents: data, attributes: nil)

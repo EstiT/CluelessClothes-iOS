@@ -11,6 +11,6 @@ import Foundation
 
 class Outfit {
     
-    var clothes = [ClothingItem]()
+    var outfitItems = [ClothingItem]()
     
 }
