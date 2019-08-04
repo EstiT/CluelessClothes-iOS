@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol ShowCollectionsDelegate {
+    func updateShowCollectons(tops: Bool, dresses: Bool, jackets: Bool, bottoms: Bool, shoes: Bool)
+}
+
 class ChangeOutfitComponentsViewController: UIViewController {
     
     @IBOutlet weak var topSwitch: UISwitch!
@@ -23,6 +27,8 @@ class ChangeOutfitComponentsViewController: UIViewController {
     var bottoms: Bool!
     var shoes: Bool!
     
+    var delegate: ShowCollectionsDelegate?
+    
     //@IBOutlet weak var xView: UIView!
     
     
@@ -35,11 +41,8 @@ class ChangeOutfitComponentsViewController: UIViewController {
     }
     
     @IBAction func donePressed(_ sender: Any) {
-        if let presenter = presentingViewController as? MatchOutfitViewController {
-            //set components TODO 
-            //            presenter.selectedScheme = self.selectedScheme
-//            presenter.selectedGrade = 0
-        }
+        //tell MatchOutfitVC which collection views to display
+        delegate?.updateShowCollectons(tops: topSwitch.isOn, dresses: dressSwitch.isOn, jackets: jacketSwitch.isOn, bottoms: bottomsSwitch.isOn, shoes: shoesSwitch.isOn)
         dismiss(animated: true, completion: nil)
     }
     

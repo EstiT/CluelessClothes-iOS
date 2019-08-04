@@ -216,6 +216,36 @@
                                             <constraint firstAttribute="height" constant="10" id="dmm-YY-d6d"/>
                                         </constraints>
                                     </view>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="47c-82-cGU">
+                                        <rect key="frame" x="0.0" y="30" width="374" height="282"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v8U-gX-sWa">
+                                            <size key="itemSize" width="248" height="280"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ImageCell" id="E5L-dT-Uge" customClass="ImageCell" customModule="Clueless_Clothes" customModuleProvider="target">
+                                                <rect key="frame" x="63" y="0.0" width="248" height="280"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="248" height="280"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xPc-sx-qsl">
+                                                            <rect key="frame" x="0.0" y="0.0" width="248" height="280"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                </view>
+                                                <connections>
+                                                    <outlet property="image" destination="xPc-sx-qsl" id="Mqj-0Q-kWi"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hfw-bB-lhY">
                                         <rect key="frame" x="0.0" y="188" width="375" height="150"/>
                                         <constraints>
@@ -340,7 +370,7 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="takeShoesPicture" destination="9pv-A4-QxB" eventType="touchDown" id="cIy-kA-Eef"/>
-                                            <segue destination="Ycg-fJ-SBb" kind="show" identifier="changeComponents" id="8vK-Ep-4rK"/>
+                                            <segue destination="Ycg-fJ-SBb" kind="presentation" identifier="changeComponents" id="8vK-Ep-4rK"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -400,6 +430,7 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="bottomsCollection" destination="hfw-bB-lhY" id="EuK-zt-9pi"/>
+                        <outlet property="dressesCollection" destination="47c-82-cGU" id="1kc-1i-20a"/>
                         <outlet property="shoesCollection" destination="3Ik-B4-gI6" id="sTs-Rb-tEO"/>
                         <outlet property="topsCollection" destination="Y6M-np-yDo" id="f5b-Ka-d67"/>
                     </connections>
@@ -433,7 +464,7 @@
                                 </items>
                             </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jw5-pR-Z3u">
-                                <rect key="frame" x="0.0" y="64" width="375" height="510"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <switch opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K5i-bB-uRY">
                                         <rect key="frame" x="255" y="350" width="49" height="31"/>

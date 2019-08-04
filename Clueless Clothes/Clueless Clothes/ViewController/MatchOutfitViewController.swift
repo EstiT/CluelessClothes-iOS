@@ -8,48 +8,73 @@
 
 import UIKit
 
-class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ShowCollectionsDelegate {
 
     @IBOutlet weak var topsCollection: UICollectionView!
-    //TODO dresses
+    @IBOutlet weak var dressesCollection: UICollectionView!
     //TODO jackets
     @IBOutlet weak var bottomsCollection: UICollectionView!
     @IBOutlet weak var shoesCollection: UICollectionView!
     
-    var showTops = true
-    var showDresses = false
-    var showJackets = false
-    var showBottoms = true
-    var showShoes = true
+    var showTops: Bool!
+    var showDresses: Bool!
+    var showJackets: Bool!
+    var showBottoms: Bool!
+    var showShoes: Bool!
     
     var longPress = UILongPressGestureRecognizer() //TODO implement show X and delete
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpCollectionsViews()
+        if showTops == nil {
+            showTops = true
+        }
+        if showDresses == nil {
+            showDresses = false
+        }
+        if showJackets == nil {
+            showJackets = false
+        }
+        if showBottoms == nil {
+            showBottoms = true
+        }
+        if showShoes == nil {
+            print("shoes are nil")
+            showShoes = true
+        }
+        
+        setUpCollectionViews()
+        showHideCollections()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         topsCollection.reloadData()
+        dressesCollection.reloadData()
         bottomsCollection.reloadData()
         shoesCollection.reloadData()
+        showHideCollections()
+    }
+    
+    func updateShowCollectons(tops: Bool, dresses: Bool, jackets: Bool, bottoms: Bool, shoes: Bool) {
+        showTops = tops
+        showDresses = dresses
+        showJackets = jackets
+        showBottoms = bottoms
+        showShoes = shoes
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "changeComponents" {
-            if let ChangeOutfitComponentsViewController = segue.destination as? ChangeOutfitComponentsViewController {
-                ChangeOutfitComponentsViewController.tops = showTops
-                ChangeOutfitComponentsViewController.dresses = showDresses
-                ChangeOutfitComponentsViewController.jackets = showJackets
-                ChangeOutfitComponentsViewController.bottoms = showBottoms
-                ChangeOutfitComponentsViewController.shoes = showShoes 
-             
-                navigationItem.backBarButtonItem?.title = "Back"
+            if let ChangeOutfitComponentsVC = segue.destination as? ChangeOutfitComponentsViewController {
+                ChangeOutfitComponentsVC.tops = showTops
+                ChangeOutfitComponentsVC.dresses = showDresses
+                ChangeOutfitComponentsVC.jackets = showJackets
+                ChangeOutfitComponentsVC.bottoms = showBottoms
+                ChangeOutfitComponentsVC.shoes = showShoes
+                
+                ChangeOutfitComponentsVC.delegate = self
             }
-//            else{
-//                navigationItem.backBarButtonItem?.title = "Full Parent Title"
-//            }
         }
     }
 
@@ -67,7 +92,14 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     
     //MARK:- CollectionView
     
-    func setUpCollectionsViews(){
+    func showHideCollections(){
+        dressesCollection.isHidden = !showDresses
+        shoesCollection.isHidden = !showShoes
+        topsCollection.isHidden = !showTops
+        bottomsCollection.isHidden = !showBottoms
+    }
+    
+    func setUpCollectionViews(){
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         let width = UIScreen.main.bounds.width
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
@@ -90,6 +122,13 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         topsCollection.collectionViewLayout = layout
         topsCollection.reloadData()
         
+        dressesCollection.allowsSelection = true
+        dressesCollection.dataSource = self
+        dressesCollection.delegate = self
+        dressesCollection.backgroundColor = .clear
+//        dressesCollection.collectionViewLayout = layout
+        dressesCollection.reloadData()
+        
         bottomsCollection.allowsSelection = true
         bottomsCollection.dataSource = self
         bottomsCollection.delegate = self
@@ -109,11 +148,15 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         topsCollection.addGestureRecognizer(longPress)
         topsCollection.isUserInteractionEnabled = true
         
+        dressesCollection.addGestureRecognizer(longPress)
+        dressesCollection.isUserInteractionEnabled = true
+        
         bottomsCollection.addGestureRecognizer(longPress)
         bottomsCollection.isUserInteractionEnabled = true
         
         shoesCollection.addGestureRecognizer(longPress)
         shoesCollection.isUserInteractionEnabled = true
+        
     }
     
     
@@ -121,6 +164,9 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         // number of each type of clothes
         if collectionView == self.topsCollection{
             return Closet.shared.tops.count
+        }
+        else if collectionView == self.dressesCollection{
+            return Closet.shared.dresses.count
         }
         else if collectionView == self.bottomsCollection{
             return Closet.shared.bottoms.count
@@ -137,18 +183,20 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         cell.image.isUserInteractionEnabled = true
         
         //set image for colection view
+        var name = ""
         if collectionView == self.topsCollection{
-            let name = Closet.shared.tops[indexPath.row].imageName
-            cell.image.image = getImage(imageName: name ?? "")
+            name = Closet.shared.tops[indexPath.row].imageName
+        }
+        else if collectionView == self.dressesCollection {
+            name = Closet.shared.dresses[indexPath.row].imageName
         }
         else if collectionView == self.bottomsCollection{
-            let name = Closet.shared.bottoms[indexPath.row].imageName
-            cell.image.image = getImage(imageName: name ?? "")
+            name = Closet.shared.bottoms[indexPath.row].imageName
         }
         else if collectionView == self.shoesCollection{
-            let name = Closet.shared.shoes[indexPath.row].imageName
-            cell.image.image = getImage(imageName: name ?? "")
+            name = Closet.shared.shoes[indexPath.row].imageName
         }
+        cell.image.image = getImage(imageName: name)
         return cell
     }
     
@@ -177,6 +225,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
                 cell.image.shake()
                 print("shoes - you can do something with the cell or index path here")
             }
+                //TODO dresses & jacket 
             else {
                 self.becomeFirstResponder()
                 sender.view?.shake()
