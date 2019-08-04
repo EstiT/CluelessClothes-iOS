@@ -15,7 +15,7 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var imageView: UIImageView!
     let imagePicker = UIImagePickerController()
     
-    var clothingOptions: [String] = ["top", "jacket", "bottom", "dress", "shoes"]
+    var clothingOptions: [String] = ["top", "jacket", "dress", "bottom", "shoes"]
     var selectedClothingItem = 0
     
     var clothes = [ClothingItem]()
@@ -39,8 +39,7 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
 
 
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage // can be   used to display image
-
+        image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage // can be   used to display image
         //determine type of clothing, save image, add item to closet
         if selectedClothingItem == 0 { // top
             let name = Closet.shared.getNextTopName()
@@ -69,32 +68,38 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
         else if selectedClothingItem == 4 { //shoes
             let name = Closet.shared.getNextShoesName()
             let shoes = Shoes(imageName: name)
-            Closet.shared.addShoes(shoes:shoes)
+            Closet.shared.addShoes(s:shoes)
             saveImage(imageName: name)
         }
         dismiss(animated:true, completion:{
-            //TODO indicate success check mark/saved 
+            //TODO indicate success check mark/saved
             })
     }
     
+//    ["top", "jacket", "dress", "bottom", "shoes"]
     @IBAction func takeTopPicture(){
-        takePhoto()
         selectedClothingItem = 0
+        takePhoto()
     }
     
     @IBAction func takeJacketPicture(){
-        takePhoto()
         selectedClothingItem = 1
+        takePhoto()
+    }
+    
+    @IBAction func takeDressPicture(){
+        selectedClothingItem = 2
+        takePhoto()
     }
     
     @IBAction func takeBottomPicture(){
+        selectedClothingItem = 3
         takePhoto()
-        selectedClothingItem = 2
     }
     
     @IBAction func takeShoesPicture(){
+        selectedClothingItem = 4
         takePhoto()
-        selectedClothingItem = 3
     }
     
     func takePhoto() {

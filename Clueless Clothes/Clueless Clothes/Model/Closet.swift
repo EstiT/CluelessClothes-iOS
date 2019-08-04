@@ -12,41 +12,40 @@ class Closet{
     
     static let shared = Closet()
 
-    
     var clothes = [ClothingItem]()
     var outfits = [Outfit]()
-    var topsCount = 0
-    var dressCount = 0
-    var bottomsCount = 0
-    var jacketsCount = 0
-    var shoesCount = 0
+    var tops = [Top]()
+    var dresses = [Dress]()
+    var bottoms = [Bottom]()
+    var jackets = [Jacket]()
+    var shoes = [Shoes]()
     
     private init() { }
 
     
-    func addTop(top:ClothingItem){
+    func addTop(top:Top){
         clothes.append(top)
-        topsCount = topsCount+1
+        tops.append(top)
     }
     
-    func addDress(dress:ClothingItem){
+    func addDress(dress:Dress){
         clothes.append(dress)
-        dressCount = dressCount+1
+        dresses.append(dress)
     }
     
-    func addJacket(jacket:ClothingItem){
+    func addJacket(jacket:Jacket){
         clothes.append(jacket)
-        jacketsCount = jacketsCount+1
+        jackets.append(jacket)
     }
     
-    func addBottom(bottom:ClothingItem){
+    func addBottom(bottom:Bottom){
         clothes.append(bottom)
-        bottomsCount = bottomsCount+1
+        bottoms.append(bottom)
     }
     
-    func addShoes(shoes:ClothingItem){
-        clothes.append(shoes)
-        shoesCount = shoesCount+1
+    func addShoes(s:Shoes){
+        clothes.append(s)
+        shoes.append(s)
     }
     
     func addOutfit(outfit:Outfit){
@@ -67,23 +66,23 @@ class Closet{
     }
     
     func getNextTopName() -> String{ //starts at 0
-        return "top" + String(topsCount)
+        return "top" + String(tops.count)
     }
     
     func getNextDressName() -> String{
-        return "dress" + String(dressCount)
+        return "dress" + String(dresses.count)
     }
     
     func getNextJacketName() -> String{
-        return "jacket" + String(jacketsCount)
+        return "jacket" + String(jackets.count)
     }
     
     func getNextBottomName() -> String{
-        return "bottom" + String(bottomsCount)
+        return "bottom" + String(bottoms.count)
     }
     
     func getNextShoesName() -> String{
-        return "bottom" + String(bottomsCount)
+        return "shoes" + String(shoes.count)
     }
 
 
