@@ -192,7 +192,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="upload" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="upload" image="upload" id="acW-dT-cKf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
@@ -315,7 +315,7 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Ik-B4-gI6">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="3Ik-B4-gI6">
                                         <rect key="frame" x="0.0" y="346" width="375" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="gKz-Hu-4A5"/>
@@ -354,7 +354,7 @@
                                             <constraint firstAttribute="width" constant="178" id="v2G-SZ-JrB"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="change outfit components">
+                                        <state key="normal" title="set outfit components">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -425,7 +425,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="match" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="match" image="dress" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -623,7 +623,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5e4-gY-z1m"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="outfits" id="g0x-mH-CAo"/>
+                    <tabBarItem key="tabBarItem" title="outfits" image="hanger" id="g0x-mH-CAo"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L8o-Va-Eef" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -650,7 +650,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
+        <image name="dress" width="25" height="25"/>
+        <image name="hanger" width="25" height="18.5"/>
+        <image name="upload" width="25" height="25"/>
     </resources>
 </document>
