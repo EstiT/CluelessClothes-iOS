@@ -40,7 +40,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
             showBottoms = true
         }
         if showShoes == nil {
-            print("shoes are nil")
             showShoes = true
         }
         
@@ -63,6 +62,11 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         showBottoms = bottoms
         showShoes = shoes
     }
+    
+    @IBAction func matchOutfit(_ sender: Any) {
+        //TODO save current outfit to closet
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "changeComponents" {
@@ -100,49 +104,30 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     func setUpCollectionViews(){
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        let width = UIScreen.main.bounds.width
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
-        layout.itemSize = CGSize(width: width / 2, height: width / 2)
-        layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        
-        let layout2: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout2.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
-        layout2.itemSize = CGSize(width: width / 2, height: width / 2)
-        layout2.scrollDirection = .horizontal
-        layout2.minimumInteritemSpacing = 0
-        layout2.minimumLineSpacing = 0
-        
         topsCollection.allowsSelection = true
         topsCollection.dataSource = self
         topsCollection.delegate = self
         topsCollection.backgroundColor = .clear
-        topsCollection.collectionViewLayout = layout
         topsCollection.reloadData()
         
         dressesCollection.allowsSelection = true
         dressesCollection.dataSource = self
         dressesCollection.delegate = self
         dressesCollection.backgroundColor = .clear
-//        dressesCollection.collectionViewLayout = layout
         dressesCollection.reloadData()
         
         bottomsCollection.allowsSelection = true
         bottomsCollection.dataSource = self
         bottomsCollection.delegate = self
         bottomsCollection.backgroundColor = .clear
-        bottomsCollection.collectionViewLayout = layout2
         bottomsCollection.reloadData()
         
         shoesCollection.allowsSelection = true
         shoesCollection.dataSource = self
         shoesCollection.delegate = self
         shoesCollection.backgroundColor = .clear
-//        shoesCollection.collectionViewLayout = layout
         shoesCollection.reloadData()
-        
+       
         longPress = UILongPressGestureRecognizer(target: self, action: #selector(deleteImage(_:)))
         
         topsCollection.addGestureRecognizer(longPress)
@@ -210,7 +195,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
 
 
     @objc func deleteImage(_ sender: UILongPressGestureRecognizer) {
-        print("in handler")
         if sender.state == .began {
             if let indexPath = self.topsCollection?.indexPathForItem(at: sender.location(in: self.topsCollection)) {
                 let cell = self.topsCollection?.cellForItem(at: indexPath) as! ImageCell
