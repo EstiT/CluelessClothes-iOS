@@ -39,7 +39,7 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
 
 
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage // can be   used to display image
+        image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage // used in saveImage()
         //determine type of clothing, save image, add item to closet
         if selectedClothingItem == 0 { // top
             let name = Closet.shared.getNextTopName()
@@ -136,10 +136,9 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
     func saveImage(imageName: String){
         let fileManager = FileManager.default
         let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
-        image = image!.fixOrientation()
-        let data = image.pngData()
+        image = image!.fixOrientation() //TODO might not want
         //store it in the document directory
-        fileManager.createFile(atPath: imagePath as String, contents: data, attributes: nil)
+        fileManager.createFile(atPath: imagePath as String, contents: image.pngData(), attributes: nil)
     }
     
 

@@ -9,10 +9,24 @@
 import UIKit
 
 class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ShowCollectionsDelegate {
+    
+    
+    enum clothesItemCombination {
+        case JacketDressShoes
+        case JacketDress
+        case Dress
+        case DressShoes
+        case JacketTopBottomShoes
+        case JacketTopBottom
+        case TopBottom
+        case TopBottomShoes
+    }
+    
 
     @IBOutlet weak var topsCollection: UICollectionView!
     @IBOutlet weak var dressesCollection: UICollectionView!
     //TODO jackets
+    @IBOutlet weak var jacketsCollection:UICollectionView! //TODO
     @IBOutlet weak var bottomsCollection: UICollectionView!
     @IBOutlet weak var shoesCollection: UICollectionView!
     
@@ -21,6 +35,8 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     var showJackets: Bool!
     var showBottoms: Bool!
     var showShoes: Bool!
+    
+    var selectedCombo: clothesItemCombination!
     
     var longPress = UILongPressGestureRecognizer() //TODO implement show X and delete
     
@@ -45,6 +61,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         
         setUpCollectionViews()
         showHideCollections()
+        setComboEnum()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,6 +70,34 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         bottomsCollection.reloadData()
         shoesCollection.reloadData()
         showHideCollections()
+        setComboEnum()
+    }
+    
+    func setComboEnum(){
+        if showJackets && showDresses && showShoes && !showTops && !showBottoms{
+            selectedCombo = clothesItemCombination.JacketDressShoes
+        }
+        else if showJackets && showDresses && !showShoes && !showTops && !showBottoms{
+            selectedCombo = clothesItemCombination.JacketDress
+        }
+        else if !showJackets && showDresses && !showShoes && !showTops && !showBottoms{
+            selectedCombo = clothesItemCombination.Dress
+        }
+        else if !showJackets && showDresses && showShoes && !showTops && !showBottoms{
+            selectedCombo = clothesItemCombination.DressShoes
+        }
+        else if showJackets && !showDresses && showShoes && showTops && showBottoms{
+            selectedCombo = clothesItemCombination.JacketTopBottomShoes
+        }
+        else if showJackets && !showDresses && !showShoes && showTops && showBottoms{
+            selectedCombo = clothesItemCombination.JacketTopBottom
+        }
+        else if !showJackets && !showDresses && !showShoes && showTops && showBottoms{
+            selectedCombo = clothesItemCombination.TopBottom
+        }
+        else if !showJackets && !showDresses && showShoes && showTops && showBottoms{
+            selectedCombo = clothesItemCombination.TopBottomShoes
+        }
     }
     
     func updateShowCollectons(tops: Bool, dresses: Bool, jackets: Bool, bottoms: Bool, shoes: Bool) {
@@ -64,7 +109,84 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     @IBAction func matchOutfit(_ sender: Any) {
-        //TODO save current outfit to closet
+        var topName:String!
+        var bottomName:String!
+        var dressName:String!
+        var shoesName:String!
+        var jacketName:String!
+        
+        if !topsCollection.isHidden{
+            let visibleRect = CGRect(origin: topsCollection.contentOffset, size: topsCollection.bounds.size)
+            let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+            if let visibleIndexPath = topsCollection.indexPathForItem(at: visiblePoint){
+                let cell = topsCollection.cellForItem(at: visibleIndexPath) as! ImageCell
+                topName = cell.id
+            }
+        }
+        if !bottomsCollection.isHidden{
+            let visibleRect = CGRect(origin: bottomsCollection.contentOffset, size: bottomsCollection.bounds.size)
+            let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+            if let visibleIndexPath = bottomsCollection.indexPathForItem(at: visiblePoint){
+                let cell = bottomsCollection.cellForItem(at: visibleIndexPath) as! ImageCell
+                bottomName = cell.id
+            }
+        }
+        if !dressesCollection.isHidden{
+            let visibleRect = CGRect(origin: dressesCollection.contentOffset, size: dressesCollection.bounds.size)
+            let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+            if let visibleIndexPath = dressesCollection.indexPathForItem(at: visiblePoint){
+                let cell = dressesCollection.cellForItem(at: visibleIndexPath) as! ImageCell
+                dressName = cell.id
+            }
+        }
+        /* TODO
+        if !jacketsCollection.isHidden{
+         
+         
+        }*/
+        if !shoesCollection.isHidden{
+            let visibleRect = CGRect(origin: shoesCollection.contentOffset, size: shoesCollection.bounds.size)
+            let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+            if let visibleIndexPath = shoesCollection.indexPathForItem(at: visiblePoint){
+                let cell = shoesCollection.cellForItem(at: visibleIndexPath) as! ImageCell
+                shoesName = cell.id
+            }
+        }
+        
+        var clothes = [ClothingItem]()
+        
+        switch selectedCombo {
+        case .JacketDressShoes?:
+            clothes = [Dress(imageName: dressName),Jacket(imageName: jacketName), Shoes(imageName: shoesName)]
+            
+        case .JacketDress?:
+            clothes = [Dress(imageName: dressName),Jacket(imageName: jacketName)]
+            
+        case .Dress?:
+            clothes = [Dress(imageName: dressName)]
+            
+        case .DressShoes?:
+            clothes = [Dress(imageName: dressName), Shoes(imageName: shoesName)]
+            
+        case .JacketTopBottomShoes?:
+            clothes = [Top(imageName: topName),Jacket(imageName: jacketName), Bottom(imageName: bottomName), Shoes(imageName: shoesName)]
+            
+        case .JacketTopBottom?:
+            clothes = [Top(imageName: topName),Jacket(imageName: jacketName), Bottom(imageName: bottomName)]
+            
+        case .TopBottom?:
+            clothes = [Top(imageName: topName), Bottom(imageName: bottomName)]
+            
+        case .TopBottomShoes?:
+            clothes = [Top(imageName: topName), Bottom(imageName: bottomName), Shoes(imageName: shoesName)]
+            
+        default:
+            print("uh oh")
+        }
+       
+        let outfit = Outfit(clothes: clothes)
+        Closet.shared.addOutfit(outfit: outfit)
+        print(Closet.shared.outfits.count)
     }
     
     
@@ -182,6 +304,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
             name = Closet.shared.shoes[indexPath.row].imageName
         }
         cell.image.image = getImage(imageName: name)
+        cell.id = name
         return cell
     }
     
@@ -230,4 +353,6 @@ extension UIView {
         self.layer.add(transformAnim, forKey: "shake")
     }
 }
+
+
 

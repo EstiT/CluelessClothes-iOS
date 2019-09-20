@@ -12,6 +12,7 @@ import UIKit
 class ImageCell : UICollectionViewCell{
     
     @IBOutlet weak var image: UIImageView!
+    var id: String!
     
     required init?(coder aDecoder: NSCoder){
         super.init(coder: aDecoder)

@@ -13,7 +13,6 @@ class Jacket : ClothingItem {
     
     override init(imageName: String) {
         super.init(imageName: imageName)
-        self.maxOutfitItemCount = 4 // shoes, top, bottom, jacket
     }
     
 }

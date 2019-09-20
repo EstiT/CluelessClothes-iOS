@@ -11,13 +11,9 @@ import Foundation
 class ClothingItem{
     
     var imageName : String!
-    var maxOutfitItemCount : Int!
-    var minOutfitItemCount = 2 // something and shoes
-//    var id : String!
 
     init() {
         imageName = ""
-        maxOutfitItemCount = 0
     }
     
     init(imageName: String) {

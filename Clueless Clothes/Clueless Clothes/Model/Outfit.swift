@@ -13,4 +13,8 @@ class Outfit {
     
     var outfitItems = [ClothingItem]()
     
+    init(clothes: [ClothingItem]) {
+        outfitItems = clothes
+    }
+    
 }
