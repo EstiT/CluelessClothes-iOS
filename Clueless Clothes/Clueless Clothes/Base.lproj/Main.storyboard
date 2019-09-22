@@ -391,6 +391,34 @@
                                             <action selector="matchOutfit:" destination="8rJ-Kc-sve" eventType="touchDown" id="JQ9-QS-6al"/>
                                         </connections>
                                     </button>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="no bottoms in closet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JN8-Hq-5VW" userLabel="no bottoms in closet">
+                                        <rect key="frame" x="95" y="258" width="184" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="no tops in closet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcG-Z5-ejz">
+                                        <rect key="frame" x="113" y="100" width="148" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="no shoes in closet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWI-jp-JlQ">
+                                        <rect key="frame" x="106" y="340" width="163" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="no dresses in closet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0M-Gn-Spz">
+                                        <rect key="frame" x="98" y="190" width="179" height="26"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.96078431369999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -455,6 +483,10 @@
                     <connections>
                         <outlet property="bottomsCollection" destination="hfw-bB-lhY" id="EuK-zt-9pi"/>
                         <outlet property="dressesCollection" destination="47c-82-cGU" id="1kc-1i-20a"/>
+                        <outlet property="noBottomsLabel" destination="JN8-Hq-5VW" id="Jv1-Ch-5Df"/>
+                        <outlet property="noDressesLabel" destination="o0M-Gn-Spz" id="UJf-b5-trV"/>
+                        <outlet property="noShoesLabel" destination="AWI-jp-JlQ" id="pUh-3v-h60"/>
+                        <outlet property="noTopsLabel" destination="ZcG-Z5-ejz" id="w5Q-4r-VHg"/>
                         <outlet property="shoesCollection" destination="3Ik-B4-gI6" id="sTs-Rb-tEO"/>
                         <outlet property="topsCollection" destination="Y6M-np-yDo" id="f5b-Ka-d67"/>
                     </connections>
@@ -636,7 +668,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="0ez-ml-dyK">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MultiImageCell" id="0ez-ml-dyK">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="413"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">

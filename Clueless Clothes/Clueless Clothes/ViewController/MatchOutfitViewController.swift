@@ -25,10 +25,15 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
 
     @IBOutlet weak var topsCollection: UICollectionView!
     @IBOutlet weak var dressesCollection: UICollectionView!
-    //TODO jackets
     @IBOutlet weak var jacketsCollection:UICollectionView! //TODO
     @IBOutlet weak var bottomsCollection: UICollectionView!
     @IBOutlet weak var shoesCollection: UICollectionView!
+    
+    @IBOutlet weak var noTopsLabel: UILabel!
+    @IBOutlet weak var noDressesLabel: UILabel!
+    @IBOutlet weak var noJacketsLabel: UILabel!
+    @IBOutlet weak var noBottomsLabel: UILabel!
+    @IBOutlet weak var noShoesLabel: UILabel!
     
     var showTops: Bool!
     var showDresses: Bool!
@@ -60,16 +65,11 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         }
         
         setUpCollectionViews()
-        showHideCollections()
         setComboEnum()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        topsCollection.reloadData()
-        dressesCollection.reloadData()
-        bottomsCollection.reloadData()
-        shoesCollection.reloadData()
-        showHideCollections()
+        setUpCollectionViews()
         setComboEnum()
     }
     
@@ -106,6 +106,9 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         showJackets = jackets
         showBottoms = bottoms
         showShoes = shoes
+        
+        setComboEnum()
+        showHideCollections()
     }
     
     @IBAction func matchOutfit(_ sender: Any) {
@@ -113,7 +116,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         var bottomName:String!
         var dressName:String!
         var shoesName:String!
-        var jacketName:String!
+        var jacketName:String! //TODO
         
         if !topsCollection.isHidden{
             let visibleRect = CGRect(origin: topsCollection.contentOffset, size: topsCollection.bounds.size)
@@ -219,13 +222,57 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     //MARK:- CollectionView
     
     func showHideCollections(){
-        dressesCollection.isHidden = !showDresses
-        shoesCollection.isHidden = !showShoes
-        topsCollection.isHidden = !showTops
-        bottomsCollection.isHidden = !showBottoms
+        if Closet.shared.tops.count > 0 {
+            topsCollection.isHidden = !showTops
+            noTopsLabel.isHidden = true
+        }
+        else if showTops{
+            topsCollection.isHidden = true
+            noTopsLabel.isHidden = false
+        }
+        else {
+            noTopsLabel.isHidden = true
+        }
+        
+        if Closet.shared.dresses.count > 0 {
+            dressesCollection.isHidden = !showDresses
+            noDressesLabel.isHidden = true
+        }
+        else if showDresses{
+            dressesCollection.isHidden = true
+            noDressesLabel.isHidden = false
+        }
+        else {
+            noDressesLabel.isHidden = true
+        }
+        
+        if Closet.shared.bottoms.count > 0 {
+            bottomsCollection.isHidden = !showBottoms
+            noBottomsLabel.isHidden = true
+        }
+        else if showBottoms{
+            bottomsCollection.isHidden = true
+            noBottomsLabel.isHidden = false
+        }
+        else {
+            noBottomsLabel.isHidden = true
+        }
+        
+        if Closet.shared.shoes.count > 0 {
+            shoesCollection.isHidden = !showShoes
+            noShoesLabel.isHidden = true
+        }
+        else if showShoes{
+            shoesCollection.isHidden = true
+            noShoesLabel.isHidden = false
+        }
+        else {
+            noShoesLabel.isHidden = true
+        }
     }
     
     func setUpCollectionViews(){
+        showHideCollections()
         topsCollection.allowsSelection = true
         topsCollection.dataSource = self
         topsCollection.delegate = self
