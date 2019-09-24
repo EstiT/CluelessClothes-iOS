@@ -35,6 +35,15 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var noBottomsLabel: UILabel!
     @IBOutlet weak var noShoesLabel: UILabel!
     
+    @IBOutlet weak var topsLeftArrowView: UIView!
+    @IBOutlet weak var topsRightArrowView: UIView!
+    @IBOutlet weak var bottomsLeftArrowView: UIView!
+    @IBOutlet weak var bottomsRightArrowView: UIView!
+    @IBOutlet weak var dressesLeftArrowView: UIView!
+    @IBOutlet weak var dressesRightArrowView: UIView!
+    @IBOutlet weak var shoesLeftArrowView: UIView!
+    @IBOutlet weak var shoesRightArrowView: UIView!
+    
     var showTops: Bool!
     var showDresses: Bool!
     var showJackets: Bool!
@@ -66,6 +75,12 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         
         setUpCollectionViews()
         setComboEnum()
+        
+        topsLeftArrowView.transform = topsLeftArrowView.transform.rotated(by: CGFloat(-Double.pi))
+        bottomsLeftArrowView.transform = bottomsLeftArrowView.transform.rotated(by: CGFloat(-Double.pi))
+        dressesLeftArrowView.transform = dressesLeftArrowView.transform.rotated(by: CGFloat(-Double.pi))
+        shoesLeftArrowView.transform = shoesLeftArrowView.transform.rotated(by: CGFloat(-Double.pi))
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -108,7 +123,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         showShoes = shoes
         
         setComboEnum()
-        showHideCollections()
+        showHideCollectionElements()
     }
     
     @IBAction func matchOutfit(_ sender: Any) {
@@ -189,7 +204,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
        
         let outfit = Outfit(clothes: clothes)
         Closet.shared.addOutfit(outfit: outfit)
-        print(Closet.shared.outfits.count)
     }
     
     
@@ -207,72 +221,94 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         }
     }
 
-
-    func getImage(imageName: String) -> UIImage{
-        let fileManager = FileManager.default
-        let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
-        if fileManager.fileExists(atPath: imagePath){
-            return UIImage(contentsOfFile: imagePath)!
-        }else{
-            print("Panic! No Image!")
-            return UIImage()
-        }
-    }
     
     //MARK:- CollectionView
     
-    func showHideCollections(){
-        if Closet.shared.tops.count > 0 {
-            topsCollection.isHidden = !showTops
+    func showHideCollectionElements(){
+        dressesCollection.isHidden = !showDresses
+        bottomsCollection.isHidden = !showBottoms
+        shoesCollection.isHidden = !showShoes
+        topsCollection.isHidden = !showTops
+        
+        if showTops{
+            if Closet.shared.tops.count > 0 {
+                noTopsLabel.isHidden = true
+                topsLeftArrowView.isHidden = false
+                topsRightArrowView.isHidden = false
+            }
+            else{
+                topsCollection.isHidden = true
+                noTopsLabel.isHidden = false
+                topsLeftArrowView.isHidden = true
+                topsRightArrowView.isHidden = true
+            }
+        }
+        else {
             noTopsLabel.isHidden = true
-        }
-        else if showTops{
-            topsCollection.isHidden = true
-            noTopsLabel.isHidden = false
-        }
-        else {
-            noTopsLabel.isHidden = true
+            topsLeftArrowView.isHidden = true
+            topsRightArrowView.isHidden = true
         }
         
-        if Closet.shared.dresses.count > 0 {
-            dressesCollection.isHidden = !showDresses
+        if showDresses{
+            if Closet.shared.dresses.count > 0 {
+                noDressesLabel.isHidden = true
+                dressesLeftArrowView.isHidden = false
+                dressesRightArrowView.isHidden = false
+            }
+            else{
+                dressesCollection.isHidden = true
+                noDressesLabel.isHidden = false
+                dressesLeftArrowView.isHidden = true
+                dressesRightArrowView.isHidden = true
+            }
+        }
+        else {
             noDressesLabel.isHidden = true
-        }
-        else if showDresses{
-            dressesCollection.isHidden = true
-            noDressesLabel.isHidden = false
-        }
-        else {
-            noDressesLabel.isHidden = true
+            dressesLeftArrowView.isHidden = true
+            dressesRightArrowView.isHidden = true
         }
         
-        if Closet.shared.bottoms.count > 0 {
-            bottomsCollection.isHidden = !showBottoms
-            noBottomsLabel.isHidden = true
-        }
-        else if showBottoms{
-            bottomsCollection.isHidden = true
-            noBottomsLabel.isHidden = false
+        if showBottoms{
+            if Closet.shared.bottoms.count > 0 {
+                noBottomsLabel.isHidden = true
+                bottomsLeftArrowView.isHidden = false
+                bottomsRightArrowView.isHidden = false
+            }
+            else{
+                bottomsCollection.isHidden = true
+                noBottomsLabel.isHidden = false
+                bottomsLeftArrowView.isHidden = true
+                bottomsRightArrowView.isHidden = true
+            }
         }
         else {
             noBottomsLabel.isHidden = true
+            bottomsLeftArrowView.isHidden = true
+            bottomsRightArrowView.isHidden = true
         }
         
-        if Closet.shared.shoes.count > 0 {
-            shoesCollection.isHidden = !showShoes
-            noShoesLabel.isHidden = true
-        }
-        else if showShoes{
-            shoesCollection.isHidden = true
-            noShoesLabel.isHidden = false
+        if showShoes{
+            if Closet.shared.shoes.count > 0 {
+                noShoesLabel.isHidden = true
+                shoesLeftArrowView.isHidden = false
+                shoesRightArrowView.isHidden = false
+            }
+            else{
+                shoesCollection.isHidden = true
+                noShoesLabel.isHidden = false
+                shoesLeftArrowView.isHidden = true
+                shoesRightArrowView.isHidden = true
+            }
         }
         else {
             noShoesLabel.isHidden = true
+            shoesLeftArrowView.isHidden = true
+            shoesRightArrowView.isHidden = true
         }
     }
     
     func setUpCollectionViews(){
-        showHideCollections()
+        showHideCollectionElements()
         topsCollection.allowsSelection = true
         topsCollection.dataSource = self
         topsCollection.delegate = self
@@ -350,7 +386,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         else if collectionView == self.shoesCollection{
             name = Closet.shared.shoes[indexPath.row].imageName
         }
-        cell.image.image = getImage(imageName: name)
+        cell.image.image = Utility.getImage(imageName: name)
         cell.id = name
         return cell
     }
