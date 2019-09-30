@@ -29,13 +29,22 @@ class WLCollectionViewLayout: UICollectionViewFlowLayout {
     
     func setup() {
         // setting up some inherited values
-        let space: CGFloat = 4
+        let space: CGFloat = 30
+        //let w = view.frame.width
+        /*
         let width = UIScreen.main.bounds.width
         let itemWidth = width - space * 4 // w0 == ws
         self.itemSize = CGSize(width: itemWidth, height: itemWidth)
         self.minimumInteritemSpacing = space
         self.minimumLineSpacing = space
         self.scrollDirection = .horizontal
+ */
+        
+        
+        //let itemWidth                       = w - space * 4 // w0 == ws
+        //self.itemSize           = CGSize(width: itemWidth, height: 180)
+        //self.minimumLineSpacing = space
+        
     }
     
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
@@ -50,15 +59,31 @@ class WLCollectionViewLayout: UICollectionViewFlowLayout {
         
         if ((previousOffset > collectionView.contentOffset.x) && (velocity.x < 0)) {
             currentPage = max(currentPage - 1, 0)
-        } else if ((previousOffset < collectionView.contentOffset.x) && (velocity.x > 0.0)) {
-            currentPage = min(currentPage + 1, itemsCount - 1);
+        }
+        else if ((previousOffset < collectionView.contentOffset.x) && (velocity.x > 0.0)) {
+            currentPage = min(currentPage + 1, itemsCount - 1)
         }
         
-        let itemEdgeOffset:CGFloat = (collectionView.frame.width - itemSize.width -  minimumLineSpacing * 2) / 2
-        let updatedOffset: CGFloat = (itemSize.width + minimumLineSpacing) * CGFloat(currentPage) - (itemEdgeOffset + minimumLineSpacing);
+        let itemEdgeOffset:CGFloat = 30//(collectionView.frame.width - itemSize.width -  minimumLineSpacing * 2) / 2
+        let updatedOffset: CGFloat = (itemSize.width + minimumLineSpacing) *
+                                        CGFloat(currentPage) -
+                                        (itemEdgeOffset + minimumLineSpacing)
         
         previousOffset = updatedOffset;
         
         return CGPoint(x: updatedOffset, y: proposedContentOffset.y);
     }
+    
+    /*
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        let attributes: [AnyObject] = super.layoutAttributesForElements(in: rect)!
+        let newAttributes: NSMutableArray = NSMutableArray(capacity: attributes.count)
+        for attribute in attributes {
+            if (attribute.frame.origin.x+attribute.frame.size.width <= self.collectionViewContentSize.width) && (attribute.frame.origin.y+attribute.frame.size.height <= self.collectionViewContentSize.height) {
+                newAttributes.add(attribute)
+            }
+        }
+        return newAttributes as? [UICollectionViewLayoutAttributes]
+
+    }*/
 }

@@ -35,14 +35,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var noBottomsLabel: UILabel!
     @IBOutlet weak var noShoesLabel: UILabel!
     
-    @IBOutlet weak var topsLeftArrowView: UIView!
-    @IBOutlet weak var topsRightArrowView: UIView!
-    @IBOutlet weak var bottomsLeftArrowView: UIView!
-    @IBOutlet weak var bottomsRightArrowView: UIView!
-    @IBOutlet weak var dressesLeftArrowView: UIView!
-    @IBOutlet weak var dressesRightArrowView: UIView!
-    @IBOutlet weak var shoesLeftArrowView: UIView!
-    @IBOutlet weak var shoesRightArrowView: UIView!
+    @IBOutlet weak var collectionsHolder: UIView!
     
     var showTops: Bool!
     var showDresses: Bool!
@@ -51,6 +44,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     var showShoes: Bool!
     
     var selectedCombo: clothesItemCombination!
+    ///to try: https://adoptioncurve.net/2013/07/02/building-a-circular-gallery-with-a-uicollectionview/
     
     var longPress = UILongPressGestureRecognizer() //TODO implement show X and delete
     
@@ -73,19 +67,73 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
             showShoes = true
         }
         
-        setUpCollectionViews()
-        setComboEnum()
-        
-        topsLeftArrowView.transform = topsLeftArrowView.transform.rotated(by: CGFloat(-Double.pi))
-        bottomsLeftArrowView.transform = bottomsLeftArrowView.transform.rotated(by: CGFloat(-Double.pi))
-        dressesLeftArrowView.transform = dressesLeftArrowView.transform.rotated(by: CGFloat(-Double.pi))
-        shoesLeftArrowView.transform = shoesLeftArrowView.transform.rotated(by: CGFloat(-Double.pi))
-
+        viewDidAppear(false)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        setUpCollectionViews()
         setComboEnum()
+        showHideCollectionElements()
+        setUpCollectionViews()
+    }
+    
+    func setUpCollectionViews(){
+        var topsCollectionHeight = 0.0
+        var bottomsCollectionHeight = 0.0
+        var dressCollectionHeight = 0.0
+        //var jacketCollectionHeight = 0.0 TODO
+        var shoesCollectionHeight = 0.0
+        var shoesY:CGFloat = 0.0
+        
+        switch selectedCombo {
+        case .JacketDressShoes?: //TODO
+            dressCollectionHeight = 0.76
+            shoesCollectionHeight = 0.12
+            shoesY = CGFloat((collectionsHolder.frame.height * CGFloat(dressCollectionHeight)))
+        case .JacketDress?: //TODO
+            dressCollectionHeight = 1.0
+        case .Dress?:
+            dressCollectionHeight = 1.0
+        case .DressShoes?:
+            dressCollectionHeight = 0.76
+            shoesCollectionHeight = 0.21
+            shoesY = CGFloat((collectionsHolder.frame.height * CGFloat(dressCollectionHeight))+(collectionsHolder.frame.height * CGFloat(0.0275)))
+            print("12  \(collectionsHolder.frame.height * CGFloat(0.0275))")
+        //(collectionsHolder.frame.height * CGFloat(6))
+        case .JacketTopBottomShoes?: //TODO
+            topsCollectionHeight = 0.32
+            bottomsCollectionHeight = 0.47
+            shoesCollectionHeight = 0.15
+            shoesY = collectionsHolder.frame.height * CGFloat(topsCollectionHeight)+(collectionsHolder.frame.height * CGFloat(0.0275)) + collectionsHolder.frame.height * CGFloat(bottomsCollectionHeight)+(collectionsHolder.frame.height * CGFloat(0.0275))
+        case .JacketTopBottom?:  //TODO
+            topsCollectionHeight = 0.35
+            bottomsCollectionHeight = 0.55
+        case .TopBottom?:
+            topsCollectionHeight = 0.39
+            bottomsCollectionHeight = 0.58
+        case .TopBottomShoes?:
+            topsCollectionHeight = 0.32
+            bottomsCollectionHeight = 0.47
+            shoesCollectionHeight = 0.15
+            shoesY = collectionsHolder.frame.height * CGFloat(topsCollectionHeight)+(collectionsHolder.frame.height * CGFloat(0.0275)) + collectionsHolder.frame.height * CGFloat(bottomsCollectionHeight)+(collectionsHolder.frame.height * CGFloat(0.0275))
+        default:
+            print("uh oh")
+        }
+        
+        setUpCollectionView(cv: topsCollection, frame: CGRect(x: 0, y: 0, width: collectionsHolder.frame.width, height: collectionsHolder.frame.height * CGFloat(topsCollectionHeight)))
+        setUpCollectionView(cv: bottomsCollection, frame: CGRect(x: 0, y: collectionsHolder.frame.height * CGFloat(topsCollectionHeight)+12, width: collectionsHolder.frame.width, height: collectionsHolder.frame.height * CGFloat(bottomsCollectionHeight)))
+        setUpCollectionView(cv: dressesCollection, frame: CGRect(x: 0, y: 0, width: collectionsHolder.frame.width, height: collectionsHolder.frame.height * CGFloat(dressCollectionHeight)))
+        setUpCollectionView(cv: shoesCollection, frame: CGRect(x: 0, y: shoesY, width: collectionsHolder.frame.width, height: collectionsHolder.frame.height * CGFloat(shoesCollectionHeight)))
+        //        setUpCollectionView(bottomsCollection) TODO Jacket
+        
+        setNoClothesLabelY()
+    }
+    
+    func setNoClothesLabelY(){
+        noTopsLabel.center.y = topsCollection.frame.midY
+        noBottomsLabel.center.y = bottomsCollection.frame.midY
+        noDressesLabel.center.y = dressesCollection.frame.midY
+        //        noJacketsLabel.center.y = jacketsCollection.frame.midY TODO
+        noShoesLabel.center.y = shoesCollection.frame.midY
     }
     
     func setComboEnum(){
@@ -229,124 +277,89 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         bottomsCollection.isHidden = !showBottoms
         shoesCollection.isHidden = !showShoes
         topsCollection.isHidden = !showTops
-        
         if showTops{
             if Closet.shared.tops.count > 0 {
                 noTopsLabel.isHidden = true
-                topsLeftArrowView.isHidden = false
-                topsRightArrowView.isHidden = false
+                let midIndexPath = IndexPath(row: Closet.shared.tops.count / 2, section: 0)
+                //topsCollection.scrollToItem(at: midIndexPath, at: .centeredHorizontally, animated: false)
             }
             else{
                 topsCollection.isHidden = true
                 noTopsLabel.isHidden = false
-                topsLeftArrowView.isHidden = true
-                topsRightArrowView.isHidden = true
             }
         }
         else {
             noTopsLabel.isHidden = true
-            topsLeftArrowView.isHidden = true
-            topsRightArrowView.isHidden = true
         }
         
         if showDresses{
             if Closet.shared.dresses.count > 0 {
                 noDressesLabel.isHidden = true
-                dressesLeftArrowView.isHidden = false
-                dressesRightArrowView.isHidden = false
+                let midIndexPath = IndexPath(row: Closet.shared.dresses.count / 2, section: 0)
+                //dressesCollection.scrollToItem(at: midIndexPath, at: .centeredHorizontally, animated: false)
             }
             else{
                 dressesCollection.isHidden = true
                 noDressesLabel.isHidden = false
-                dressesLeftArrowView.isHidden = true
-                dressesRightArrowView.isHidden = true
             }
         }
         else {
             noDressesLabel.isHidden = true
-            dressesLeftArrowView.isHidden = true
-            dressesRightArrowView.isHidden = true
         }
         
         if showBottoms{
             if Closet.shared.bottoms.count > 0 {
                 noBottomsLabel.isHidden = true
-                bottomsLeftArrowView.isHidden = false
-                bottomsRightArrowView.isHidden = false
+                let midIndexPath = IndexPath(row: Closet.shared.bottoms.count / 2, section: 0)
+                //bottomsCollection.scrollToItem(at: midIndexPath, at: .centeredHorizontally, animated: false)
             }
             else{
                 bottomsCollection.isHidden = true
                 noBottomsLabel.isHidden = false
-                bottomsLeftArrowView.isHidden = true
-                bottomsRightArrowView.isHidden = true
             }
         }
         else {
             noBottomsLabel.isHidden = true
-            bottomsLeftArrowView.isHidden = true
-            bottomsRightArrowView.isHidden = true
         }
         
         if showShoes{
             if Closet.shared.shoes.count > 0 {
                 noShoesLabel.isHidden = true
-                shoesLeftArrowView.isHidden = false
-                shoesRightArrowView.isHidden = false
+                let midIndexPath = IndexPath(row: Closet.shared.bottoms.count / 2, section: 0)
+                //shoesCollection.scrollToItem(at: midIndexPath, at: .centeredHorizontally, animated: false)
             }
             else{
                 shoesCollection.isHidden = true
                 noShoesLabel.isHidden = false
-                shoesLeftArrowView.isHidden = true
-                shoesRightArrowView.isHidden = true
             }
         }
         else {
             noShoesLabel.isHidden = true
-            shoesLeftArrowView.isHidden = true
-            shoesRightArrowView.isHidden = true
         }
     }
     
-    func setUpCollectionViews(){
-        showHideCollectionElements()
-        topsCollection.allowsSelection = true
-        topsCollection.dataSource = self
-        topsCollection.delegate = self
-        topsCollection.backgroundColor = .clear
-        topsCollection.reloadData()
-        
-        dressesCollection.allowsSelection = true
-        dressesCollection.dataSource = self
-        dressesCollection.delegate = self
-        dressesCollection.backgroundColor = .clear
-        dressesCollection.reloadData()
-        
-        bottomsCollection.allowsSelection = true
-        bottomsCollection.dataSource = self
-        bottomsCollection.delegate = self
-        bottomsCollection.backgroundColor = .clear
-        bottomsCollection.reloadData()
-        
-        shoesCollection.allowsSelection = true
-        shoesCollection.dataSource = self
-        shoesCollection.delegate = self
-        shoesCollection.backgroundColor = .clear
-        shoesCollection.reloadData()
-       
+    func setUpCollectionView(cv: UICollectionView, frame: CGRect){
+        cv.allowsSelection = true
+        cv.dataSource = self
+        cv.delegate = self
+        cv.backgroundColor = .clear
+        cv.contentInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
+        cv.frame = frame
+        let itemWidth = view.frame.width - 30 * 4 // w0 == ws TODO
+        let itemSize = CGSize(width: itemWidth, height: frame.height)
+        if let collectionViewFlowLayout = cv.collectionViewLayout as? WLCollectionViewLayout {
+            collectionViewFlowLayout.itemSize = itemSize
+            collectionViewFlowLayout.minimumLineSpacing = 30
+            collectionViewFlowLayout.scrollDirection = .horizontal
+        }
+
+        cv.isPagingEnabled = false
+        cv.reloadData()
+    
         longPress = UILongPressGestureRecognizer(target: self, action: #selector(deleteImage(_:)))
         
-        topsCollection.addGestureRecognizer(longPress)
-        topsCollection.isUserInteractionEnabled = true
-        
-        dressesCollection.addGestureRecognizer(longPress)
-        dressesCollection.isUserInteractionEnabled = true
-        
-        bottomsCollection.addGestureRecognizer(longPress)
-        bottomsCollection.isUserInteractionEnabled = true
-        
-        shoesCollection.addGestureRecognizer(longPress)
-        shoesCollection.isUserInteractionEnabled = true
-        
+        cv.addGestureRecognizer(longPress)
+        cv.isUserInteractionEnabled = true
     }
     
     
@@ -386,7 +399,18 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         else if collectionView == self.shoesCollection{
             name = Closet.shared.shoes[indexPath.row].imageName
         }
-        cell.image.image = Utility.getImage(imageName: name)
+        
+        //TESTING
+        let regex = try! NSRegularExpression(pattern: "[0-9]$")
+        let range = NSRange(location: 0, length: name.utf16.count)
+        if regex.firstMatch(in: name, options: [], range: range) != nil{
+            cell.image.image = Utility.getImage(imageName: name)
+        }
+        else{
+            cell.image.image = UIImage(named: name)
+        }
+        cell.image.contentMode = .scaleAspectFill //.scaleAspectFit //.scaleToFill
+        
         cell.id = name
         return cell
     }
@@ -439,3 +463,14 @@ extension UIView {
 
 
 
+extension String
+{
+    func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat
+    {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height);
+        
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+        
+        return boundingBox.width;
+    }
+}

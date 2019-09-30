@@ -12,7 +12,6 @@ import Photos
 class AddClothesViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var image:UIImage!
-    @IBOutlet weak var imageView: UIImageView!
     let imagePicker = UIImagePickerController()
     
     var clothingOptions: [String] = ["top", "jacket", "dress", "bottom", "shoes"]
@@ -26,21 +25,23 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
         checkPermission()
-    }
-    
-    
-    @IBAction func selectPhoto(_ sender: Any) {
-        imagePicker.delegate = self
-        imagePicker.allowsEditing = false
-        imagePicker.sourceType = .photoLibrary
-
-        present(imagePicker, animated: true, completion: nil)
+        /*
+        let test1 = Dress(imageName: "dress")
+        Closet.shared.addDress(dress:test1)
+        
+        let test2 = Dress(imageName: "hanger")
+        Closet.shared.addDress(dress:test2)
+        */
     }
 
 
     @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage // used in saveImage()
-        //determine type of clothing, save image, add item to closet
+        if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            image = img
+        }
+        else if let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            image = img
+        }
         if selectedClothingItem == 0 { // top
             let name = Closet.shared.getNextTopName()
             let top = Top(imageName: name)
