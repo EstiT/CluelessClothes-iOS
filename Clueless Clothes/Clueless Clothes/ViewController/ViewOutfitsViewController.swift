@@ -41,7 +41,6 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
                     topView.backgroundColor = .darkGray
                     mainView.backgroundColor = UIColor(displayP3Red: 140/255, green: 54/255, blue: 72/255, alpha: 1.0)
                     statusbarColor = .darkGray
-                  
                 }
                 else {
                     topView.backgroundColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 241/255, alpha: 1.0)

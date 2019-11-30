@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ShowCollectionsDelegate {
+class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ShowCollectionsDelegate, UIAdaptivePresentationControllerDelegate {
     
     enum clothesItemCombination {
         case JacketDressShoes
@@ -311,9 +311,19 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
                 ChangeOutfitComponentsVC.shoes = showShoes
                 
                 ChangeOutfitComponentsVC.delegate = self
+                segue.destination.presentationController?.delegate = self
             }
         }
     }
+    
+    //https://stackoverflow.com/questions/56568967/detecting-sheet-was-dismissed-on-ios-13
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController){
+        viewDidAppear(false)
+    }
+
+    func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
+        viewDidAppear(false)
+     }
 
     
     //MARK:- CollectionView

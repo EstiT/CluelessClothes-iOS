@@ -613,6 +613,7 @@
                         <outlet property="bottomsSwitch" destination="K8i-wT-79T" id="mzH-qB-hwp"/>
                         <outlet property="dressSwitch" destination="0Gv-of-juO" id="vdO-01-dIQ"/>
                         <outlet property="jacketSwitch" destination="iJ0-Ce-kVb" id="IEd-ji-NlF"/>
+                        <outlet property="mainView" destination="jw5-pR-Z3u" id="zIO-45-B7v"/>
                         <outlet property="shoesSwitch" destination="1hq-JF-KoU" id="8rU-xn-0vW"/>
                         <outlet property="topSwitch" destination="K5i-bB-uRY" id="bVp-ME-t8m"/>
                     </connections>
