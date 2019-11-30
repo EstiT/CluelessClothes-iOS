@@ -224,9 +224,11 @@
 				TargetAttributes = {
 					22345E0521758B4600E2FC9B = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1110;
 					};
 					22345E1B21758B4700E2FC9B = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1110;
 						TestTargetID = 22345E0521758B4600E2FC9B;
 					};
 				};
@@ -465,7 +467,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Clueless-Clothes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -483,7 +485,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Clueless-Clothes";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -503,7 +505,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Clueless-ClothesTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Clueless Clothes.app/Clueless Clothes";
 			};
@@ -524,7 +526,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Clueless-ClothesTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Clueless Clothes.app/Clueless Clothes";
 			};

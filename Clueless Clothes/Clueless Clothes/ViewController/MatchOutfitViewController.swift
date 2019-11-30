@@ -10,7 +10,6 @@ import UIKit
 
 class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, ShowCollectionsDelegate {
     
-    
     enum clothesItemCombination {
         case JacketDressShoes
         case JacketDress
@@ -34,7 +33,8 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var noJacketsLabel: UILabel!
     @IBOutlet weak var noBottomsLabel: UILabel!
     @IBOutlet weak var noShoesLabel: UILabel!
-    
+    @IBOutlet weak var mainView: UIView!
+    @IBOutlet weak var topView: UIView!
     @IBOutlet weak var collectionsHolder: UIView!
     
     var showTops: Bool!
@@ -74,6 +74,52 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         setComboEnum()
         showHideCollectionElements()
         setUpCollectionViews()
+        checkColorTheme()
+    }
+    
+    func checkColorTheme(){
+        if #available(iOS 12.0, *) {
+//            https://stackoverflow.com/questions/56457395/how-to-check-for-ios-dark-mode
+            var statusbarColor = UIColor()
+            if self.traitCollection.userInterfaceStyle == .dark {
+                topView.backgroundColor = .darkGray
+                mainView.backgroundColor = UIColor(displayP3Red: 140/255, green: 54/255, blue: 72/255, alpha: 1.0)
+                statusbarColor = .darkGray
+              
+            }
+            else {
+                topView.backgroundColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 241/255, alpha: 1.0)
+                mainView.backgroundColor = UIColor(displayP3Red: 255/255, green: 245/255, blue: 134/255, alpha: 1.0)
+                statusbarColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 241/255, alpha: 1.0)
+            }
+//            https://freakycoder.com/ios-notes-13-how-to-change-status-bar-color-1431c185e845
+            if #available(iOS 13.0, *) {
+                let app = UIApplication.shared
+                let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+                
+                let statusbarView = UIView()
+                statusbarView.backgroundColor = statusbarColor
+                view.addSubview(statusbarView)
+              
+                statusbarView.translatesAutoresizingMaskIntoConstraints = false
+                statusbarView.heightAnchor
+                    .constraint(equalToConstant: statusBarHeight).isActive = true
+                statusbarView.widthAnchor
+                    .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+                statusbarView.topAnchor
+                    .constraint(equalTo: view.topAnchor).isActive = true
+                statusbarView.centerXAnchor
+                    .constraint(equalTo: view.centerXAnchor).isActive = true
+            }
+            else {
+                let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+                statusBar?.backgroundColor = statusbarColor
+            }
+        }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        checkColorTheme()
     }
     
     func setUpCollectionViews(){
