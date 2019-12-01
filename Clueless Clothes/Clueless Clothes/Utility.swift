@@ -22,6 +22,12 @@ class Utility{
         }
     }
     
+    static let mediumMagenta = UIColor(displayP3Red: 179/255, green: 54/255, blue: 97/255, alpha: 0.95)
+    static let deepMagenta   = UIColor(displayP3Red: 140/255, green: 54/255, blue: 72/255, alpha: 1.0)
+    static let softYellow    = UIColor(displayP3Red: 255/255, green: 255/255, blue: 241/255, alpha: 1.0)
+    static let brightYellow  = UIColor(displayP3Red: 255/255, green: 245/255, blue: 134/255, alpha: 1.0)
+    static let turquois      = UIColor(displayP3Red: 26/255, green: 151/255, blue: 184/255, alpha: 1.0)
+    
     
 }
 

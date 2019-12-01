@@ -510,6 +510,9 @@
                                     <constraint firstAttribute="height" constant="44" id="k8o-Ih-pbR"/>
                                 </constraints>
                                 <color key="barTintColor" red="1" green="1" blue="0.94509803921568625" alpha="0.80656035960000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="largeTitleTextAttributes">
+                                    <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Change Outfit Components" id="a5E-Ux-fnp">
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="Op6-Cc-v9A">

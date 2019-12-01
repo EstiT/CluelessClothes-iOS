@@ -30,8 +30,6 @@ class ChangeOutfitComponentsViewController: UIViewController {
     
     var delegate: ShowCollectionsDelegate?
     
-    //@IBOutlet weak var xView: UIView!
-    
     
     override func viewDidLoad(){
         topSwitch.setOn(tops, animated: false)
@@ -39,20 +37,33 @@ class ChangeOutfitComponentsViewController: UIViewController {
         shoesSwitch.setOn(shoes, animated: false)
         jacketSwitch.setOn(jackets, animated: false)
         dressSwitch.setOn(dresses, animated: false)
+        
+        topSwitch.isEnabled = false
+        bottomsSwitch.isEnabled = false
+        
+        checkColorTheme()
+        UISwitch.appearance().onTintColor = Utility.turquois
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        checkColorTheme()
     }
     
     func checkColorTheme(){
             if #available(iOS 12.0, *) {
-    //            https://stackoverflow.com/questions/56457395/how-to-check-for-ios-dark-mode
+//              https://stackoverflow.com/questions/56457395/how-to-check-for-ios-dark-mode
+//              https://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color
+//              https://stackoverflow.com/questions/1720376/change-color-of-uiswitch-appwise
                 if self.traitCollection.userInterfaceStyle == .dark {
                     UINavigationBar.appearance().barTintColor = .black
                     navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-                    mainView.backgroundColor = UIColor(displayP3Red: 140/255, green: 54/255, blue: 72/255, alpha: 1.0)
+                    mainView.backgroundColor = Utility.deepMagenta
                 }
                 else {
-                    UINavigationBar.appearance().backgroundColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 241/255, alpha: 1.0)
+                    UINavigationBar.appearance().barTintColor = .none
+                    UINavigationBar.appearance().backgroundColor = Utility.softYellow
                     navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
-                    mainView.backgroundColor = UIColor(displayP3Red: 255/255, green: 245/255, blue: 134/255, alpha: 1.0)
+                    mainView.backgroundColor = Utility.brightYellow
                 }
             }
         }

@@ -79,20 +79,19 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     
     func checkColorTheme(){
         if #available(iOS 12.0, *) {
-//            https://stackoverflow.com/questions/56457395/how-to-check-for-ios-dark-mode
+//          https://stackoverflow.com/questions/56457395/how-to-check-for-ios-dark-mode
             var statusbarColor = UIColor()
             if self.traitCollection.userInterfaceStyle == .dark {
                 topView.backgroundColor = .darkGray
-                mainView.backgroundColor = UIColor(displayP3Red: 140/255, green: 54/255, blue: 72/255, alpha: 1.0)
+                mainView.backgroundColor = Utility.deepMagenta
                 statusbarColor = .darkGray
-              
             }
             else {
-                topView.backgroundColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 241/255, alpha: 1.0)
-                mainView.backgroundColor = UIColor(displayP3Red: 255/255, green: 245/255, blue: 134/255, alpha: 1.0)
-                statusbarColor = UIColor(displayP3Red: 255/255, green: 255/255, blue: 241/255, alpha: 1.0)
+                topView.backgroundColor = Utility.softYellow
+                mainView.backgroundColor = Utility.brightYellow
+                statusbarColor = Utility.softYellow
             }
-//            https://freakycoder.com/ios-notes-13-how-to-change-status-bar-color-1431c185e845
+//          https://freakycoder.com/ios-notes-13-how-to-change-status-bar-color-1431c185e845
             if #available(iOS 13.0, *) {
                 let app = UIApplication.shared
                 let statusBarHeight: CGFloat = app.statusBarFrame.size.height
