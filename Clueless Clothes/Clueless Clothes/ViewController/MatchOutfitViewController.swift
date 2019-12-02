@@ -64,7 +64,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
             showBottoms = true
         }
         if showShoes == nil {
-            showShoes = true
+            showShoes = false
         }
         
         viewDidAppear(false)

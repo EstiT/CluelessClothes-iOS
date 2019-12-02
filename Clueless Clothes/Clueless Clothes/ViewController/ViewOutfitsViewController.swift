@@ -73,9 +73,9 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
             }
         }
         
-        override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-            checkColorTheme()
-        }
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        checkColorTheme()
+    }
     
     func hideIfNoOutfits(){
         if Closet.shared.outfits.count == 0{
