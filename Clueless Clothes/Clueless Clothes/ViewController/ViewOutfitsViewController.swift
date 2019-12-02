@@ -31,6 +31,7 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
         outfitsCollection.reloadData()
         hideIfNoOutfits()
         checkColorTheme()
+        setUpCollectionView(cv: outfitsCollection, frame: CGRect(x: 0, y: 0, width: mainView.frame.width, height: mainView.frame.height))
     }
     
     func checkColorTheme(){
@@ -88,6 +89,26 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
         }
     }
     
+    func setUpCollectionView(cv: UICollectionView, frame: CGRect){
+        cv.allowsSelection = true
+        cv.dataSource = self
+        cv.delegate = self
+        cv.backgroundColor = .clear
+        cv.contentInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
+        cv.frame = frame
+        let itemWidth = frame.width - 10
+        let itemSize = CGSize(width: itemWidth, height: frame.height)
+        if let collectionViewFlowLayout = cv.collectionViewLayout as? WLCollectionViewLayout {
+            collectionViewFlowLayout.itemSize = itemSize
+            collectionViewFlowLayout.minimumLineSpacing = 30
+            collectionViewFlowLayout.scrollDirection = .horizontal
+        }
+
+        cv.isPagingEnabled = false
+        cv.reloadData()
+        cv.isUserInteractionEnabled = true
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return Closet.shared.outfits.count
     }
@@ -96,25 +117,40 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MultiImageCell", for: indexPath) as! MultiImageCell
         //cell.image.addGestureRecognizer(longPress) TODO
         //cell.image.isUserInteractionEnabled = true TODO
+        
+        
         let outfit = Closet.shared.outfits[indexPath.row]
 
         for item:ClothingItem in outfit.outfitItems{
+            var name = ""
             if item is Top {
                 cell.topImage.image = Utility.getImage(imageName: item.imageName)
+                name = item.imageName
             }
             else if item is Bottom {
                 cell.bottomImage.image = Utility.getImage(imageName: item.imageName)
+                name = item.imageName
             }
             else if item is Dress {
                 cell.dressImage.image = Utility.getImage(imageName: item.imageName)
+                name = item.imageName
             }
             else if item is Shoes {
                 cell.shoesImage.image = Utility.getImage(imageName: item.imageName)
+                name = item.imageName
             }/*
             else if item is Jacket {
                 cell. Image.image = Utility.getImage(imageName: item.imageName)
             } TODO Jacket*/
+             
+            
+            cell.topImage.contentMode = .scaleAspectFill
+            cell.bottomImage.contentMode = .scaleAspectFill
+            cell.dressImage.contentMode = .scaleAspectFill
+            cell.shoesImage.contentMode = .scaleAspectFill
+            cell.id = name
         }
+        
         return cell
     }
     
