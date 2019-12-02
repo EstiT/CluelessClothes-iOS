@@ -118,9 +118,12 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
         //cell.image.addGestureRecognizer(longPress) TODO
         //cell.image.isUserInteractionEnabled = true TODO
         
+        cell.topImage.image = UIImage()
+        cell.bottomImage.image = UIImage()
+        cell.dressImage.image = UIImage()
+        cell.shoesImage.image = UIImage()
         
         let outfit = Closet.shared.outfits[indexPath.row]
-
         for item:ClothingItem in outfit.outfitItems{
             var name = ""
             if item is Top {
