@@ -403,6 +403,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tnx-mS-Z1q" customClass="RoundedButton" customModule="Clueless_Clothes" customModuleProvider="target">
                                         <rect key="frame" x="142.5" y="436" width="90" height="33"/>
                                         <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <accessibility key="accessibilityConfiguration">
+                                            <bool key="isElement" value="NO"/>
+                                        </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="33" id="Gou-kx-0bB"/>
                                             <constraint firstAttribute="width" constant="90" id="UUN-fA-goz"/>
@@ -483,6 +486,7 @@
                         <outlet property="collectionsHolder" destination="Kp1-qO-lQZ" id="GJL-pY-Isp"/>
                         <outlet property="dressesCollection" destination="47c-82-cGU" id="1kc-1i-20a"/>
                         <outlet property="mainView" destination="2Mp-Nb-fbe" id="l0J-Ps-wPF"/>
+                        <outlet property="matchButton" destination="Tnx-mS-Z1q" id="HHD-F4-HSu"/>
                         <outlet property="noBottomsLabel" destination="JN8-Hq-5VW" id="Jv1-Ch-5Df"/>
                         <outlet property="noDressesLabel" destination="o0M-Gn-Spz" id="UJf-b5-trV"/>
                         <outlet property="noShoesLabel" destination="AWI-jp-JlQ" id="pUh-3v-h60"/>
@@ -625,7 +629,7 @@
             </objects>
             <point key="canvasLocation" x="1676" y="358.4707646176912"/>
         </scene>
-        <!--outfits-->
+        <!--closet-->
         <scene sceneID="iWO-3s-WHU">
             <objects>
                 <viewController id="8J9-WI-vAR" customClass="ViewOutfitsViewController" customModule="Clueless_Clothes" customModuleProvider="target" sceneMemberID="viewController">
@@ -754,7 +758,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5e4-gY-z1m"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="outfits" image="hanger" id="g0x-mH-CAo"/>
+                    <tabBarItem key="tabBarItem" title="closet" image="hanger" id="g0x-mH-CAo"/>
                     <connections>
                         <outlet property="mainView" destination="qyd-Mx-U0B" id="tDY-O2-nXw"/>
                         <outlet property="noOutfitsLabel" destination="itz-Ee-1ML" id="gLs-dy-dmU"/>

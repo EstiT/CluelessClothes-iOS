@@ -36,6 +36,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var collectionsHolder: UIView!
+    @IBOutlet weak var matchButton: UIButton!
     
     var showTops: Bool!
     var showDresses: Bool!
@@ -75,6 +76,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         showHideCollectionElements()
         setUpCollectionViews()
         checkColorTheme()
+        enableDisableMatchButton()
     }
     
     func checkColorTheme(){
@@ -219,6 +221,21 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         showHideCollectionElements()
     }
     
+    func enableDisableMatchButton(){
+        if noTopsLabel.isHidden &&
+            noDressesLabel.isHidden &&
+//            noJacketsLabel.isHidden &&
+            noBottomsLabel.isHidden &&
+            noShoesLabel.isHidden {
+            matchButton.isEnabled = true
+            matchButton.alpha = 1
+        }
+        else{
+            matchButton.isEnabled = false
+            matchButton.alpha = 0.6
+        }
+    }
+    
     @IBAction func matchOutfit(_ sender: Any) {
         var topName:String!
         var bottomName:String!
@@ -297,6 +314,21 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
        
         let outfit = Outfit(clothes: clothes)
         Closet.shared.addOutfit(outfit: outfit)
+        
+        let alert = UIAlertController(title: "Matched!", message: "Outfit has been added to closet", preferredStyle: .alert)
+        self.present(alert, animated:true, completion: {
+            Timer.scheduledTimer(withTimeInterval: 4, repeats:false, block:
+                {_ in
+                    self.dismiss(animated: true, completion: nil)
+                })
+            alert.view.superview?.isUserInteractionEnabled = true
+            alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
+        })
+    }
+    
+    
+    @objc func alertControllerBackgroundTapped(){
+        self.dismiss(animated: true, completion: nil)
     }
     
     
