@@ -180,6 +180,8 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
         case .denied:
             // same same
             print("User has denied the permission.")
+        @unknown default:
+            print("Error")
         }
     }
     

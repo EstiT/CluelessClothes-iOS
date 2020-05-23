@@ -29,7 +29,7 @@ class WLCollectionViewLayout: UICollectionViewFlowLayout {
     
     func setup() {
         // setting up some inherited values
-        let space: CGFloat = 30
+//        let space: CGFloat = 30
         //let w = view.frame.width
         /*
         let width = UIScreen.main.bounds.width

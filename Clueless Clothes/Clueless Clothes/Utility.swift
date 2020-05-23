@@ -16,7 +16,8 @@ class Utility{
         let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
         if fileManager.fileExists(atPath: imagePath){
             return UIImage(contentsOfFile: imagePath)!
-        }else{
+        }
+        else {
             print("Panic! No Image!")
             return UIImage()
         }

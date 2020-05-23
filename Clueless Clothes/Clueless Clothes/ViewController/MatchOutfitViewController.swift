@@ -241,7 +241,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         var bottomName:String!
         var dressName:String!
         var shoesName:String!
-        var jacketName:String! //TODO
+        var jacketName:String!  // TODO
         
         if !topsCollection.isHidden{
             let visibleRect = CGRect(origin: topsCollection.contentOffset, size: topsCollection.bounds.size)
@@ -451,7 +451,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        // number of each type of clothes
         if collectionView == self.topsCollection{
             return Closet.shared.tops.count
         }

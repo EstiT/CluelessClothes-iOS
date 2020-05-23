@@ -20,7 +20,46 @@ class Closet{
     var jackets = [Jacket]()
     var shoes = [Shoes]()
     
-    private init() { }
+    private init() {
+        let fileManager = FileManager.default
+        let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        do {
+            let fileURLs = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
+            print(fileURLs)
+            let topPattern = "top[0-9]$"
+            let bottomPattern = "bottom[0-9]$"
+//            let jacketPattern = "jacket[0-9]$" TODO
+            let dressPattern = "dress[0-9]$"
+            let shoesPattern = "shoes[0-9]$"
+
+            for url in fileURLs {
+                if let _ = url.path.range(of: topPattern, options:.regularExpression) {
+                    let arr = url.path.split(separator: "/")
+                    let name = String(arr[arr.count-1])
+                    tops.append(Top(imageName: name))
+                }
+                else if let _ = url.path.range(of: bottomPattern, options:.regularExpression) {
+                    let arr = url.path.split(separator: "/")
+                    let name = String(arr[arr.count-1])
+                    bottoms.append(Bottom(imageName: name))
+                }
+                else if let _ = url.path.range(of: dressPattern, options:.regularExpression) {
+                    let arr = url.path.split(separator: "/")
+                    let name = String(arr[arr.count-1])
+                    dresses.append(Dress(imageName: name))
+                }
+                else if let _ = url.path.range(of: shoesPattern, options:.regularExpression) {
+                    let arr = url.path.split(separator: "/")
+                    let name = String(arr[arr.count-1])
+                    shoes.append(Shoes(imageName: name))
+                }
+                
+            }
+            
+        } catch {
+            print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
+        }
+    }
 
     
     func addTop(top:Top){
