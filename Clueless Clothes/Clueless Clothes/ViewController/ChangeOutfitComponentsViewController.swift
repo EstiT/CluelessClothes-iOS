@@ -50,6 +50,7 @@ class ChangeOutfitComponentsViewController: UIViewController {
     }
     
     func checkColorTheme(){
+        UINavigationBar.appearance().tintColor = Utility.turquois
             if #available(iOS 12.0, *) {
 //              https://stackoverflow.com/questions/56457395/how-to-check-for-ios-dark-mode
 //              https://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color
@@ -57,6 +58,7 @@ class ChangeOutfitComponentsViewController: UIViewController {
                 if self.traitCollection.userInterfaceStyle == .dark {
                     UINavigationBar.appearance().barTintColor = .black
                     navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+                    navigationController?.navigationBar.barTintColor = UIColor.darkGray
                     mainView.backgroundColor = Utility.deepMagenta
                 }
                 else {
@@ -64,6 +66,7 @@ class ChangeOutfitComponentsViewController: UIViewController {
                     UINavigationBar.appearance().backgroundColor = Utility.softYellow
                     navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
                     mainView.backgroundColor = Utility.brightYellow
+                    navigationController?.navigationBar.barTintColor = UIColor.white
                 }
             }
         }
