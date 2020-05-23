@@ -9,11 +9,10 @@
 import Foundation
 
 class Closet{
-    
+    let defaults = UserDefaults.standard
     static let shared = Closet()
-
     var clothes = [ClothingItem]()
-    var outfits = [Outfit]()
+    var outfits : [Outfit]
     var tops = [Top]()
     var dresses = [Dress]()
     var bottoms = [Bottom]()
@@ -21,6 +20,14 @@ class Closet{
     var shoes = [Shoes]()
     
     private init() {
+        if UserDefaults.standard.object(forKey: "outfits") != nil {
+            let decoded  = UserDefaults.standard.object(forKey: "outfits") as! Data
+            outfits = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Outfit]
+        }
+        else {
+            outfits = [Outfit]()
+            defaults.set(outfits, forKey: "outfits")
+        }
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         do {
@@ -89,6 +96,14 @@ class Closet{
     
     func addOutfit(outfit:Outfit){
         outfits.append(outfit)
+        do {
+            let encodedOutfits = try NSKeyedArchiver.archivedData(withRootObject: outfits, requiringSecureCoding: false)
+            defaults.set(encodedOutfits, forKey: "outfits")
+        }
+        catch {
+            print("couldnt decode outfits")
+        }
+            
     }
     
     

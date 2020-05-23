@@ -8,11 +8,11 @@
 
 import Foundation
 
-class ClothingItem{
-    
+class ClothingItem: NSObject, NSCoding{
+
     var imageName : String!
 
-    init() {
+    override init() {
         imageName = ""
     }
     
@@ -20,4 +20,13 @@ class ClothingItem{
         self.imageName = imageName
     }
     
+    func encode(with coder: NSCoder) {
+  
+        coder.encode(imageName, forKey: "imageName")
+    }
+    
+    required convenience init?(coder: NSCoder) {
+        let imageName = coder.decodeObject(forKey: "imageName") as! String
+        self.init(imageName: imageName)
+    }
 }

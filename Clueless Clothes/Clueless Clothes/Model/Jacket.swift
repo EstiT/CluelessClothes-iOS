@@ -15,4 +15,8 @@ class Jacket : ClothingItem {
         super.init(imageName: imageName)
     }
     
+    required convenience init?(coder: NSCoder) {
+        let imageName = coder.decodeObject(forKey: "imageName") as! String
+        self.init(imageName: imageName)
+    }
 }
