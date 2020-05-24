@@ -94,9 +94,9 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
         cv.dataSource = self
         cv.delegate = self
         cv.backgroundColor = .clear
-        cv.contentInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
+        cv.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         cv.frame = frame
-        let itemWidth = frame.width - 10
+        let itemWidth = frame.width - 20
         let itemSize = CGSize(width: itemWidth, height: frame.height)
         if let collectionViewFlowLayout = cv.collectionViewLayout as? WLCollectionViewLayout {
             collectionViewFlowLayout.itemSize = itemSize

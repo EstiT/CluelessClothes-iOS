@@ -16,35 +16,10 @@ class WLCollectionViewLayout: UICollectionViewFlowLayout {
     
     override init() {
         super.init()
-        setup()
     }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
-        setup()
-    }
-    
-    override func prepare() {
-    }
-    
-    func setup() {
-        // setting up some inherited values
-//        let space: CGFloat = 30
-        //let w = view.frame.width
-        /*
-        let width = UIScreen.main.bounds.width
-        let itemWidth = width - space * 4 // w0 == ws
-        self.itemSize = CGSize(width: itemWidth, height: itemWidth)
-        self.minimumInteritemSpacing = space
-        self.minimumLineSpacing = space
-        self.scrollDirection = .horizontal
- */
-        
-        
-        //let itemWidth                       = w - space * 4 // w0 == ws
-        //self.itemSize           = CGSize(width: itemWidth, height: 180)
-        //self.minimumLineSpacing = space
-        
     }
     
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
@@ -57,14 +32,14 @@ class WLCollectionViewLayout: UICollectionViewFlowLayout {
             return CGPoint.zero
         }
         
-        if ((previousOffset > collectionView.contentOffset.x) && (velocity.x < 0)) {
+        if (previousOffset > collectionView.contentOffset.x) && (velocity.x < 0) {
             currentPage = max(currentPage - 1, 0)
         }
-        else if ((previousOffset < collectionView.contentOffset.x) && (velocity.x > 0.0)) {
+        else if (previousOffset < collectionView.contentOffset.x) && (velocity.x > 0.0) {
             currentPage = min(currentPage + 1, itemsCount - 1)
         }
         
-        let itemEdgeOffset:CGFloat = 30//(collectionView.frame.width - itemSize.width -  minimumLineSpacing * 2) / 2
+        let itemEdgeOffset:CGFloat = (collectionView.frame.width - itemSize.width -  minimumLineSpacing * 2) / 2
         let updatedOffset: CGFloat = (itemSize.width + minimumLineSpacing) *
                                         CGFloat(currentPage) -
                                         (itemEdgeOffset + minimumLineSpacing)
@@ -86,4 +61,5 @@ class WLCollectionViewLayout: UICollectionViewFlowLayout {
         return newAttributes as? [UICollectionViewLayoutAttributes]
 
     }*/
+
 }

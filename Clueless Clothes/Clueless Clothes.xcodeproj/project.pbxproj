@@ -113,15 +113,14 @@
 			children = (
 				226CA87E22F3DC8D00FE4D87 /* View */,
 				226CA87D22F3DC7C00FE4D87 /* ViewController */,
+				229D575F247A016B0060027A /* Cell */,
 				226CA87822F37A7700FE4D87 /* Model */,
 				22345E0921758B4600E2FC9B /* AppDelegate.swift */,
 				22345E0F21758B4600E2FC9B /* Main.storyboard */,
 				22345E1221758B4700E2FC9B /* Assets.xcassets */,
 				22345E1421758B4700E2FC9B /* LaunchScreen.storyboard */,
 				22345E1721758B4700E2FC9B /* Info.plist */,
-				2285B1D1217C1A3100E14D15 /* ImageCell.swift */,
 				22D1C80D23331961005B6A69 /* WLCollectionViewLayout.swift */,
-				2273AB072334799B00FFB173 /* MultiImageCell.swift */,
 				2273AB0923347C3F00FFB173 /* Utility.swift */,
 			);
 			path = "Clueless Clothes";
@@ -169,6 +168,15 @@
 				2273AB0B2339B1D500FFB173 /* ArrowView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		229D575F247A016B0060027A /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				2285B1D1217C1A3100E14D15 /* ImageCell.swift */,
+				2273AB072334799B00FFB173 /* MultiImageCell.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

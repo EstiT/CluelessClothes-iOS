@@ -32,7 +32,6 @@ class Closet{
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         do {
             let fileURLs = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
-            print(fileURLs)
             let topPattern = "top[0-9]$"
             let bottomPattern = "bottom[0-9]$"
 //            let jacketPattern = "jacket[0-9]$" TODO

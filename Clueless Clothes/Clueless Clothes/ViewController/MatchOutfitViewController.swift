@@ -144,7 +144,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
             dressCollectionHeight = 0.76
             shoesCollectionHeight = 0.21
             shoesY = CGFloat((collectionsHolder.frame.height * CGFloat(dressCollectionHeight))+(collectionsHolder.frame.height * CGFloat(0.0275)))
-            print("12  \(collectionsHolder.frame.height * CGFloat(0.0275))")
         //(collectionsHolder.frame.height * CGFloat(6))
         case .JacketTopBottomShoes?: //TODO
             topsCollectionHeight = 0.32
@@ -370,7 +369,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
                 let midIndexPath = IndexPath(row: Closet.shared.tops.count / 2, section: 0)
                 //topsCollection.scrollToItem(at: midIndexPath, at: .centeredHorizontally, animated: false)
             }
-            else{
+            else {
                 topsCollection.isHidden = true
                 noTopsLabel.isHidden = false
             }
@@ -385,7 +384,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
                 let midIndexPath = IndexPath(row: Closet.shared.dresses.count / 2, section: 0)
                 //dressesCollection.scrollToItem(at: midIndexPath, at: .centeredHorizontally, animated: false)
             }
-            else{
+            else {
                 dressesCollection.isHidden = true
                 noDressesLabel.isHidden = false
             }
@@ -430,13 +429,15 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         cv.dataSource = self
         cv.delegate = self
         cv.backgroundColor = .clear
-        cv.contentInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
         cv.frame = frame
         let itemWidth = view.frame.width - 30 * 4 // w0 == ws TODO
         let itemSize = CGSize(width: itemWidth, height: frame.height)
+        let minimumLineSpacing:CGFloat = 20
+        let inset:CGFloat = (view.frame.width - itemWidth)/2
+        cv.contentInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
         if let collectionViewFlowLayout = cv.collectionViewLayout as? WLCollectionViewLayout {
             collectionViewFlowLayout.itemSize = itemSize
-            collectionViewFlowLayout.minimumLineSpacing = 30
+            collectionViewFlowLayout.minimumLineSpacing = minimumLineSpacing
             collectionViewFlowLayout.scrollDirection = .horizontal
         }
 
@@ -473,23 +474,23 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         
         //set image for colection view
         var name = ""
-        if collectionView == self.topsCollection{
+        if collectionView == self.topsCollection {
             name = Closet.shared.tops[indexPath.row].imageName
         }
         else if collectionView == self.dressesCollection {
             name = Closet.shared.dresses[indexPath.row].imageName
         }
-        else if collectionView == self.bottomsCollection{
+        else if collectionView == self.bottomsCollection {
             name = Closet.shared.bottoms[indexPath.row].imageName
         }
-        else if collectionView == self.shoesCollection{
+        else if collectionView == self.shoesCollection {
             name = Closet.shared.shoes[indexPath.row].imageName
         }
         
         //TESTING
         let regex = try! NSRegularExpression(pattern: "[0-9]$")
         let range = NSRange(location: 0, length: name.utf16.count)
-        if regex.firstMatch(in: name, options: [], range: range) != nil{
+        if regex.firstMatch(in: name, options: [], range: range) != nil {
             cell.image.image = Utility.getImage(imageName: name)
         }
         else{
@@ -539,9 +540,9 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
 extension UIView {
     func shake() {
         let transformAnim  = CAKeyframeAnimation(keyPath:"transform")
-        transformAnim.values  = [NSValue(caTransform3D: CATransform3DMakeRotation(0.05, 0.0, 0.0, 1.0)),NSValue(caTransform3D: CATransform3DMakeRotation(-0.05 , 0, 0, 1))]
+        transformAnim.values  = [NSValue(caTransform3D: CATransform3DMakeRotation(0.04, 0.0, 0.0, 1.0)),NSValue(caTransform3D: CATransform3DMakeRotation(-0.04 , 0, 0, 1))]
         transformAnim.autoreverses = true
-        transformAnim.duration  = 0.115
+        transformAnim.duration  = 0.12
         transformAnim.repeatCount = Float.infinity
         self.layer.add(transformAnim, forKey: "shake")
     }
