@@ -12,6 +12,7 @@ import UIKit
 class ImageCell : UICollectionViewCell{
     
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var deleteOverlay: UIButton!
     var id: String!
     
     required init?(coder aDecoder: NSCoder){

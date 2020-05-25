@@ -36,6 +36,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var topView: UIView!
     @IBOutlet weak var collectionsHolder: UIView!
+    @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var matchButton: UIButton!
     
     var showTops: Bool!
@@ -43,6 +44,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     var showJackets: Bool!
     var showBottoms: Bool!
     var showShoes: Bool!
+    var deleteView: Bool = false
     
     var selectedCombo: clothesItemCombination!
     ///to try: https://adoptioncurve.net/2013/07/02/building-a-circular-gallery-with-a-uicollectionview/
@@ -326,6 +328,12 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     
+    @IBAction func editButtonClicked(_ sender: Any) {
+        deleteView = !deleteView
+        editButton.setTitle(deleteView ? "done" : "edit", for: .normal)
+        setUpCollectionViews()
+    }
+    
     @objc func alertControllerBackgroundTapped(){
         self.dismiss(animated: true, completion: nil)
     }
@@ -497,8 +505,15 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
             cell.image.image = UIImage(named: name)
         }
         cell.image.contentMode = .scaleAspectFill //.scaleAspectFit //.scaleToFill
-        
         cell.id = name
+        cell.deleteOverlay.imageView?.contentMode = .scaleAspectFit
+        if deleteView {
+             cell.deleteOverlay.isHidden = false
+        }
+        else {
+            cell.deleteOverlay.isHidden = true
+        }
+  
         return cell
     }
     
@@ -510,7 +525,16 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
     }
 
-
+    @IBAction func deleteButtonClicked(_ sender: UIButton) {
+        guard let cell = sender.superview?.superview as? ImageCell else {
+            print("couldnt get imageCell")
+            return
+        }
+        Utility.removeImage(imageName: cell.id) // may not want??
+        Closet.shared.removeClothingItem(name: cell.id)
+        setUpCollectionViews()
+    }
+    
     @objc func deleteImage(_ sender: UILongPressGestureRecognizer) {
         if sender.state == .began {
             if let indexPath = self.topsCollection?.indexPathForItem(at: sender.location(in: self.topsCollection)) {

@@ -11,7 +11,7 @@ import UIKit
 
 class Utility{
     
-    static func getImage(imageName: String) -> UIImage{
+    static func getImage(imageName: String) -> UIImage {
         let fileManager = FileManager.default
         let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
         if fileManager.fileExists(atPath: imagePath){
@@ -19,7 +19,23 @@ class Utility{
         }
         else {
             print("Panic! No Image!")
-            return UIImage()
+            if #available(iOS 13.0, *) {
+                return UIImage(systemName: "questionmark.diamond")!
+            }
+            else {
+                return UIImage(named: "?")!
+            }
+        }
+    }
+    
+    static func removeImage(imageName: String) {
+        let fileManager = FileManager.default
+        let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
+        do {
+            try fileManager.removeItem(atPath: imagePath)
+        }
+        catch {
+            print("could not remove image")
         }
     }
     

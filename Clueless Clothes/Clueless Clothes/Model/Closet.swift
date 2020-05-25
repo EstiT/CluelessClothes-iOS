@@ -19,6 +19,15 @@ class Closet{
     var jackets = [Jacket]()
     var shoes = [Shoes]()
     
+    enum clothesTypes {
+        case Top
+        case Bottom
+        case Dress
+        case Jacket
+        case Shoes
+        case Unknown
+    }
+    
     private init() {
         if UserDefaults.standard.object(forKey: "outfits") != nil {
             let decoded  = UserDefaults.standard.object(forKey: "outfits") as! Data
@@ -32,34 +41,24 @@ class Closet{
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         do {
             let fileURLs = try fileManager.contentsOfDirectory(at: documentsURL, includingPropertiesForKeys: nil)
-            let topPattern = "top[0-9]$"
-            let bottomPattern = "bottom[0-9]$"
-//            let jacketPattern = "jacket[0-9]$" TODO
-            let dressPattern = "dress[0-9]$"
-            let shoesPattern = "shoes[0-9]$"
 
             for url in fileURLs {
-                if let _ = url.path.range(of: topPattern, options:.regularExpression) {
-                    let arr = url.path.split(separator: "/")
-                    let name = String(arr[arr.count-1])
-                    tops.append(Top(imageName: name))
-                }
-                else if let _ = url.path.range(of: bottomPattern, options:.regularExpression) {
-                    let arr = url.path.split(separator: "/")
-                    let name = String(arr[arr.count-1])
-                    bottoms.append(Bottom(imageName: name))
-                }
-                else if let _ = url.path.range(of: dressPattern, options:.regularExpression) {
-                    let arr = url.path.split(separator: "/")
-                    let name = String(arr[arr.count-1])
-                    dresses.append(Dress(imageName: name))
-                }
-                else if let _ = url.path.range(of: shoesPattern, options:.regularExpression) {
-                    let arr = url.path.split(separator: "/")
-                    let name = String(arr[arr.count-1])
-                    shoes.append(Shoes(imageName: name))
-                }
+                let clotheType = typeofItemWith(name: url.path)
+                let arr = url.path.split(separator: "/")
+                let name = String(arr[arr.count-1])
                 
+                switch clotheType {
+                    case .Top:
+                       tops.append(Top(imageName: name))
+                    case .Bottom:
+                        bottoms.append(Bottom(imageName: name))
+                    case .Dress:
+                        dresses.append(Dress(imageName: name))
+                    case .Shoes:
+                        shoes.append(Shoes(imageName: name))
+                    default:
+                        print("unknown type")
+                }
             }
             
         } catch {
@@ -105,17 +104,47 @@ class Closet{
             
     }
     
-    
-    //works for tops, jackets, bottoms and shoes
-    func removeClothingItem(name:String){
-        var i = 0
-        for clothe in clothes {
-            if clothe.imageName == name {
-                clothes.remove(at:i)
-                break
-            }
-            i = i+1
+    func typeofItemWith(name: String) -> clothesTypes{
+        let topPattern = "top[0-9]$"
+        let bottomPattern = "bottom[0-9]$"
+        //     let jacketPattern = "jacket[0-9]$" TODO
+        let dressPattern = "dress[0-9]$"
+        let shoesPattern = "shoes[0-9]$"
+        
+        if let _ = name.range(of: topPattern, options:.regularExpression) {
+            return .Top
         }
+        else if let _ = name.range(of: bottomPattern, options:.regularExpression) {
+            return .Bottom
+        }
+        else if let _ = name.range(of: dressPattern, options:.regularExpression) {
+            return .Dress
+        }
+        else if let _ = name.range(of: shoesPattern, options:.regularExpression) {
+            return .Shoes
+        }
+            
+        return .Unknown
+    }
+    
+    
+    //TODO jackets
+    func removeClothingItem(name:String){
+        let clotheType = typeofItemWith(name: name)
+        switch clotheType {
+        case .Top:
+            tops = tops.filter { $0.imageName != name }
+        case .Bottom:
+            bottoms = bottoms.filter { $0.imageName != name }
+        case .Dress:
+            dresses = dresses.filter { $0.imageName != name }
+        case .Shoes:
+            shoes = shoes.filter { $0.imageName != name }
+        default:
+            print("unknown type")
+        }
+        
+        clothes = clothes.filter { $0.imageName != name }
     }
     
     func getNextTopName() -> String{ //starts at 0

@@ -233,16 +233,32 @@
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xPc-sx-qsl">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 </imageView>
+                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RF3-PY-ZEu">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                    <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                                    <state key="normal" image="trash.circle" catalog="system">
+                                                                        <attributedString key="attributedTitle"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="deleteButtonClicked:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="JHC-uS-nlZ"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                         </view>
                                                         <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="RF3-PY-ZEu" secondAttribute="trailing" id="Bs9-63-GuL"/>
+                                                            <constraint firstItem="RF3-PY-ZEu" firstAttribute="leading" secondItem="E5L-dT-Uge" secondAttribute="leading" id="Kxe-uo-FwC"/>
                                                             <constraint firstItem="xPc-sx-qsl" firstAttribute="top" secondItem="E5L-dT-Uge" secondAttribute="top" id="fWt-1E-htZ"/>
                                                             <constraint firstItem="xPc-sx-qsl" firstAttribute="leading" secondItem="E5L-dT-Uge" secondAttribute="leading" id="hC8-SW-k7H"/>
+                                                            <constraint firstAttribute="bottom" secondItem="RF3-PY-ZEu" secondAttribute="bottom" id="lV7-fg-SqD"/>
                                                             <constraint firstAttribute="bottom" secondItem="xPc-sx-qsl" secondAttribute="bottom" id="mKG-09-thv"/>
+                                                            <constraint firstItem="RF3-PY-ZEu" firstAttribute="top" secondItem="E5L-dT-Uge" secondAttribute="top" id="xA7-tU-Pqy"/>
                                                             <constraint firstAttribute="trailing" secondItem="xPc-sx-qsl" secondAttribute="trailing" id="z1N-3h-B0b"/>
                                                         </constraints>
                                                         <size key="customSize" width="50" height="50"/>
                                                         <connections>
+                                                            <outlet property="deleteOverlay" destination="RF3-PY-ZEu" id="IaX-Fl-DdI"/>
                                                             <outlet property="image" destination="xPc-sx-qsl" id="Mqj-0Q-kWi"/>
                                                         </connections>
                                                     </collectionViewCell>
@@ -263,16 +279,32 @@
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WBM-Hk-bHa">
                                                                     <rect key="frame" x="0.0" y="0.0" width="124" height="135"/>
                                                                 </imageView>
+                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rzl-Fd-q6B">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="135"/>
+                                                                    <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                    <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                                    <state key="normal" image="trash.circle" catalog="system">
+                                                                        <attributedString key="attributedTitle"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="deleteButtonClicked:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="0I2-e1-45O"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                         </view>
                                                         <constraints>
                                                             <constraint firstItem="WBM-Hk-bHa" firstAttribute="top" secondItem="GW9-A3-hGc" secondAttribute="top" id="MiD-xN-ps6"/>
                                                             <constraint firstAttribute="trailing" secondItem="WBM-Hk-bHa" secondAttribute="trailing" id="R5v-a4-6bV"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Rzl-Fd-q6B" secondAttribute="trailing" id="dIs-qI-oyc"/>
+                                                            <constraint firstItem="Rzl-Fd-q6B" firstAttribute="leading" secondItem="GW9-A3-hGc" secondAttribute="leading" id="mL3-qn-4ao"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Rzl-Fd-q6B" secondAttribute="bottom" id="qP7-tA-SqZ"/>
                                                             <constraint firstAttribute="bottom" secondItem="WBM-Hk-bHa" secondAttribute="bottom" id="wbG-7t-PmJ"/>
+                                                            <constraint firstItem="Rzl-Fd-q6B" firstAttribute="top" secondItem="GW9-A3-hGc" secondAttribute="top" id="xzb-jz-2tC"/>
                                                             <constraint firstItem="WBM-Hk-bHa" firstAttribute="leading" secondItem="GW9-A3-hGc" secondAttribute="leading" id="z71-wd-HN7"/>
                                                         </constraints>
                                                         <size key="customSize" width="124" height="135"/>
                                                         <connections>
+                                                            <outlet property="deleteOverlay" destination="Rzl-Fd-q6B" id="JNn-5m-Ddm"/>
                                                             <outlet property="image" destination="WBM-Hk-bHa" id="xT6-t7-XRX"/>
                                                         </connections>
                                                     </collectionViewCell>
@@ -293,16 +325,32 @@
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xqR-G6-Vns">
                                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                                 </imageView>
+                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ov2-bx-8LK">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
+                                                                    <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                    <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                                    <state key="normal" image="trash.circle" catalog="system">
+                                                                        <attributedString key="attributedTitle"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="deleteButtonClicked:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="tqt-xE-Dwn"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                         </view>
                                                         <constraints>
+                                                            <constraint firstItem="Ov2-bx-8LK" firstAttribute="leading" secondItem="Bqk-jT-7Dt" secondAttribute="leading" id="1UC-lI-agT"/>
                                                             <constraint firstItem="xqR-G6-Vns" firstAttribute="top" secondItem="Bqk-jT-7Dt" secondAttribute="top" id="5Ga-xm-vbb"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Ov2-bx-8LK" secondAttribute="trailing" id="G5s-Sv-sYg"/>
                                                             <constraint firstItem="xqR-G6-Vns" firstAttribute="leading" secondItem="Bqk-jT-7Dt" secondAttribute="leading" id="I1I-CW-wgc"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Ov2-bx-8LK" secondAttribute="bottom" id="SGy-ft-DOc"/>
                                                             <constraint firstAttribute="bottom" secondItem="xqR-G6-Vns" secondAttribute="bottom" id="VWH-eX-bQ1"/>
                                                             <constraint firstAttribute="trailing" secondItem="xqR-G6-Vns" secondAttribute="trailing" id="XCx-sj-cE3"/>
+                                                            <constraint firstItem="Ov2-bx-8LK" firstAttribute="top" secondItem="Bqk-jT-7Dt" secondAttribute="top" id="zxY-RG-MDV"/>
                                                         </constraints>
                                                         <size key="customSize" width="150" height="150"/>
                                                         <connections>
+                                                            <outlet property="deleteOverlay" destination="Ov2-bx-8LK" id="v4b-uy-qel"/>
                                                             <outlet property="image" destination="xqR-G6-Vns" id="N2U-ip-4Xe"/>
                                                         </connections>
                                                     </collectionViewCell>
@@ -323,15 +371,31 @@
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S2F-xP-fVw">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 </imageView>
+                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LCL-U3-8LE">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                                                    <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                                    <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                                    <state key="normal" image="trash.circle" catalog="system">
+                                                                        <attributedString key="attributedTitle"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="deleteButtonClicked:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="Usv-B2-fUr"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                         </view>
                                                         <constraints>
                                                             <constraint firstItem="S2F-xP-fVw" firstAttribute="top" secondItem="izO-r5-xRN" secondAttribute="top" id="1IH-D9-uJA"/>
+                                                            <constraint firstItem="LCL-U3-8LE" firstAttribute="leading" secondItem="izO-r5-xRN" secondAttribute="leading" id="8Z2-Zu-6hm"/>
+                                                            <constraint firstItem="LCL-U3-8LE" firstAttribute="top" secondItem="izO-r5-xRN" secondAttribute="top" id="HJ4-1g-HWo"/>
+                                                            <constraint firstAttribute="bottom" secondItem="LCL-U3-8LE" secondAttribute="bottom" id="Ku7-N3-HJP"/>
                                                             <constraint firstAttribute="bottom" secondItem="S2F-xP-fVw" secondAttribute="bottom" id="LQh-87-gdu"/>
                                                             <constraint firstAttribute="trailing" secondItem="S2F-xP-fVw" secondAttribute="trailing" id="cLM-un-DSs"/>
                                                             <constraint firstItem="S2F-xP-fVw" firstAttribute="leading" secondItem="izO-r5-xRN" secondAttribute="leading" id="mjh-Il-mEf"/>
+                                                            <constraint firstAttribute="trailing" secondItem="LCL-U3-8LE" secondAttribute="trailing" id="xYG-Sh-r9V"/>
                                                         </constraints>
                                                         <connections>
+                                                            <outlet property="deleteOverlay" destination="LCL-U3-8LE" id="rJi-h3-rRm"/>
                                                             <outlet property="image" destination="S2F-xP-fVw" id="u83-PV-J7J"/>
                                                         </connections>
                                                     </collectionViewCell>
@@ -429,6 +493,32 @@
                                             <action selector="matchOutfit:" destination="8rJ-Kc-sve" eventType="touchDown" id="JQ9-QS-6al"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGy-l8-v5N" customClass="RoundedButton" customModule="Clueless_Clothes" customModuleProvider="target">
+                                        <rect key="frame" x="8" y="3" width="178" height="33"/>
+                                        <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="JyS-nR-chY"/>
+                                            <constraint firstAttribute="width" constant="178" id="bXw-GY-HZt"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="edit">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="13"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.70196078429999997" green="0.21176470589999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="editButtonClicked:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="ub1-aH-ySB"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.96078431369999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -440,7 +530,9 @@
                                     <constraint firstItem="6iX-iy-aWg" firstAttribute="top" secondItem="2Mp-Nb-fbe" secondAttribute="top" constant="3" id="UAE-YS-TMK"/>
                                     <constraint firstAttribute="trailing" secondItem="6iX-iy-aWg" secondAttribute="trailing" constant="1" id="Vyx-gb-Nbc"/>
                                     <constraint firstItem="rPU-Mn-s3n" firstAttribute="top" secondItem="Tnx-mS-Z1q" secondAttribute="bottom" constant="12" id="Y2q-As-Cjs"/>
+                                    <constraint firstItem="XGy-l8-v5N" firstAttribute="top" secondItem="2Mp-Nb-fbe" secondAttribute="top" constant="3" id="epp-UO-8uq"/>
                                     <constraint firstAttribute="trailing" secondItem="Kp1-qO-lQZ" secondAttribute="trailing" id="j97-1U-J7o"/>
+                                    <constraint firstItem="XGy-l8-v5N" firstAttribute="leading" secondItem="2Mp-Nb-fbe" secondAttribute="leading" constant="8" id="oDR-ra-YeM"/>
                                     <constraint firstAttribute="trailing" secondItem="rPU-Mn-s3n" secondAttribute="trailing" id="pdA-bh-5XJ"/>
                                     <constraint firstAttribute="bottom" secondItem="rPU-Mn-s3n" secondAttribute="bottom" id="qEQ-ne-Ucg"/>
                                 </constraints>
@@ -485,6 +577,7 @@
                         <outlet property="bottomsCollection" destination="hfw-bB-lhY" id="EuK-zt-9pi"/>
                         <outlet property="collectionsHolder" destination="Kp1-qO-lQZ" id="GJL-pY-Isp"/>
                         <outlet property="dressesCollection" destination="47c-82-cGU" id="1kc-1i-20a"/>
+                        <outlet property="editButton" destination="XGy-l8-v5N" id="Enp-QX-evV"/>
                         <outlet property="mainView" destination="2Mp-Nb-fbe" id="l0J-Ps-wPF"/>
                         <outlet property="matchButton" destination="Tnx-mS-Z1q" id="HHD-F4-HSu"/>
                         <outlet property="noBottomsLabel" destination="JN8-Hq-5VW" id="Jv1-Ch-5Df"/>
@@ -797,6 +890,7 @@
     <resources>
         <image name="dress" width="25" height="25"/>
         <image name="hanger" width="25" height="18.5"/>
+        <image name="trash.circle" catalog="system" width="128" height="121"/>
         <image name="upload" width="25" height="25"/>
     </resources>
 </document>
