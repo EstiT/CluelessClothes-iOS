@@ -526,13 +526,24 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     }
 
     @IBAction func deleteButtonClicked(_ sender: UIButton) {
-        guard let cell = sender.superview?.superview as? ImageCell else {
-            print("couldnt get imageCell")
-            return
-        }
-        Utility.removeImage(imageName: cell.id) // may not want??
-        Closet.shared.removeClothingItem(name: cell.id)
-        setUpCollectionViews()
+        let confirmAlert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this image?", preferredStyle: UIAlertController.Style.alert)
+        
+        confirmAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action: UIAlertAction!) in
+            print("confirmed delete")
+            guard let cell = sender.superview?.superview as? ImageCell else {
+                print("couldnt get imageCell")
+                return
+            }
+            Utility.removeImage(imageName: cell.id) // may not want to ??
+            Closet.shared.removeClothingItem(name: cell.id)
+            self.setUpCollectionViews()
+        }))
+        
+        confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("Cancelled delete")
+        }))
+        
+        present(confirmAlert, animated: true, completion: nil)
     }
     
     @objc func deleteImage(_ sender: UILongPressGestureRecognizer) {
