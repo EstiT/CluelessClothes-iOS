@@ -9,13 +9,17 @@
 import Foundation
 import UIKit
 
-class Utility{
+class Utility {
+    
+    static func getPath(name: String) -> String {
+        return (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(name)
+    }
     
     static func getImage(imageName: String) -> UIImage {
+        let imagePath = self.getPath(name: imageName)
         let fileManager = FileManager.default
-        let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
-        if fileManager.fileExists(atPath: imagePath){
-            return UIImage(contentsOfFile: imagePath)!
+        if fileManager.fileExists(atPath: imagePath) {
+             return UIImage(contentsOfFile: imagePath)!
         }
         else {
             print("Panic! No Image!")
@@ -26,6 +30,21 @@ class Utility{
                 return UIImage(named: "?")!
             }
         }
+    }
+    
+    static func imageExists(imageName: String) -> Bool {
+        let path = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let url = NSURL(fileURLWithPath: path)
+        if let pathComponent = url.appendingPathComponent(imageName) {
+            let filePath = pathComponent.path
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: filePath) {
+                return true
+            } else {
+                return false
+            }
+        }
+        return false
     }
     
     static func removeImage(imageName: String) {

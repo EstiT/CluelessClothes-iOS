@@ -227,13 +227,13 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
             noDressesLabel.isHidden &&
 //            noJacketsLabel.isHidden &&
             noBottomsLabel.isHidden &&
-            noShoesLabel.isHidden {
+            noShoesLabel.isHidden && !deleteView{
             matchButton.isEnabled = true
             matchButton.alpha = 1
         }
         else{
             matchButton.isEnabled = false
-            matchButton.alpha = 0.6
+            matchButton.alpha = 0.5
         }
     }
     
@@ -331,6 +331,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     @IBAction func editButtonClicked(_ sender: Any) {
         deleteView = !deleteView
         editButton.setTitle(deleteView ? "done" : "edit", for: .normal)
+        enableDisableMatchButton()
         setUpCollectionViews()
     }
     
@@ -374,8 +375,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         if showTops{
             if Closet.shared.tops.count > 0 {
                 noTopsLabel.isHidden = true
-                let midIndexPath = IndexPath(row: Closet.shared.tops.count / 2, section: 0)
-                //topsCollection.scrollToItem(at: midIndexPath, at: .centeredHorizontally, animated: false)
             }
             else {
                 topsCollection.isHidden = true
@@ -389,8 +388,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         if showDresses{
             if Closet.shared.dresses.count > 0 {
                 noDressesLabel.isHidden = true
-                let midIndexPath = IndexPath(row: Closet.shared.dresses.count / 2, section: 0)
-                //dressesCollection.scrollToItem(at: midIndexPath, at: .centeredHorizontally, animated: false)
             }
             else {
                 dressesCollection.isHidden = true
@@ -404,8 +401,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         if showBottoms{
             if Closet.shared.bottoms.count > 0 {
                 noBottomsLabel.isHidden = true
-                let midIndexPath = IndexPath(row: Closet.shared.bottoms.count / 2, section: 0)
-                //bottomsCollection.scrollToItem(at: midIndexPath, at: .centeredHorizontally, animated: false)
             }
             else{
                 bottomsCollection.isHidden = true
@@ -419,8 +414,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         if showShoes{
             if Closet.shared.shoes.count > 0 {
                 noShoesLabel.isHidden = true
-                let midIndexPath = IndexPath(row: Closet.shared.bottoms.count / 2, section: 0)
-                //shoesCollection.scrollToItem(at: midIndexPath, at: .centeredHorizontally, animated: false)
             }
             else{
                 shoesCollection.isHidden = true
@@ -438,7 +431,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         cv.delegate = self
         cv.backgroundColor = .clear
         cv.frame = frame
-        let itemWidth = view.frame.width - 30 * 4 // w0 == ws TODO
+        let itemWidth = view.frame.width - 30 * 4 
         let itemSize = CGSize(width: itemWidth, height: frame.height)
         let minimumLineSpacing:CGFloat = 20
         let inset:CGFloat = (view.frame.width - itemWidth)/2

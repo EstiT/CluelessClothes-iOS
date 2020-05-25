@@ -147,6 +147,17 @@ class Closet{
         clothes = clothes.filter { $0.imageName != name }
     }
     
+    func removeOutfit(index:Int){
+        outfits.remove(at: index)
+        do {
+            let encodedOutfits = try NSKeyedArchiver.archivedData(withRootObject: outfits, requiringSecureCoding: false)
+            defaults.set(encodedOutfits, forKey: "outfits")
+        }
+        catch {
+            print("couldnt decode outfits")
+        }
+    }
+    
     func getNextTopName() -> String{ //starts at 0
         return "top" + String(tops.count)
     }

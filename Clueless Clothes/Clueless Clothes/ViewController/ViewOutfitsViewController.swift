@@ -124,34 +124,45 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
         cell.shoesImage.image = UIImage()
         
         let outfit = Closet.shared.outfits[indexPath.row]
-        for item:ClothingItem in outfit.outfitItems{
+        var missingImageCount = 0
+        
+        for item:ClothingItem in outfit.outfitItems {
             var name = ""
             if item is Top {
                 cell.topImage.image = Utility.getImage(imageName: item.imageName)
+                if !Utility.imageExists(imageName: item.imageName) { missingImageCount+=1 }
                 name = item.imageName
             }
             else if item is Bottom {
                 cell.bottomImage.image = Utility.getImage(imageName: item.imageName)
+                if !Utility.imageExists(imageName: item.imageName) { missingImageCount+=1 }
                 name = item.imageName
             }
             else if item is Dress {
                 cell.dressImage.image = Utility.getImage(imageName: item.imageName)
+                if !Utility.imageExists(imageName: item.imageName) { missingImageCount+=1 }
                 name = item.imageName
             }
             else if item is Shoes {
                 cell.shoesImage.image = Utility.getImage(imageName: item.imageName)
+                if !Utility.imageExists(imageName: item.imageName) { missingImageCount+=1 }
                 name = item.imageName
             }/*
             else if item is Jacket {
                 cell. Image.image = Utility.getImage(imageName: item.imageName)
+             if !Utility.imageExists(imageName: item.imageName) { missingImageCount+=1 }
             } TODO Jacket*/
-             
             
             cell.topImage.contentMode = .scaleAspectFill
             cell.bottomImage.contentMode = .scaleAspectFill
             cell.dressImage.contentMode = .scaleAspectFill
             cell.shoesImage.contentMode = .scaleAspectFill
             cell.id = name
+        }
+        if missingImageCount == outfit.outfitItems.count {
+            // all items in outfit are removed
+            Closet.shared.removeOutfit(index:indexPath.row)
+            outfitsCollection.reloadData()
         }
         
         return cell
