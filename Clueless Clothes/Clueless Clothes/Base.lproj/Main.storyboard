@@ -769,7 +769,7 @@
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hFE-jr-dRM">
-                                        <rect key="frame" x="0.0" y="12" width="375" height="496"/>
+                                        <rect key="frame" x="0.0" y="40" width="375" height="468"/>
                                         <collectionViewLayout key="collectionViewLayout" id="N5H-u2-QYN" customClass="WLCollectionViewLayout" customModule="Clueless_Clothes" customModuleProvider="target"/>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MultiImageCell" id="0ez-ml-dyK" customClass="MultiImageCell" customModule="Clueless_Clothes" customModuleProvider="target">
@@ -797,6 +797,18 @@
                                                                 <constraint firstAttribute="height" constant="100" id="EeL-q2-4K1"/>
                                                             </constraints>
                                                         </imageView>
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PmU-Dw-mkU">
+                                                            <rect key="frame" x="20" y="0.0" width="336" height="467"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                                            <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                            <state key="normal" image="trash">
+                                                                <attributedString key="attributedTitle"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="deleteButtonClicked:" destination="8J9-WI-vAR" eventType="touchUpInside" id="XRd-En-N3b"/>
+                                                            </connections>
+                                                        </button>
                                                     </subviews>
                                                 </view>
                                                 <constraints>
@@ -818,6 +830,7 @@
                                                 <size key="customSize" width="376" height="512"/>
                                                 <connections>
                                                     <outlet property="bottomImage" destination="nWo-sC-ewl" id="beB-KJ-nWA"/>
+                                                    <outlet property="deleteOverlay" destination="PmU-Dw-mkU" id="blV-Lk-aXx"/>
                                                     <outlet property="dressImage" destination="sV5-jt-2iY" id="fmV-mL-uk4"/>
                                                     <outlet property="shoesImage" destination="yCD-Fr-CMN" id="ZLP-r0-jJ1"/>
                                                     <outlet property="topImage" destination="VS6-qr-hy0" id="GYI-lf-p7E"/>
@@ -825,15 +838,43 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYB-Mz-1W7" customClass="RoundedButton" customModule="Clueless_Clothes" customModuleProvider="target">
+                                        <rect key="frame" x="98.5" y="-1" width="178" height="33"/>
+                                        <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="Sss-2k-asS"/>
+                                            <constraint firstAttribute="width" constant="178" id="zaP-re-opj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <state key="normal" title="edit">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="13"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.70196078429999997" green="0.21176470589999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="editButtonClicked:" destination="8J9-WI-vAR" eventType="touchUpInside" id="a6i-3w-EIo"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.96078431369999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="hFE-jr-dRM" firstAttribute="top" secondItem="qyd-Mx-U0B" secondAttribute="top" constant="12" id="4Zn-Sj-evO"/>
+                                    <constraint firstItem="hFE-jr-dRM" firstAttribute="top" secondItem="qyd-Mx-U0B" secondAttribute="top" constant="40" id="4Zn-Sj-evO"/>
                                     <constraint firstAttribute="bottom" secondItem="S9Q-BT-SUX" secondAttribute="bottom" id="5KJ-DZ-9WM"/>
                                     <constraint firstAttribute="trailing" secondItem="hFE-jr-dRM" secondAttribute="trailing" id="7Er-03-J5B"/>
                                     <constraint firstItem="hFE-jr-dRM" firstAttribute="leading" secondItem="qyd-Mx-U0B" secondAttribute="leading" id="9LK-xO-bUV"/>
                                     <constraint firstAttribute="trailing" secondItem="S9Q-BT-SUX" secondAttribute="trailing" id="Ns8-lp-q0Z"/>
+                                    <constraint firstItem="sYB-Mz-1W7" firstAttribute="centerX" secondItem="qyd-Mx-U0B" secondAttribute="centerX" id="YcL-5f-1XX"/>
                                     <constraint firstItem="S9Q-BT-SUX" firstAttribute="top" secondItem="hFE-jr-dRM" secondAttribute="bottom" constant="20" id="qhZ-gc-18C"/>
+                                    <constraint firstItem="hFE-jr-dRM" firstAttribute="top" secondItem="sYB-Mz-1W7" secondAttribute="bottom" constant="8" id="ssk-2E-XGr"/>
                                     <constraint firstItem="S9Q-BT-SUX" firstAttribute="leading" secondItem="qyd-Mx-U0B" secondAttribute="leading" id="uy8-Ff-Zs0"/>
                                 </constraints>
                             </view>
@@ -852,6 +893,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="closet" image="hanger" id="g0x-mH-CAo"/>
                     <connections>
+                        <outlet property="editButton" destination="sYB-Mz-1W7" id="mls-Zm-UaM"/>
                         <outlet property="mainView" destination="qyd-Mx-U0B" id="tDY-O2-nXw"/>
                         <outlet property="noOutfitsLabel" destination="itz-Ee-1ML" id="gLs-dy-dmU"/>
                         <outlet property="outfitsCollection" destination="hFE-jr-dRM" id="zSP-UC-SvF"/>
@@ -890,6 +932,7 @@
     <resources>
         <image name="dress" width="25" height="25"/>
         <image name="hanger" width="25" height="18.5"/>
+        <image name="trash" width="43" height="43"/>
         <image name="trash.circle" catalog="system" width="128" height="121"/>
         <image name="upload" width="25" height="25"/>
     </resources>

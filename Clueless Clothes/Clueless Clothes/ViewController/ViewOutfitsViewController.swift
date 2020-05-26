@@ -15,6 +15,8 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var noOutfitsLabel: UILabel!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var topView: UIView!
+    @IBOutlet weak var editButton: UIButton!
+    var deleteView: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -172,6 +174,14 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
             }
         }
 
+        cell.deleteOverlay.imageView?.contentMode = .scaleAspectFit
+        if deleteView {
+            cell.deleteOverlay.isHidden = false
+        }
+        else {
+            cell.deleteOverlay.isHidden = true
+        }
+        
         cell.topImage.contentMode = .scaleAspectFill
         cell.bottomImage.contentMode = .scaleAspectFill
         cell.dressImage.contentMode = .scaleAspectFill
@@ -180,7 +190,32 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
         return cell
     }
     
-
+    @IBAction func editButtonClicked(_ sender: Any) {
+        deleteView = !deleteView
+        editButton.setTitle(deleteView ? "done" : "edit", for: .normal)
+        viewWillAppear(false)
+    }
+    
+    @IBAction func deleteButtonClicked(_ sender: UIButton) {
+        let confirmAlert = UIAlertController(title: "Delete outfit?", message: "Are you sure you want to delete this outfit?", preferredStyle: UIAlertController.Style.alert)
+        
+        confirmAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action: UIAlertAction!) in
+            let visibleRect = CGRect(origin: self.outfitsCollection.contentOffset, size: self.outfitsCollection.bounds.size)
+            let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+            if let visibleIndexPath = self.outfitsCollection.indexPathForItem(at: visiblePoint){
+                Closet.shared.removeOutfit(index: visibleIndexPath.row) // visibleIndexPath
+            }
+           
+            self.setUpCollectionView(cv: self.outfitsCollection,
+                                     frame: CGRect(x: 0, y: 0, width: self.mainView.frame.width, height: self.mainView.frame.height-50))
+        }))
+        
+        confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { (action: UIAlertAction!) in
+            print("Cancelled delete")
+        }))
+        
+        present(confirmAlert, animated: true, completion: nil)
+    }
     
 }
 

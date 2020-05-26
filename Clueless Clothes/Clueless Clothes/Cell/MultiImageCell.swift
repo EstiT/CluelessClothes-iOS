@@ -15,7 +15,8 @@ class MultiImageCell : UICollectionViewCell{
     @IBOutlet weak var bottomImage: UIImageView!
     @IBOutlet weak var dressImage: UIImageView!
     @IBOutlet weak var shoesImage: UIImageView!
-//    @IBOutlet weak var jacketImage: UIImageView! TODO 
+//    @IBOutlet weak var jacketImage: UIImageView! TODO
+    @IBOutlet weak var deleteOverlay: UIButton!
     var id: String!
 
     required init?(coder aDecoder: NSCoder){
