@@ -24,14 +24,33 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
         outfitsCollection.delegate = self
         outfitsCollection.backgroundColor = .clear
         
-        viewDidAppear(false)
+        viewWillAppear(false)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
+        pruneOutfits()
         outfitsCollection.reloadData()
         hideIfNoOutfits()
         checkColorTheme()
-        setUpCollectionView(cv: outfitsCollection, frame: CGRect(x: 0, y: 0, width: mainView.frame.width, height: mainView.frame.height))
+        setUpCollectionView(cv: outfitsCollection, frame: CGRect(x: 0, y: 0, width: mainView.frame.width, height: mainView.frame.height-50))
+    }
+    
+    func pruneOutfits() {
+        var i = 0;
+        for outfit in Closet.shared.outfits {
+            var missingImageCount = 0
+            for item:ClothingItem in outfit.outfitItems {
+                if !Utility.imageExists(imageName: item.imageName) { missingImageCount+=1 }
+            }
+            if missingImageCount == outfit.outfitItems.count {
+                // all items in outfit are removed
+                Closet.shared.removeOutfit(index:i)
+                hideIfNoOutfits()
+                pruneOutfits()
+                return
+            }
+            i+=1
+        }
     }
     
     func checkColorTheme(){
@@ -97,10 +116,10 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
         cv.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         cv.frame = frame
         let itemWidth = frame.width - 20
-        let itemSize = CGSize(width: itemWidth, height: frame.height)
+        let itemSize = CGSize(width: itemWidth, height: frame.height-20)
         if let collectionViewFlowLayout = cv.collectionViewLayout as? WLCollectionViewLayout {
             collectionViewFlowLayout.itemSize = itemSize
-            collectionViewFlowLayout.minimumLineSpacing = 30
+            collectionViewFlowLayout.minimumLineSpacing = 0
             collectionViewFlowLayout.scrollDirection = .horizontal
         }
 
@@ -127,43 +146,36 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
         var missingImageCount = 0
         
         for item:ClothingItem in outfit.outfitItems {
-            var name = ""
+            
             if item is Top {
                 cell.topImage.image = Utility.getImage(imageName: item.imageName)
                 if !Utility.imageExists(imageName: item.imageName) { missingImageCount+=1 }
-                name = item.imageName
             }
             else if item is Bottom {
                 cell.bottomImage.image = Utility.getImage(imageName: item.imageName)
                 if !Utility.imageExists(imageName: item.imageName) { missingImageCount+=1 }
-                name = item.imageName
             }
             else if item is Dress {
                 cell.dressImage.image = Utility.getImage(imageName: item.imageName)
                 if !Utility.imageExists(imageName: item.imageName) { missingImageCount+=1 }
-                name = item.imageName
             }
             else if item is Shoes {
                 cell.shoesImage.image = Utility.getImage(imageName: item.imageName)
                 if !Utility.imageExists(imageName: item.imageName) { missingImageCount+=1 }
-                name = item.imageName
             }/*
             else if item is Jacket {
                 cell. Image.image = Utility.getImage(imageName: item.imageName)
              if !Utility.imageExists(imageName: item.imageName) { missingImageCount+=1 }
             } TODO Jacket*/
-            
-            cell.topImage.contentMode = .scaleAspectFill
-            cell.bottomImage.contentMode = .scaleAspectFill
-            cell.dressImage.contentMode = .scaleAspectFill
-            cell.shoesImage.contentMode = .scaleAspectFill
-            cell.id = name
+            else {
+                print("dont know what item is")
+            }
         }
-        if missingImageCount == outfit.outfitItems.count {
-            // all items in outfit are removed
-            Closet.shared.removeOutfit(index:indexPath.row)
-            outfitsCollection.reloadData()
-        }
+
+        cell.topImage.contentMode = .scaleAspectFill
+        cell.bottomImage.contentMode = .scaleAspectFill
+        cell.dressImage.contentMode = .scaleAspectFill
+        cell.shoesImage.contentMode = .scaleAspectFill
         
         return cell
     }

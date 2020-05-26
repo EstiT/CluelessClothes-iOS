@@ -23,12 +23,7 @@ class Utility {
         }
         else {
             print("Panic! No Image!")
-            if #available(iOS 13.0, *) {
-                return UIImage(systemName: "questionmark.diamond")!
-            }
-            else {
-                return UIImage(named: "?")!
-            }
+            return UIImage(named: "placeholder")!
         }
     }
     

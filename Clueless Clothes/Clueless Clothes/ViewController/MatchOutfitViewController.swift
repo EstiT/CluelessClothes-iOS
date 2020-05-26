@@ -331,6 +331,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     @IBAction func editButtonClicked(_ sender: Any) {
         deleteView = !deleteView
         editButton.setTitle(deleteView ? "done" : "edit", for: .normal)
+        showHideCollectionElements()
         enableDisableMatchButton()
         setUpCollectionViews()
     }
@@ -519,7 +520,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     }
 
     @IBAction func deleteButtonClicked(_ sender: UIButton) {
-        let confirmAlert = UIAlertController(title: "Delete", message: "Are you sure you want to delete this image?", preferredStyle: UIAlertController.Style.alert)
+        let confirmAlert = UIAlertController(title: "Delete image?", message: "Are you sure you want to delete this image?", preferredStyle: UIAlertController.Style.alert)
         
         confirmAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action: UIAlertAction!) in
             print("confirmed delete")

@@ -18,6 +18,12 @@ class Closet{
     var bottoms = [Bottom]()
     var jackets = [Jacket]()
     var shoes = [Shoes]()
+    var outfitsCount:Int!
+    var topsCount:Int!
+    var dressesCount:Int!
+    var bottomsCount:Int!
+    var jacketsCount:Int!
+    var shoesCount:Int!
     
     enum clothesTypes {
         case Top
@@ -37,6 +43,13 @@ class Closet{
             outfits = [Outfit]()
             defaults.set(outfits, forKey: "outfits")
         }
+    
+        topsCount = UserDefaults.standard.object(forKey: "topsCount") != nil ? UserDefaults.standard.integer(forKey: "topsCount") : 0
+        dressesCount = UserDefaults.standard.object(forKey: "dressesCount") != nil ? UserDefaults.standard.integer(forKey: "dressesCount") : 0
+        bottomsCount = UserDefaults.standard.object(forKey: "bottomsCount") != nil ? UserDefaults.standard.integer(forKey: "bottomsCount") : 0
+        jacketsCount = UserDefaults.standard.object(forKey: "jacketsCount") != nil ? UserDefaults.standard.integer(forKey: "jacketsCount") : 0
+        shoesCount = UserDefaults.standard.object(forKey: "shoesCount") != nil ? UserDefaults.standard.integer(forKey: "shoesCount") : 0
+        
         let fileManager = FileManager.default
         let documentsURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         do {
@@ -68,26 +81,36 @@ class Closet{
 
     
     func addTop(top:Top){
+        topsCount += 1
+        defaults.set(topsCount, forKey: "topsCount")
         clothes.append(top)
         tops.append(top)
     }
     
     func addDress(dress:Dress){
+        dressesCount += 1
+        defaults.set(dressesCount, forKey: "dressesCount")
         clothes.append(dress)
         dresses.append(dress)
     }
     
     func addJacket(jacket:Jacket){
+        jacketsCount += 1
+        defaults.set(jacketsCount, forKey: "jacketsCount")
         clothes.append(jacket)
         jackets.append(jacket)
     }
     
     func addBottom(bottom:Bottom){
+        bottomsCount += 1
+        defaults.set(bottomsCount, forKey: "bottomsCount")
         clothes.append(bottom)
         bottoms.append(bottom)
     }
     
     func addShoes(s:Shoes){
+        shoesCount += 1
+        defaults.set(shoesCount, forKey: "shoesCount")
         clothes.append(s)
         shoes.append(s)
     }
@@ -147,6 +170,7 @@ class Closet{
         clothes = clothes.filter { $0.imageName != name }
     }
     
+    //TODO?
     func removeOutfit(index:Int){
         outfits.remove(at: index)
         do {
@@ -159,23 +183,23 @@ class Closet{
     }
     
     func getNextTopName() -> String{ //starts at 0
-        return "top" + String(tops.count)
+        return "top" + String(topsCount)
     }
     
     func getNextDressName() -> String{
-        return "dress" + String(dresses.count)
+        return "dress" + String(dressesCount)
     }
     
     func getNextJacketName() -> String{
-        return "jacket" + String(jackets.count)
+        return "jacket" + String(jacketsCount)
     }
     
     func getNextBottomName() -> String{
-        return "bottom" + String(bottoms.count)
+        return "bottom" + String(bottomsCount)
     }
     
     func getNextShoesName() -> String{
-        return "shoes" + String(shoes.count)
+        return "shoes" + String(shoesCount)
     }
 
 

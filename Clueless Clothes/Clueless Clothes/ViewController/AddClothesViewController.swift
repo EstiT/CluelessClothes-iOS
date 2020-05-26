@@ -124,7 +124,20 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
         }
         dismiss(animated:true, completion:{
             //TODO indicate success check mark/saved
+            let alert = UIAlertController(title: "Success!", message: "Image has been saved", preferredStyle: .alert)
+            self.present(alert, animated:true, completion: {
+                Timer.scheduledTimer(withTimeInterval: 4, repeats:false, block:
+                    {_ in
+                        self.dismiss(animated: true, completion: nil)
+                })
+                alert.view.superview?.isUserInteractionEnabled = true
+                alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
             })
+            })
+    }
+    
+    @objc func alertControllerBackgroundTapped(){
+        self.dismiss(animated: true, completion: nil)
     }
     
 //    ["top", "jacket", "dress", "bottom", "shoes"]
