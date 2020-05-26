@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--upload-->
+        <!--Add Clothes View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController id="9pv-A4-QxB" customClass="AddClothesViewController" customModule="Clueless_Clothes" customModuleProvider="target" sceneMemberID="viewController">
@@ -19,35 +19,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nPC-gV-mRE">
                                 <rect key="frame" x="0.0" y="111" width="375" height="507"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HWc-cK-a6h" customClass="RoundedButton" customModule="Clueless_Clothes" customModuleProvider="target">
-                                        <rect key="frame" x="97" y="30" width="180" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="top">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="13"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.70196078429999997" green="0.21176470589999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="takeTopPicture" destination="9pv-A4-QxB" eventType="touchDown" id="ftj-Wz-gS1"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AkE-FZ-U67" customClass="RoundedButton" customModule="Clueless_Clothes" customModuleProvider="target">
-                                        <rect key="frame" x="97" y="276" width="180" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AkE-FZ-U67">
+                                        <rect key="frame" x="208" y="18" width="138" height="177"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="bottom">
+                                        <state key="normal" image="bottom">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -65,12 +41,11 @@
                                             <action selector="takeBottomPicture" destination="9pv-A4-QxB" eventType="touchDown" id="86e-V1-Wd8"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaW-vn-W32" customClass="RoundedButton" customModule="Clueless_Clothes" customModuleProvider="target">
-                                        <rect key="frame" x="97" y="191" width="180" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VaW-vn-W32">
+                                        <rect key="frame" x="34" y="18" width="158" height="220"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="dress">
+                                        <state key="normal" image="dress2">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -88,12 +63,11 @@
                                             <action selector="takeDressPicture" destination="9pv-A4-QxB" eventType="touchDown" id="uck-kx-K7P"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGl-f2-hwW" customClass="RoundedButton" customModule="Clueless_Clothes" customModuleProvider="target">
-                                        <rect key="frame" x="97" y="112" width="180" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oGl-f2-hwW">
+                                        <rect key="frame" x="34" y="252" width="158" height="198"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="jacket">
+                                        <state key="normal" image="blazer">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -118,12 +92,11 @@
                                             <constraint firstAttribute="height" constant="10" id="xAv-NE-tgz"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7q-is-VlV" customClass="RoundedButton" customModule="Clueless_Clothes" customModuleProvider="target">
-                                        <rect key="frame" x="97" y="367" width="180" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7q-is-VlV">
+                                        <rect key="frame" x="208" y="365" width="138" height="85"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <state key="normal" title="shoes">
+                                        <state key="normal" image="shoes">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -139,6 +112,28 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="takeShoesPicture" destination="9pv-A4-QxB" eventType="touchDown" id="mgs-kA-wJq"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HWc-cK-a6h">
+                                        <rect key="frame" x="208" y="204" width="138" height="153"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" image="top2">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="13"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.70196078429999997" green="0.21176470589999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="takeTopPicture" destination="9pv-A4-QxB" eventType="touchDown" id="ftj-Wz-gS1"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -194,7 +189,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="upload" image="upload" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="" image="camera" catalog="system" id="acW-dT-cKf"/>
                     <connections>
                         <outlet property="mainView" destination="nPC-gV-mRE" id="Sfk-bb-aDs"/>
                         <outlet property="topView" destination="wl5-eC-3fX" id="gKG-Ge-0wh"/>
@@ -204,7 +199,7 @@
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
         </scene>
-        <!--match-->
+        <!--Match Outfit View Controller-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="MatchOutfitViewController" customModule="Clueless_Clothes" customModuleProvider="target" sceneMemberID="viewController">
@@ -213,10 +208,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Mp-Nb-fbe">
-                                <rect key="frame" x="0.0" y="78" width="375" height="491"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="491"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kp1-qO-lQZ" userLabel="CollectionsHolder">
-                                        <rect key="frame" x="0.0" y="48" width="375" height="376"/>
+                                        <rect key="frame" x="0.0" y="57" width="375" height="367"/>
                                         <subviews>
                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceHorizontal="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="47c-82-cGU">
                                                 <rect key="frame" x="0.0" y="42" width="375" height="286"/>
@@ -438,44 +433,18 @@
                                             <constraint firstAttribute="height" constant="10" id="dmm-YY-d6d"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6iX-iy-aWg" customClass="RoundedButton" customModule="Clueless_Clothes" customModuleProvider="target">
-                                        <rect key="frame" x="196" y="3" width="178" height="33"/>
-                                        <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="33" id="XCe-as-2lf"/>
-                                            <constraint firstAttribute="width" constant="178" id="v2G-SZ-JrB"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="set outfit components">
-                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                <real key="value" value="3"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="13"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.70196078429999997" green="0.21176470589999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <segue destination="Ycg-fJ-SBb" kind="presentation" identifier="changeComponents" id="8vK-Ep-4rK"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tnx-mS-Z1q" customClass="RoundedButton" customModule="Clueless_Clothes" customModuleProvider="target">
-                                        <rect key="frame" x="142.5" y="436" width="90" height="33"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tnx-mS-Z1q">
+                                        <rect key="frame" x="147.5" y="436" width="80" height="33"/>
                                         <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <bool key="isElement" value="NO"/>
                                         </accessibility>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="33" id="Gou-kx-0bB"/>
-                                            <constraint firstAttribute="width" constant="90" id="UUN-fA-goz"/>
+                                            <constraint firstAttribute="width" constant="80" id="UUN-fA-goz"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="match!">
+                                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <state key="normal" image="suit.heart" catalog="system">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -493,15 +462,15 @@
                                             <action selector="matchOutfit:" destination="8rJ-Kc-sve" eventType="touchDown" id="JQ9-QS-6al"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGy-l8-v5N" customClass="RoundedButton" customModule="Clueless_Clothes" customModuleProvider="target">
-                                        <rect key="frame" x="8" y="3" width="178" height="33"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XGy-l8-v5N">
+                                        <rect key="frame" x="326" y="12" width="37" height="33"/>
                                         <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
+                                            <constraint firstAttribute="width" constant="37" id="Fwy-IU-bCm"/>
                                             <constraint firstAttribute="height" constant="33" id="JyS-nR-chY"/>
-                                            <constraint firstAttribute="width" constant="178" id="bXw-GY-HZt"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="edit">
+                                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <state key="normal" image="minus.rectangle" catalog="system">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -519,20 +488,46 @@
                                             <action selector="editButtonClicked:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="ub1-aH-ySB"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6iX-iy-aWg">
+                                        <rect key="frame" x="275" y="12" width="37" height="33"/>
+                                        <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="33" id="XCe-as-2lf"/>
+                                            <constraint firstAttribute="width" constant="37" id="v2G-SZ-JrB"/>
+                                        </constraints>
+                                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <state key="normal" image="slider.horizontal.3" catalog="system">
+                                            <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="3"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="13"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.70196078429999997" green="0.21176470589999999" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <segue destination="Ycg-fJ-SBb" kind="presentation" identifier="changeComponents" id="8vK-Ep-4rK"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.96078431369999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="Tnx-mS-Z1q" firstAttribute="centerX" secondItem="2Mp-Nb-fbe" secondAttribute="centerX" id="6Up-gj-7rR"/>
+                                    <constraint firstAttribute="trailing" secondItem="XGy-l8-v5N" secondAttribute="trailing" constant="12" id="8Iu-gf-tgE"/>
                                     <constraint firstItem="Kp1-qO-lQZ" firstAttribute="top" secondItem="6iX-iy-aWg" secondAttribute="bottom" constant="12" id="8by-Zx-Vla"/>
                                     <constraint firstItem="Tnx-mS-Z1q" firstAttribute="top" secondItem="Kp1-qO-lQZ" secondAttribute="bottom" constant="12" id="9ko-G6-IvF"/>
                                     <constraint firstItem="Kp1-qO-lQZ" firstAttribute="leading" secondItem="2Mp-Nb-fbe" secondAttribute="leading" id="Lhn-in-nae"/>
                                     <constraint firstItem="rPU-Mn-s3n" firstAttribute="leading" secondItem="2Mp-Nb-fbe" secondAttribute="leading" id="Nz3-pk-gCt"/>
-                                    <constraint firstItem="6iX-iy-aWg" firstAttribute="top" secondItem="2Mp-Nb-fbe" secondAttribute="top" constant="3" id="UAE-YS-TMK"/>
-                                    <constraint firstAttribute="trailing" secondItem="6iX-iy-aWg" secondAttribute="trailing" constant="1" id="Vyx-gb-Nbc"/>
+                                    <constraint firstItem="6iX-iy-aWg" firstAttribute="top" secondItem="2Mp-Nb-fbe" secondAttribute="top" constant="12" id="UAE-YS-TMK"/>
                                     <constraint firstItem="rPU-Mn-s3n" firstAttribute="top" secondItem="Tnx-mS-Z1q" secondAttribute="bottom" constant="12" id="Y2q-As-Cjs"/>
-                                    <constraint firstItem="XGy-l8-v5N" firstAttribute="top" secondItem="2Mp-Nb-fbe" secondAttribute="top" constant="3" id="epp-UO-8uq"/>
+                                    <constraint firstItem="XGy-l8-v5N" firstAttribute="leading" secondItem="6iX-iy-aWg" secondAttribute="trailing" constant="14" id="dYA-Jd-CcU"/>
+                                    <constraint firstItem="XGy-l8-v5N" firstAttribute="top" secondItem="2Mp-Nb-fbe" secondAttribute="top" constant="12" id="epp-UO-8uq"/>
                                     <constraint firstAttribute="trailing" secondItem="Kp1-qO-lQZ" secondAttribute="trailing" id="j97-1U-J7o"/>
-                                    <constraint firstItem="XGy-l8-v5N" firstAttribute="leading" secondItem="2Mp-Nb-fbe" secondAttribute="leading" constant="8" id="oDR-ra-YeM"/>
                                     <constraint firstAttribute="trailing" secondItem="rPU-Mn-s3n" secondAttribute="trailing" id="pdA-bh-5XJ"/>
                                     <constraint firstAttribute="bottom" secondItem="rPU-Mn-s3n" secondAttribute="bottom" id="qEQ-ne-Ucg"/>
                                 </constraints>
@@ -563,14 +558,14 @@
                             <constraint firstItem="Zms-CB-JLG" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leading" id="NWE-SM-yeH"/>
                             <constraint firstItem="2Mp-Nb-fbe" firstAttribute="trailing" secondItem="Zms-CB-JLG" secondAttribute="trailing" id="Qpq-wt-2Vg"/>
                             <constraint firstItem="2Mp-Nb-fbe" firstAttribute="leading" secondItem="Zms-CB-JLG" secondAttribute="leading" id="f50-ly-j5A"/>
-                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="2Mp-Nb-fbe" secondAttribute="bottom" id="f9c-xd-Jal"/>
-                            <constraint firstItem="2Mp-Nb-fbe" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="78" id="rmJ-6F-Ggg"/>
+                            <constraint firstItem="O1u-W8-tvY" firstAttribute="bottom" secondItem="2Mp-Nb-fbe" secondAttribute="bottom" constant="-2" id="f9c-xd-Jal"/>
+                            <constraint firstItem="2Mp-Nb-fbe" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="80" id="rmJ-6F-Ggg"/>
                             <constraint firstAttribute="trailing" secondItem="Zms-CB-JLG" secondAttribute="trailing" id="utP-pL-Ia4"/>
                             <constraint firstItem="Zms-CB-JLG" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="yKJ-UK-F1D"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="match" image="dress" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="" image="suit.heart" catalog="system" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -721,7 +716,7 @@
             </objects>
             <point key="canvasLocation" x="1676" y="358.4707646176912"/>
         </scene>
-        <!--closet-->
+        <!--View Outfits View Controller-->
         <scene sceneID="iWO-3s-WHU">
             <objects>
                 <viewController id="8J9-WI-vAR" customClass="ViewOutfitsViewController" customModule="Clueless_Clothes" customModuleProvider="target" sceneMemberID="viewController">
@@ -769,7 +764,7 @@
                                         </constraints>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceHorizontal="YES" pagingEnabled="YES" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hFE-jr-dRM">
-                                        <rect key="frame" x="0.0" y="40" width="375" height="468"/>
+                                        <rect key="frame" x="0.0" y="57" width="375" height="459"/>
                                         <collectionViewLayout key="collectionViewLayout" id="N5H-u2-QYN" customClass="WLCollectionViewLayout" customModule="Clueless_Clothes" customModuleProvider="target"/>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MultiImageCell" id="0ez-ml-dyK" customClass="MultiImageCell" customModule="Clueless_Clothes" customModuleProvider="target">
@@ -780,29 +775,28 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VS6-qr-hy0" userLabel="top">
-                                                            <rect key="frame" x="20" y="0.0" width="336" height="160"/>
+                                                            <rect key="frame" x="24" y="0.0" width="328" height="160"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="160" id="Cpw-L3-pIA"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sV5-jt-2iY" userLabel="dress">
-                                                            <rect key="frame" x="20" y="0.0" width="336" height="386"/>
+                                                            <rect key="frame" x="24" y="0.0" width="328" height="386"/>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nWo-sC-ewl" userLabel="bottoms">
-                                                            <rect key="frame" x="20" y="170" width="336" height="216"/>
+                                                            <rect key="frame" x="24" y="170" width="328" height="216"/>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yCD-Fr-CMN" userLabel="shoes">
-                                                            <rect key="frame" x="20" y="396" width="336" height="100"/>
+                                                            <rect key="frame" x="24" y="396" width="328" height="100"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="100" id="EeL-q2-4K1"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PmU-Dw-mkU">
-                                                            <rect key="frame" x="20" y="0.0" width="336" height="467"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PmU-Dw-mkU">
+                                                            <rect key="frame" x="24" y="0.5" width="328" height="495"/>
                                                             <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                            <state key="normal" image="trash">
+                                                            <state key="normal" backgroundImage="trash.circle" catalog="system">
                                                                 <attributedString key="attributedTitle"/>
                                                             </state>
                                                             <connections>
@@ -812,18 +806,22 @@
                                                     </subviews>
                                                 </view>
                                                 <constraints>
+                                                    <constraint firstItem="PmU-Dw-mkU" firstAttribute="leading" secondItem="0ez-ml-dyK" secondAttribute="leading" constant="24" id="0iW-uE-ey2"/>
                                                     <constraint firstItem="yCD-Fr-CMN" firstAttribute="top" secondItem="sV5-jt-2iY" secondAttribute="bottom" constant="10" id="4dP-iw-edZ"/>
-                                                    <constraint firstAttribute="trailingMargin" secondItem="yCD-Fr-CMN" secondAttribute="trailing" constant="12" id="AFR-AZ-9F8"/>
-                                                    <constraint firstAttribute="trailing" secondItem="sV5-jt-2iY" secondAttribute="trailing" constant="20" id="EHu-hA-3bI"/>
-                                                    <constraint firstItem="yCD-Fr-CMN" firstAttribute="leading" secondItem="0ez-ml-dyK" secondAttribute="leadingMargin" constant="12" id="Gh6-B9-rFQ"/>
-                                                    <constraint firstItem="nWo-sC-ewl" firstAttribute="leading" secondItem="0ez-ml-dyK" secondAttribute="leadingMargin" constant="12" id="KJT-6d-2pC"/>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="yCD-Fr-CMN" secondAttribute="trailing" constant="16" id="AFR-AZ-9F8"/>
+                                                    <constraint firstAttribute="trailing" secondItem="sV5-jt-2iY" secondAttribute="trailing" constant="24" id="EHu-hA-3bI"/>
+                                                    <constraint firstItem="yCD-Fr-CMN" firstAttribute="leading" secondItem="0ez-ml-dyK" secondAttribute="leadingMargin" constant="16" id="Gh6-B9-rFQ"/>
+                                                    <constraint firstItem="nWo-sC-ewl" firstAttribute="leading" secondItem="0ez-ml-dyK" secondAttribute="leadingMargin" constant="16" id="KJT-6d-2pC"/>
                                                     <constraint firstItem="nWo-sC-ewl" firstAttribute="top" secondItem="VS6-qr-hy0" secondAttribute="bottom" constant="10" id="Nux-mM-bPk"/>
-                                                    <constraint firstAttribute="trailing" secondItem="VS6-qr-hy0" secondAttribute="trailing" constant="20" id="Tnv-cc-buk"/>
-                                                    <constraint firstItem="VS6-qr-hy0" firstAttribute="leading" secondItem="0ez-ml-dyK" secondAttribute="leading" constant="20" id="VU4-Im-zI5"/>
-                                                    <constraint firstAttribute="trailingMargin" secondItem="nWo-sC-ewl" secondAttribute="trailing" constant="12" id="dhq-8V-nQg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="VS6-qr-hy0" secondAttribute="trailing" constant="24" id="Tnv-cc-buk"/>
+                                                    <constraint firstAttribute="bottom" secondItem="PmU-Dw-mkU" secondAttribute="bottom" constant="16" id="UYj-0U-kox"/>
+                                                    <constraint firstItem="VS6-qr-hy0" firstAttribute="leading" secondItem="0ez-ml-dyK" secondAttribute="leading" constant="24" id="VU4-Im-zI5"/>
+                                                    <constraint firstItem="PmU-Dw-mkU" firstAttribute="top" secondItem="0ez-ml-dyK" secondAttribute="top" id="dEi-BA-4Pg"/>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="nWo-sC-ewl" secondAttribute="trailing" constant="16" id="dhq-8V-nQg"/>
                                                     <constraint firstItem="VS6-qr-hy0" firstAttribute="top" secondItem="0ez-ml-dyK" secondAttribute="top" id="eG2-Fa-R9V"/>
-                                                    <constraint firstItem="sV5-jt-2iY" firstAttribute="leading" secondItem="0ez-ml-dyK" secondAttribute="leading" constant="20" id="n35-Az-M2U"/>
+                                                    <constraint firstItem="sV5-jt-2iY" firstAttribute="leading" secondItem="0ez-ml-dyK" secondAttribute="leading" constant="24" id="n35-Az-M2U"/>
                                                     <constraint firstAttribute="bottomMargin" secondItem="yCD-Fr-CMN" secondAttribute="bottom" constant="8" id="qdf-cc-Jws"/>
+                                                    <constraint firstAttribute="trailing" secondItem="PmU-Dw-mkU" secondAttribute="trailing" constant="24" id="t0f-WQ-bdA"/>
                                                     <constraint firstItem="sV5-jt-2iY" firstAttribute="top" secondItem="0ez-ml-dyK" secondAttribute="top" id="w4s-mK-NT3"/>
                                                     <constraint firstItem="yCD-Fr-CMN" firstAttribute="top" secondItem="nWo-sC-ewl" secondAttribute="bottom" constant="10" id="yAh-yq-Fmo"/>
                                                 </constraints>
@@ -838,15 +836,15 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYB-Mz-1W7" customClass="RoundedButton" customModule="Clueless_Clothes" customModuleProvider="target">
-                                        <rect key="frame" x="98.5" y="-1" width="178" height="33"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sYB-Mz-1W7">
+                                        <rect key="frame" x="326" y="12" width="37" height="33"/>
                                         <color key="backgroundColor" red="1" green="0.40000000000000002" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="33" id="Sss-2k-asS"/>
-                                            <constraint firstAttribute="width" constant="178" id="zaP-re-opj"/>
+                                            <constraint firstAttribute="width" constant="37" id="zaP-re-opj"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                        <state key="normal" title="edit">
+                                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <state key="normal" image="minus.rectangle" catalog="system">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -867,14 +865,14 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.96078431369999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="hFE-jr-dRM" firstAttribute="top" secondItem="qyd-Mx-U0B" secondAttribute="top" constant="40" id="4Zn-Sj-evO"/>
                                     <constraint firstAttribute="bottom" secondItem="S9Q-BT-SUX" secondAttribute="bottom" id="5KJ-DZ-9WM"/>
                                     <constraint firstAttribute="trailing" secondItem="hFE-jr-dRM" secondAttribute="trailing" id="7Er-03-J5B"/>
                                     <constraint firstItem="hFE-jr-dRM" firstAttribute="leading" secondItem="qyd-Mx-U0B" secondAttribute="leading" id="9LK-xO-bUV"/>
+                                    <constraint firstItem="sYB-Mz-1W7" firstAttribute="top" secondItem="qyd-Mx-U0B" secondAttribute="top" constant="12" id="F5n-XE-EjQ"/>
                                     <constraint firstAttribute="trailing" secondItem="S9Q-BT-SUX" secondAttribute="trailing" id="Ns8-lp-q0Z"/>
-                                    <constraint firstItem="sYB-Mz-1W7" firstAttribute="centerX" secondItem="qyd-Mx-U0B" secondAttribute="centerX" id="YcL-5f-1XX"/>
-                                    <constraint firstItem="S9Q-BT-SUX" firstAttribute="top" secondItem="hFE-jr-dRM" secondAttribute="bottom" constant="20" id="qhZ-gc-18C"/>
-                                    <constraint firstItem="hFE-jr-dRM" firstAttribute="top" secondItem="sYB-Mz-1W7" secondAttribute="bottom" constant="8" id="ssk-2E-XGr"/>
+                                    <constraint firstAttribute="trailing" secondItem="sYB-Mz-1W7" secondAttribute="trailing" constant="12" id="Zp4-gw-IHd"/>
+                                    <constraint firstItem="hFE-jr-dRM" firstAttribute="top" secondItem="sYB-Mz-1W7" secondAttribute="bottom" constant="12" id="fzp-5V-ZA9"/>
+                                    <constraint firstItem="S9Q-BT-SUX" firstAttribute="top" secondItem="hFE-jr-dRM" secondAttribute="bottom" constant="12" id="qhZ-gc-18C"/>
                                     <constraint firstItem="S9Q-BT-SUX" firstAttribute="leading" secondItem="qyd-Mx-U0B" secondAttribute="leading" id="uy8-Ff-Zs0"/>
                                 </constraints>
                             </view>
@@ -891,7 +889,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5e4-gY-z1m"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="closet" image="hanger" id="g0x-mH-CAo"/>
+                    <tabBarItem key="tabBarItem" title="" image="cube.box" catalog="system" id="g0x-mH-CAo"/>
                     <connections>
                         <outlet property="editButton" destination="sYB-Mz-1W7" id="mls-Zm-UaM"/>
                         <outlet property="mainView" destination="qyd-Mx-U0B" id="tDY-O2-nXw"/>
@@ -930,10 +928,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="dress" width="25" height="25"/>
-        <image name="hanger" width="25" height="18.5"/>
-        <image name="trash" width="43" height="43"/>
+        <image name="blazer" width="128" height="128"/>
+        <image name="bottom" width="137.5" height="178"/>
+        <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="cube.box" catalog="system" width="128" height="124"/>
+        <image name="dress2" width="137.5" height="178"/>
+        <image name="minus.rectangle" catalog="system" width="128" height="93"/>
+        <image name="shoes" width="137.5" height="106"/>
+        <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
+        <image name="suit.heart" catalog="system" width="128" height="109"/>
+        <image name="top2" width="115" height="128"/>
         <image name="trash.circle" catalog="system" width="128" height="121"/>
-        <image name="upload" width="25" height="25"/>
     </resources>
 </document>

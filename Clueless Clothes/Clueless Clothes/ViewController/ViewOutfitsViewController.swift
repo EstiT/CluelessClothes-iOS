@@ -35,6 +35,9 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
         hideIfNoOutfits()
         checkColorTheme()
         setUpCollectionView(cv: outfitsCollection, frame: CGRect(x: 0, y: 0, width: mainView.frame.width, height: mainView.frame.height-50))
+        if #available(iOS 13.0, *) {
+            editButton.setImage(deleteView ? UIImage(systemName: "checkmark.rectangle") : UIImage(systemName: "xmark.rectangle"), for: .normal)
+        }
     }
     
     func pruneOutfits() {
@@ -192,7 +195,9 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
     
     @IBAction func editButtonClicked(_ sender: Any) {
         deleteView = !deleteView
-        editButton.setTitle(deleteView ? "done" : "edit", for: .normal)
+        if #available(iOS 13.0, *) {
+            editButton.setImage(deleteView ? UIImage(systemName: "checkmark.rectangle") : UIImage(systemName: "xmark.rectangle"), for: .normal)
+        }
         viewWillAppear(false)
     }
     

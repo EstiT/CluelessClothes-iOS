@@ -79,6 +79,9 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         setUpCollectionViews()
         checkColorTheme()
         enableDisableMatchButton()
+        if #available(iOS 13.0, *) {
+            editButton.setImage(deleteView ? UIImage(systemName: "checkmark.rectangle") : UIImage(systemName: "xmark.rectangle"), for: .normal)
+        }
     }
     
     func checkColorTheme(){
@@ -330,7 +333,9 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     
     @IBAction func editButtonClicked(_ sender: Any) {
         deleteView = !deleteView
-        editButton.setTitle(deleteView ? "done" : "edit", for: .normal)
+        if #available(iOS 13.0, *) {
+            editButton.setImage(deleteView ? UIImage(systemName: "checkmark.rectangle") : UIImage(systemName: "xmark.rectangle"), for: .normal)
+        }
         showHideCollectionElements()
         enableDisableMatchButton()
         setUpCollectionViews()
