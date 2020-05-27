@@ -33,6 +33,7 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
         checkColorTheme()
         setCameraOverlay()
 
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue:"_UIImagePickerControllerUserDidCaptureItem"), object:nil, queue:nil, using:{ note in self.imagePicker.cameraOverlayView = nil})
     }
     
     func setCameraOverlay(){
