@@ -767,10 +767,10 @@
                                                             </constraints>
                                                         </imageView>
                                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PmU-Dw-mkU">
-                                                            <rect key="frame" x="24" y="-0.5" width="328" height="496"/>
+                                                            <rect key="frame" x="24" y="-1" width="328" height="497"/>
                                                             <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                            <state key="normal" backgroundImage="trash.circle" catalog="system">
+                                                            <state key="normal" image="trash.circle" catalog="system">
                                                                 <attributedString key="attributedTitle"/>
                                                             </state>
                                                             <connections>
