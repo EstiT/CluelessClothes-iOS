@@ -14,10 +14,12 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
     var image: UIImage!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var topView: UIView!
+    var viewfinder:UIImageView!
+    var overlayView:UIView!
     let imagePicker = UIImagePickerController()
     
     var clothingOptions: [String] = ["top", "jacket", "dress", "bottom", "shoes"]
-    var selectedClothingItem = 0
+    var selectedClothingItem:Closet.clothesTypes!
     
     var clothes = [ClothingItem]()
     
@@ -25,17 +27,27 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
-        imagePicker.allowsEditing = true
+        imagePicker.allowsEditing = false
+        imagePicker.sourceType = .camera
         checkPermission()
-        /*
-        let test1 = Dress(imageName: "dress")
-        Closet.shared.addDress(dress:test1)
-        
-        let test2 = Dress(imageName: "hanger")
-        Closet.shared.addDress(dress:test2)
-        */
-        
         checkColorTheme()
+        setCameraOverlay()
+
+    }
+    
+    func setCameraOverlay(){
+        overlayView = UIView()
+        viewfinder = UIImageView()
+        if #available(iOS 13.0, *) {
+            viewfinder.image = UIImage(systemName: "plus.rectangle") //viewfiinder?
+        }
+        else {
+            viewfinder.image = UIImage(named: "?") //TODO?
+        }
+        viewfinder.tintColor = Utility.transparentTurquois
+        viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY)
+        overlayView.addSubview(viewfinder)
+        imagePicker.cameraOverlayView = overlayView
     }
     
     
@@ -92,35 +104,41 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
         else if let img = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
             image = img
         }
-        if selectedClothingItem == 0 { // top
+        switch selectedClothingItem {
+        case .Top:
             let name = Closet.shared.getNextTopName()
             let top = Top(imageName: name)
             Closet.shared.addTop(top:top)
             saveImage(imageName: name)
-        }
-        else if selectedClothingItem == 1 { //jacket
+        
+        case .Jacket:
             let name = Closet.shared.getNextJacketName()
             let jacket = Jacket(imageName: name)
             Closet.shared.addJacket(jacket:jacket)
             saveImage(imageName: name)
-        }
-        else if selectedClothingItem == 2 { //dress
+        
+        case .Dress:
             let name = Closet.shared.getNextDressName()
             let dress = Dress(imageName: name)
             Closet.shared.addDress(dress:dress)
             saveImage(imageName: name)
-        }
-        else if selectedClothingItem == 3 { //bottom
+        
+        case .Bottom:
             let name = Closet.shared.getNextBottomName()
             let bottom = Bottom(imageName: name)
             Closet.shared.addBottom(bottom:bottom)
             saveImage(imageName: name)
-        }
-        else if selectedClothingItem == 4 { //shoes
+        
+        case .Shoes:
             let name = Closet.shared.getNextShoesName()
             let shoes = Shoes(imageName: name)
             Closet.shared.addShoes(s:shoes)
             saveImage(imageName: name)
+        
+        case .none:
+            print("none case")
+        case .some(.Unknown):
+            print("unknown case")
         }
         dismiss(animated:true, completion:{
             //TODO indicate success check mark/saved
@@ -140,34 +158,44 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
         self.dismiss(animated: true, completion: nil)
     }
     
+    
 //    ["top", "jacket", "dress", "bottom", "shoes"]
     @IBAction func takeTopPicture(){
-        selectedClothingItem = 0
+        selectedClothingItem = Closet.clothesTypes.Top
+        viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height/2)
+        viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-40)
         takePhoto()
     }
     
     @IBAction func takeJacketPicture(){
-        selectedClothingItem = 1
+        selectedClothingItem = Closet.clothesTypes.Jacket
+        viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height/2)
+        viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-40)
         takePhoto()
     }
     
     @IBAction func takeDressPicture(){
-        selectedClothingItem = 2
+        selectedClothingItem = Closet.clothesTypes.Dress
+        viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height*0.9)
+        viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-25)
         takePhoto()
     }
     
     @IBAction func takeBottomPicture(){
-        selectedClothingItem = 3
+        selectedClothingItem = Closet.clothesTypes.Bottom
+        viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height*0.75)
+        viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-25)
         takePhoto()
     }
     
     @IBAction func takeShoesPicture(){
-        selectedClothingItem = 4
+        selectedClothingItem = Closet.clothesTypes.Shoes
+        viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height*0.2)
+        viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-40)
         takePhoto()
     }
     
     func takePhoto() {
-        imagePicker.sourceType = .camera
         present(imagePicker, animated: true, completion: nil)
     }
   

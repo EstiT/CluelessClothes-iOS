@@ -70,7 +70,7 @@ class Closet{
                     case .Shoes:
                         shoes.append(Shoes(imageName: name))
                     default:
-                        print("unknown type")
+                        print("unknown type \(name)")
                 }
             }
             
@@ -128,11 +128,11 @@ class Closet{
     }
     
     func typeofItemWith(name: String) -> clothesTypes{
-        let topPattern = "top[0-9]$"
-        let bottomPattern = "bottom[0-9]$"
+        let topPattern = "top[0-9]*$"
+        let bottomPattern = "bottom[0-9]*$"
         //     let jacketPattern = "jacket[0-9]$" TODO
-        let dressPattern = "dress[0-9]$"
-        let shoesPattern = "shoes[0-9]$"
+        let dressPattern = "dress[0-9]*$"
+        let shoesPattern = "shoes[0-9]*$"
         
         if let _ = name.range(of: topPattern, options:.regularExpression) {
             return .Top
