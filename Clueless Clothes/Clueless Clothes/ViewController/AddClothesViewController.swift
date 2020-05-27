@@ -33,7 +33,7 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
         checkColorTheme()
         setCameraOverlay()
 
-        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue:"_UIImagePickerControllerUserDidCaptureItem"), object:nil, queue:nil, using:{ note in self.imagePicker.cameraOverlayView = nil})
+
     }
     
     func setCameraOverlay(){
@@ -49,6 +49,7 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
         viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY)
         overlayView.addSubview(viewfinder)
         imagePicker.cameraOverlayView = overlayView
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue:"_UIImagePickerControllerUserDidCaptureItem"), object:nil, queue:nil, using:{ note in self.imagePicker.cameraOverlayView = nil})
     }
     
     

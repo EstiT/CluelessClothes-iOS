@@ -166,57 +166,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nmL-tf-lRv" userLabel="shoesPhotoOverlay">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="viewfinder" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Fxp-pI-3yF">
-                            <rect key="frame" x="0.0" y="1" width="375" height="197.5"/>
-                            <color key="tintColor" red="0.1019607843" green="0.59215686270000001" blue="0.72156862749999995" alpha="0.75" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        </imageView>
-                    </subviews>
-                    <constraints>
-                        <constraint firstItem="Fxp-pI-3yF" firstAttribute="top" secondItem="nmL-tf-lRv" secondAttribute="top" id="Pyw-jT-d9d"/>
-                        <constraint firstItem="Fxp-pI-3yF" firstAttribute="leading" secondItem="nmL-tf-lRv" secondAttribute="leading" id="WXt-hj-GA9"/>
-                        <constraint firstAttribute="trailing" secondItem="Fxp-pI-3yF" secondAttribute="trailing" id="Ziq-jz-C6J"/>
-                        <constraint firstAttribute="bottom" secondItem="Fxp-pI-3yF" secondAttribute="bottom" id="hf8-IE-BuN"/>
-                        <constraint firstAttribute="height" constant="200" id="zvv-OI-YTW"/>
-                    </constraints>
-                    <viewLayoutGuide key="safeArea" id="Jz2-K4-eVR"/>
-                </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b61-TR-hZ8" userLabel="topJacketPhotoOverlay">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="viewfinder" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="9v1-dH-NxU">
-                            <rect key="frame" x="0.0" y="1" width="375" height="317.5"/>
-                            <color key="tintColor" red="0.1019607843" green="0.59215686270000001" blue="0.72156862749999995" alpha="0.75" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        </imageView>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="trailing" secondItem="9v1-dH-NxU" secondAttribute="trailing" id="TIY-CG-uZY"/>
-                        <constraint firstAttribute="height" constant="320" id="chC-PN-aUR"/>
-                        <constraint firstAttribute="bottom" secondItem="9v1-dH-NxU" secondAttribute="bottom" id="dFR-IP-3yc"/>
-                        <constraint firstItem="9v1-dH-NxU" firstAttribute="leading" secondItem="b61-TR-hZ8" secondAttribute="leading" id="v3L-Ym-PgN"/>
-                        <constraint firstItem="9v1-dH-NxU" firstAttribute="top" secondItem="b61-TR-hZ8" secondAttribute="top" id="wt6-pc-E3h"/>
-                    </constraints>
-                    <viewLayoutGuide key="safeArea" id="coN-9D-bC1"/>
-                </view>
-                <view hidden="YES" contentMode="scaleToFill" id="zoW-9b-5oO" userLabel="dressBottomPhotoOverlay">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="447"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="viewfinder" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="QLC-gC-YGR">
-                            <rect key="frame" x="0.0" y="1" width="375" height="444.5"/>
-                            <color key="tintColor" red="0.1019607843" green="0.59215686270000001" blue="0.72156862749999995" alpha="0.75" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        </imageView>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="QLC-gC-YGR" secondAttribute="bottom" id="Gfd-YT-cJO"/>
-                        <constraint firstItem="QLC-gC-YGR" firstAttribute="top" secondItem="zoW-9b-5oO" secondAttribute="top" id="IbN-mj-Cge"/>
-                        <constraint firstItem="QLC-gC-YGR" firstAttribute="leading" secondItem="zoW-9b-5oO" secondAttribute="leading" id="UUF-2k-EuG"/>
-                        <constraint firstItem="QLC-gC-YGR" firstAttribute="centerX" secondItem="zoW-9b-5oO" secondAttribute="centerX" id="g8L-AH-m0m"/>
-                    </constraints>
-                    <viewLayoutGuide key="safeArea" id="QLD-Gi-vzp"/>
-                </view>
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
         </scene>
@@ -388,7 +337,7 @@
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 </imageView>
                                                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LCL-U3-8LE">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="51"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                     <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                                     <state key="normal" image="trash.circle" catalog="system">
@@ -404,7 +353,7 @@
                                                             <constraint firstItem="S2F-xP-fVw" firstAttribute="top" secondItem="izO-r5-xRN" secondAttribute="top" id="1IH-D9-uJA"/>
                                                             <constraint firstItem="LCL-U3-8LE" firstAttribute="leading" secondItem="izO-r5-xRN" secondAttribute="leading" id="8Z2-Zu-6hm"/>
                                                             <constraint firstItem="LCL-U3-8LE" firstAttribute="top" secondItem="izO-r5-xRN" secondAttribute="top" id="HJ4-1g-HWo"/>
-                                                            <constraint firstAttribute="bottom" secondItem="LCL-U3-8LE" secondAttribute="bottom" constant="-1" id="Ku7-N3-HJP"/>
+                                                            <constraint firstAttribute="bottom" secondItem="LCL-U3-8LE" secondAttribute="bottom" id="Ku7-N3-HJP"/>
                                                             <constraint firstAttribute="bottom" secondItem="S2F-xP-fVw" secondAttribute="bottom" id="LQh-87-gdu"/>
                                                             <constraint firstAttribute="trailing" secondItem="S2F-xP-fVw" secondAttribute="trailing" id="cLM-un-DSs"/>
                                                             <constraint firstItem="S2F-xP-fVw" firstAttribute="leading" secondItem="izO-r5-xRN" secondAttribute="leading" id="mjh-Il-mEf"/>
@@ -936,6 +885,5 @@
         <image name="suit.heart" catalog="system" width="128" height="109"/>
         <image name="top2" width="115" height="128"/>
         <image name="trash.circle" catalog="system" width="128" height="121"/>
-        <image name="viewfinder" catalog="system" width="128" height="114"/>
     </resources>
 </document>

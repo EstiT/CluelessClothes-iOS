@@ -58,7 +58,7 @@ class ChangeOutfitComponentsViewController: UIViewController {
                 if self.traitCollection.userInterfaceStyle == .dark {
                     UINavigationBar.appearance().barTintColor = .black
                     navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-                    navigationController?.navigationBar.barTintColor = UIColor.darkGray
+                    navigationController?.navigationBar.barTintColor = UIColor.darkGray //TODO?!!
                     mainView.backgroundColor = Utility.deepMagenta
                 }
                 else {
