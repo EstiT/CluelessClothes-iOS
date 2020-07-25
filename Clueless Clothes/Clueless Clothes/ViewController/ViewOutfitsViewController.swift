@@ -20,8 +20,7 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        outfitsCollection.allowsSelection = false //TODO for delete 
+        outfitsCollection.allowsSelection = false
         outfitsCollection.dataSource = self
         outfitsCollection.delegate = self
         outfitsCollection.backgroundColor = .clear
@@ -139,9 +138,6 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MultiImageCell", for: indexPath) as! MultiImageCell
-        //cell.image.addGestureRecognizer(longPress) TODO
-        //cell.image.isUserInteractionEnabled = true TODO
-        
         cell.topImage.image = UIImage()
         cell.bottomImage.image = UIImage()
         cell.dressImage.image = UIImage()
