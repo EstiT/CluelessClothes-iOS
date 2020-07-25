@@ -23,10 +23,5 @@ class FinderView : UIView {
         self.layer.borderWidth = 2
         self.layer.borderColor = Utility.transparentTurquois.cgColor
         self.layer.cornerRadius = 7
-//        guard let context = UIGraphicsGetCurrentContext() else { return }
-//        context.setStrokeColor(Utility.transparentTurquois.cgColor)
-//        let rectangle = CGRect(x: 0, y: 100, width: 320, height: 100)
-//        context.stroke(rectangle)
-//        context.setFillColor(UIColor.clear.cgColor)
     }
 }
