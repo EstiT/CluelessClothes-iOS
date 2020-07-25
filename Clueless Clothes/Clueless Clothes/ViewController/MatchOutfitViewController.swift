@@ -24,7 +24,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
 
     @IBOutlet weak var topsCollection: UICollectionView!
     @IBOutlet weak var dressesCollection: UICollectionView!
-    @IBOutlet weak var jacketsCollection:UICollectionView! //TODO
+    @IBOutlet weak var jacketsCollection: UICollectionView! //TODO
     @IBOutlet weak var bottomsCollection: UICollectionView!
     @IBOutlet weak var shoesCollection: UICollectionView!
     
@@ -48,9 +48,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     
     var selectedCombo: clothesItemCombination!
     ///to try: https://adoptioncurve.net/2013/07/02/building-a-circular-gallery-with-a-uicollectionview/
-    
-    var longPress = UILongPressGestureRecognizer() //TODO implement show X and delete
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -80,10 +78,24 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         setUpCollectionViews()
         checkColorTheme()
         enableDisableMatchButton()
+        setButtonIcons()
+    }
+    
+    func setButtonIcons() {
         if #available(iOS 13.0, *) {
-            editButton.setImage(deleteView ? UIImage(systemName: "checkmark.rectangle") : UIImage(systemName: "xmark.rectangle"), for: .normal)
+            editButton.setImage(deleteView ? UIImage(systemName: "checkmark") : UIImage(systemName: "trash"), for: .normal)
         } else {
-            editButton.setImage(deleteView ? UIImage(named:"?") : UIImage(named: "x"), for: .normal) //TODO 
+            if #available(iOS 12.0, *) {
+                if self.traitCollection.userInterfaceStyle == .dark {
+                    editButton.setImage(deleteView ? UIImage(named:"checkWhite") : UIImage(named: "trash"), for: .normal)
+                }
+                else {
+                    editButton.setImage(deleteView ? UIImage(named:"checkBlack") : UIImage(named: "trash"), for: .normal)
+                }
+            }
+            else {
+                editButton.setImage(deleteView ? UIImage(named:"checkBlack") : UIImage(named: "trash"), for: .normal)
+            }
         }
     }
     
@@ -339,9 +351,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     
     @IBAction func editButtonClicked(_ sender: Any) {
         deleteView = !deleteView
-        if #available(iOS 13.0, *) {
-            editButton.setImage(deleteView ? UIImage(systemName: "checkmark.rectangle") : UIImage(systemName: "xmark.rectangle"), for: .normal)
-        }
+        setButtonIcons()
         showHideCollectionElements()
         enableDisableMatchButton()
         setUpCollectionViews()
@@ -464,10 +474,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
 
         cv.isPagingEnabled = false
         cv.reloadData()
-    
-        longPress = UILongPressGestureRecognizer(target: self, action: #selector(deleteImage(_:)))
-        
-        cv.addGestureRecognizer(longPress)
         cv.isUserInteractionEnabled = true
     }
     
@@ -490,7 +496,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
-        cell.image.addGestureRecognizer(longPress)
         cell.image.isUserInteractionEnabled = true
         
         //set image for colection view
@@ -558,30 +563,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         
         present(confirmAlert, animated: true, completion: nil)
     }
-    
-    @objc func deleteImage(_ sender: UILongPressGestureRecognizer) {
-        if sender.state == .began {
-            if let indexPath = self.topsCollection?.indexPathForItem(at: sender.location(in: self.topsCollection)) {
-                let cell = self.topsCollection?.cellForItem(at: indexPath) as! ImageCell
-                cell.image.shake()
-                print("top - you can do something with the cell or index path here")
-            } else if let indexPath = self.bottomsCollection?.indexPathForItem(at: sender.location(in: self.bottomsCollection)) {
-                let cell = self.bottomsCollection?.cellForItem(at: indexPath) as! ImageCell
-                cell.image.shake()
-                print("bottom - you can do something with the cell or index path here")
-            } else if let indexPath = self.shoesCollection?.indexPathForItem(at: sender.location(in: self.shoesCollection)) {
-                let cell = self.shoesCollection?.cellForItem(at: indexPath) as! ImageCell
-                cell.image.shake()
-                print("shoes - you can do something with the cell or index path here")
-            }
-                //TODO dresses & jacket 
-            else {
-                self.becomeFirstResponder()
-                sender.view?.shake()
-                print("long press")
-            }
-        }
-    }
 }
 
 //https://stackoverflow.com/questions/3703922/how-do-you-create-a-wiggle-animation-similar-to-iphone-deletion-animation
@@ -593,19 +574,5 @@ extension UIView {
         transformAnim.duration  = 0.12
         transformAnim.repeatCount = Float.infinity
         self.layer.add(transformAnim, forKey: "shake")
-    }
-}
-
-
-
-extension String
-{
-    func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat
-    {
-        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height);
-        
-        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
-        
-        return boundingBox.width;
     }
 }

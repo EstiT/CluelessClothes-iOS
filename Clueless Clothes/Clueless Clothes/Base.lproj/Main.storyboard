@@ -460,7 +460,7 @@
                                             <constraint firstAttribute="height" constant="34" id="JyS-nR-chY"/>
                                         </constraints>
                                         <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <state key="normal" image="minus.rectangle" catalog="system">
+                                        <state key="normal" image="trash" catalog="system">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -885,6 +885,7 @@
         <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
         <image name="suit.heart" catalog="system" width="128" height="109"/>
         <image name="top2" width="115" height="128"/>
+        <image name="trash" catalog="system" width="121" height="128"/>
         <image name="trash.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

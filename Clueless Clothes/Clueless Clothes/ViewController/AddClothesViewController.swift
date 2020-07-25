@@ -9,16 +9,6 @@
 import UIKit
 import Photos
 
-extension UIView {
-    
-    // https://stackoverflow.com/questions/30696307/how-to-convert-a-uiview-to-an-image
-    func asImage() -> UIImage {
-        let renderer = UIGraphicsImageRenderer(bounds: bounds)
-        return renderer.image { rendererContext in
-            layer.render(in: rendererContext.cgContext)
-        }
-    }
-}
 
 class AddClothesViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -235,15 +225,12 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
     func saveImage(imageName: String){
         let fileManager = FileManager.default
         let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
-        image = image!.fixOrientation() //TODO might not want
-        //store it in the document directory
+        image = image!.fixOrientation()
         fileManager.createFile(atPath: imagePath as String, contents: image.pngData(), attributes: nil)
     }
-    
-
 }
 
-//https://stackoverflow.com/questions/10850184/ios-image-get-rotated-90-degree-after-saved-as-png-representation-data
+// https://stackoverflow.com/questions/10850184/ios-image-get-rotated-90-degree-after-saved-as-png-representation-data
 extension UIImage {
     func fixOrientation() -> UIImage {
         if self.imageOrientation == UIImage.Orientation.up {
@@ -255,5 +242,15 @@ extension UIImage {
         UIGraphicsEndImageContext()
         
         return normalizedImage
+    }
+}
+
+// https://stackoverflow.com/questions/30696307/how-to-convert-a-uiview-to-an-image
+extension UIView {
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
     }
 }
