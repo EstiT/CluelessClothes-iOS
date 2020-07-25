@@ -69,7 +69,8 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         if showShoes == nil {
             showShoes = false
         }
-        
+        setComboEnum()
+        setUpCollectionViews()
         viewDidAppear(false)
     }
     
@@ -81,6 +82,8 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         enableDisableMatchButton()
         if #available(iOS 13.0, *) {
             editButton.setImage(deleteView ? UIImage(systemName: "checkmark.rectangle") : UIImage(systemName: "xmark.rectangle"), for: .normal)
+        } else {
+            editButton.setImage(deleteView ? UIImage(named:"?") : UIImage(named: "x"), for: .normal) //TODO 
         }
     }
     
@@ -167,7 +170,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
             shoesCollectionHeight = 0.15
             shoesY = collectionsHolder.frame.height * CGFloat(topsCollectionHeight)+(collectionsHolder.frame.height * CGFloat(0.0275)) + collectionsHolder.frame.height * CGFloat(bottomsCollectionHeight)+(collectionsHolder.frame.height * CGFloat(0.0275))
         default:
-            print("uh oh")
+            print("uh oh unknown case")
         }
         
         setUpCollectionView(cv: topsCollection, frame: CGRect(x: 0, y: 0, width: collectionsHolder.frame.width, height: collectionsHolder.frame.height * CGFloat(topsCollectionHeight)))
@@ -211,6 +214,9 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         }
         else if !showJackets && !showDresses && showShoes && showTops && showBottoms{
             selectedCombo = clothesItemCombination.TopBottomShoes
+        }
+        else {
+            selectedCombo = clothesItemCombination.TopBottom
         }
     }
     
@@ -313,7 +319,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
             clothes = [Top(imageName: topName), Bottom(imageName: bottomName), Shoes(imageName: shoesName)]
             
         default:
-            print("uh oh")
+            print("uh oh uknown outfit type")
         }
        
         let outfit = Outfit(clothes: clothes)
@@ -374,16 +380,27 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     //MARK:- CollectionView
     
     func showHideCollectionElements(){
-        dressesCollection.isHidden = !showDresses
-        bottomsCollection.isHidden = !showBottoms
-        shoesCollection.isHidden = !showShoes
-        topsCollection.isHidden = !showTops
+        if dressesCollection.isHidden == showDresses {
+            dressesCollection.isHidden = !showDresses
+        }
+        if bottomsCollection.isHidden == showBottoms {
+            bottomsCollection.isHidden = !showBottoms
+        }
+        if shoesCollection.isHidden == showShoes {
+            shoesCollection.isHidden = !showShoes
+        }
+        if topsCollection.isHidden == showTops {
+            topsCollection.isHidden = !showTops
+        }
+        showHideLabels()
+    }
+    
+    func showHideLabels() {
         if showTops{
             if Closet.shared.tops.count > 0 {
                 noTopsLabel.isHidden = true
             }
             else {
-                topsCollection.isHidden = true
                 noTopsLabel.isHidden = false
             }
         }
@@ -396,7 +413,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
                 noDressesLabel.isHidden = true
             }
             else {
-                dressesCollection.isHidden = true
                 noDressesLabel.isHidden = false
             }
         }
@@ -409,7 +425,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
                 noBottomsLabel.isHidden = true
             }
             else{
-                bottomsCollection.isHidden = true
                 noBottomsLabel.isHidden = false
             }
         }
@@ -422,7 +437,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
                 noShoesLabel.isHidden = true
             }
             else{
-                shoesCollection.isHidden = true
                 noShoesLabel.isHidden = false
             }
         }

@@ -14,6 +14,7 @@
 		22345E1321758B4700E2FC9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22345E1221758B4700E2FC9B /* Assets.xcassets */; };
 		22345E1621758B4700E2FC9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22345E1421758B4700E2FC9B /* LaunchScreen.storyboard */; };
 		22345E2121758B4700E2FC9B /* Clueless_ClothesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22345E2021758B4700E2FC9B /* Clueless_ClothesTests.swift */; };
+		224484C824CB47AD00829606 /* FinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224484C724CB47AD00829606 /* FinderView.swift */; };
 		226CA86F22F3794400FE4D87 /* Jacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226CA86E22F3794400FE4D87 /* Jacket.swift */; };
 		226CA87122F3795200FE4D87 /* Top.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226CA87022F3795200FE4D87 /* Top.swift */; };
 		226CA87322F3796600FE4D87 /* Shoes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226CA87222F3796600FE4D87 /* Shoes.swift */; };
@@ -54,6 +55,7 @@
 		22345E1C21758B4700E2FC9B /* Clueless ClothesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Clueless ClothesTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22345E2021758B4700E2FC9B /* Clueless_ClothesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Clueless_ClothesTests.swift; sourceTree = "<group>"; };
 		22345E2221758B4700E2FC9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		224484C724CB47AD00829606 /* FinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderView.swift; sourceTree = "<group>"; };
 		226CA86E22F3794400FE4D87 /* Jacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Jacket.swift; sourceTree = "<group>"; };
 		226CA87022F3795200FE4D87 /* Top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Top.swift; sourceTree = "<group>"; };
 		226CA87222F3796600FE4D87 /* Shoes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shoes.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 			children = (
 				226CA87F22F3DC9C00FE4D87 /* RoundedButton.swift */,
 				2273AB0B2339B1D500FFB173 /* ArrowView.swift */,
+				224484C724CB47AD00829606 /* FinderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				22345E0E21758B4600E2FC9B /* MatchOutfitViewController.swift in Sources */,
 				22345E0A21758B4600E2FC9B /* AppDelegate.swift in Sources */,
 				2285B1D2217C1A3100E14D15 /* ImageCell.swift in Sources */,
+				224484C824CB47AD00829606 /* FinderView.swift in Sources */,
 				2273AB0A23347C3F00FFB173 /* Utility.swift in Sources */,
 				2273AB082334799B00FFB173 /* MultiImageCell.swift in Sources */,
 				2285B1D0217BFBA200E14D15 /* ClothingItem.swift in Sources */,
@@ -400,6 +404,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -454,6 +459,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;

@@ -9,6 +9,17 @@
 import UIKit
 import Photos
 
+extension UIView {
+    
+    // https://stackoverflow.com/questions/30696307/how-to-convert-a-uiview-to-an-image
+    func asImage() -> UIImage {
+        let renderer = UIGraphicsImageRenderer(bounds: bounds)
+        return renderer.image { rendererContext in
+            layer.render(in: rendererContext.cgContext)
+        }
+    }
+}
+
 class AddClothesViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var image: UIImage!
@@ -28,28 +39,27 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
+//        imagePicker.sourceType = .photoLibrary
         imagePicker.sourceType = .camera
         checkPermission()
         checkColorTheme()
         setCameraOverlay()
-
-
     }
     
     func setCameraOverlay(){
         overlayView = UIView()
         viewfinder = UIImageView()
         if #available(iOS 13.0, *) {
-            viewfinder.image = UIImage(systemName: "plus.rectangle") //viewfiinder?
-        }
-        else {
-            viewfinder.image = UIImage(named: "?") //TODO?
+            viewfinder.image = UIImage(systemName: "plus.rectangle")
+        } else {
+            viewfinder.image = FinderView(frame: CGRect(x: 0, y: 0, width: 50, height: 50)).asImage()
         }
         viewfinder.tintColor = Utility.transparentTurquois
         viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY)
         overlayView.addSubview(viewfinder)
         imagePicker.cameraOverlayView = overlayView
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue:"_UIImagePickerControllerUserDidCaptureItem"), object:nil, queue:nil, using:{ note in self.imagePicker.cameraOverlayView = nil})
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue:"_UIImagePickerControllerUserDidRejectItem"), object:nil, queue:nil, using:{ note in self.imagePicker.cameraOverlayView = self.overlayView})
     }
     
     
@@ -69,28 +79,23 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
                 statusbarColor = Utility.softYellow
             }
 //            https://freakycoder.com/ios-notes-13-how-to-change-status-bar-color-1431c185e845
-            if #available(iOS 13.0, *) {
-                let app = UIApplication.shared
-                let statusBarHeight: CGFloat = app.statusBarFrame.size.height
-                
-                let statusbarView = UIView()
-                statusbarView.backgroundColor = statusbarColor
-                view.addSubview(statusbarView)
-              
-                statusbarView.translatesAutoresizingMaskIntoConstraints = false
-                statusbarView.heightAnchor
-                    .constraint(equalToConstant: statusBarHeight).isActive = true
-                statusbarView.widthAnchor
-                    .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
-                statusbarView.topAnchor
-                    .constraint(equalTo: view.topAnchor).isActive = true
-                statusbarView.centerXAnchor
-                    .constraint(equalTo: view.centerXAnchor).isActive = true
-            }
-            else {
-                let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
-                statusBar?.backgroundColor = statusbarColor
-            }
+            let app = UIApplication.shared
+            let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+            
+            let statusbarView = UIView()
+            statusbarView.backgroundColor = statusbarColor
+            view.addSubview(statusbarView)
+          
+            statusbarView.translatesAutoresizingMaskIntoConstraints = false
+            statusbarView.heightAnchor
+                .constraint(equalToConstant: statusBarHeight).isActive = true
+            statusbarView.widthAnchor
+                .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+            statusbarView.topAnchor
+                .constraint(equalTo: view.topAnchor).isActive = true
+            statusbarView.centerXAnchor
+                .constraint(equalTo: view.centerXAnchor).isActive = true
+            
         }
     }
     
@@ -143,17 +148,16 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
             print("unknown case")
         }
         dismiss(animated:true, completion:{
-            //TODO indicate success check mark/saved
             let alert = UIAlertController(title: "Success!", message: "Image has been saved", preferredStyle: .alert)
             self.present(alert, animated:true, completion: {
                 Timer.scheduledTimer(withTimeInterval: 4, repeats:false, block:
                     {_ in
                         self.dismiss(animated: true, completion: nil)
-                })
+                    })
                 alert.view.superview?.isUserInteractionEnabled = true
                 alert.view.superview?.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.alertControllerBackgroundTapped)))
             })
-            })
+        })
     }
     
     @objc func alertControllerBackgroundTapped(){
@@ -161,7 +165,6 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
     }
     
     
-//    ["top", "jacket", "dress", "bottom", "shoes"]
     @IBAction func takeTopPicture(){
         selectedClothingItem = Closet.clothesTypes.Top
         viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height/2)

@@ -56,17 +56,13 @@ class ChangeOutfitComponentsViewController: UIViewController {
 //              https://stackoverflow.com/questions/599405/iphone-navigation-bar-title-text-color
 //              https://stackoverflow.com/questions/1720376/change-color-of-uiswitch-appwise
                 if self.traitCollection.userInterfaceStyle == .dark {
-                    UINavigationBar.appearance().barTintColor = .black
                     navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
-                    navigationController?.navigationBar.barTintColor = UIColor.darkGray //TODO?!!
                     mainView.backgroundColor = Utility.deepMagenta
                 }
                 else {
-                    UINavigationBar.appearance().barTintColor = .none
                     UINavigationBar.appearance().backgroundColor = Utility.softYellow
                     navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black]
                     mainView.backgroundColor = Utility.brightYellow
-                    navigationController?.navigationBar.barTintColor = UIColor.white
                 }
             }
         }
