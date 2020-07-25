@@ -1,0 +1,27 @@
+Clueless Clothes Privacy Policy
+
+App Owner: Esti Tweg
+
+Data Being Collected
+	 ⁃	Images of clothing
+
+How is the Data Being Collected
+	 ⁃	When an image is taken, it is saved locally
+
+Legal Basis and Purpose for Collection
+	•	The collection of the above information is purely for an optimized user experience.
+	•	The information is not distributed or used in any way besides outlined above.
+	•	Analytics are not collected.
+	•	Third parties do not have access to any information collected.
+	•	Only those with access to the physical device that which the app is loaded on have access to the information collected.
+	 ⁃	i.e: Whoever uses the device can open the app and see the uploaded clothes.
+
+Rights of Users
+	•	The users have the right to use or not use the app.
+	•	To erase the data collected, delete the app. A re-downloaded app will not have any images.
+
+Changes to the Privacy Policy
+	•	The most up to date privacy policy is publicly displayed here. Changes will not explicitly be outlined in this document but are reflected in commit messages.
+
+Effective Date of the Privacy Policy
+July 24, 2020
