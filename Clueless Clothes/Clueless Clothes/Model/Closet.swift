@@ -36,8 +36,20 @@ class Closet{
     
     private init() {
         if UserDefaults.standard.object(forKey: "outfits") != nil {
-            let decoded  = UserDefaults.standard.object(forKey: "outfits") as! Data
-            outfits = NSKeyedUnarchiver.unarchiveObject(with: decoded) as! [Outfit]
+            let data: Data? = UserDefaults.standard.data(forKey: "outfits")
+            if let decoded = data {
+                do {
+                    outfits = try NSKeyedUnarchiver.unarchivedObject(ofClasses: [NSArray.self, Outfit.self], from: decoded) as! [Outfit]
+                }
+                catch {
+                    outfits = [Outfit]()
+                    defaults.set(outfits, forKey: "outfits")
+                }
+            }
+            else {
+                outfits = [Outfit]()
+                defaults.set(outfits, forKey: "outfits")
+            }
         }
         else {
             outfits = [Outfit]()
@@ -170,7 +182,6 @@ class Closet{
         clothes = clothes.filter { $0.imageName != name }
     }
     
-    //TODO?
     func removeOutfit(index:Int){
         outfits.remove(at: index)
         do {

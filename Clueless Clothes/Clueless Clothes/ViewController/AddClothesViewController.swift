@@ -18,22 +18,23 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
     var viewfinder:UIImageView!
     var overlayView:UIView!
     let imagePicker = UIImagePickerController()
-    
-    var clothingOptions: [String] = ["top", "jacket", "dress", "bottom", "shoes"]
     var selectedClothingItem:Closet.clothesTypes!
-    
     var clothes = [ClothingItem]()
-    
+    let isSimulator = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
-//        imagePicker.sourceType = .photoLibrary
-        imagePicker.sourceType = .camera
+        if isSimulator {
+            imagePicker.sourceType = .photoLibrary
+        }
+        else {
+            imagePicker.sourceType = .camera
+            setCameraOverlay()
+        }
         checkPermission()
         checkColorTheme()
-        setCameraOverlay()
     }
     
     func setCameraOverlay(){
@@ -156,37 +157,47 @@ class AddClothesViewController: UIViewController, UIImagePickerControllerDelegat
     
     
     @IBAction func takeTopPicture(){
+        if !isSimulator {
+            viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height/2)
+            viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-40)
+        }
         selectedClothingItem = Closet.clothesTypes.Top
-        viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height/2)
-        viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-40)
         takePhoto()
     }
     
     @IBAction func takeJacketPicture(){
+        if !isSimulator {
+            viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height/2)
+            viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-40)
+        }
         selectedClothingItem = Closet.clothesTypes.Jacket
-        viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height/2)
-        viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-40)
         takePhoto()
     }
     
     @IBAction func takeDressPicture(){
+        if !isSimulator {
+            viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height*0.9)
+            viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-25)
+        }
         selectedClothingItem = Closet.clothesTypes.Dress
-        viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height*0.9)
-        viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-25)
         takePhoto()
     }
     
     @IBAction func takeBottomPicture(){
+        if !isSimulator {
+            viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height*0.75)
+            viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-25)
+        }
         selectedClothingItem = Closet.clothesTypes.Bottom
-        viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height*0.75)
-        viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-25)
         takePhoto()
     }
     
     @IBAction func takeShoesPicture(){
+        if !isSimulator {
+            viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height*0.2)
+            viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-40)
+        }
         selectedClothingItem = Closet.clothesTypes.Shoes
-        viewfinder.frame = CGRect(x:viewfinder.frame.midX, y:viewfinder.frame.midY, width: view.frame.width, height: view.frame.height*0.2)
-        viewfinder.center = CGPoint(x:view.frame.midX, y:view.frame.midY-40)
         takePhoto()
     }
     

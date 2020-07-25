@@ -34,8 +34,24 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
         hideIfNoOutfits()
         checkColorTheme()
         setUpCollectionView(cv: outfitsCollection, frame: CGRect(x: 0, y: 0, width: mainView.frame.width, height: mainView.frame.height-50))
+        setButtonIcons()
+    }
+    
+    func setButtonIcons() {
         if #available(iOS 13.0, *) {
-            editButton.setImage(deleteView ? UIImage(systemName: "checkmark.rectangle") : UIImage(systemName: "xmark.rectangle"), for: .normal)
+            editButton.setImage(deleteView ? UIImage(systemName: "checkmark") : UIImage(systemName: "trash"), for: .normal)
+        } else {
+            if #available(iOS 12.0, *) {
+                if self.traitCollection.userInterfaceStyle == .dark {
+                    editButton.setImage(deleteView ? UIImage(named:"checkWhite") : UIImage(named: "trash"), for: .normal)
+                }
+                else {
+                    editButton.setImage(deleteView ? UIImage(named:"checkBlack") : UIImage(named: "trash"), for: .normal)
+                }
+            }
+            else {
+                editButton.setImage(deleteView ? UIImage(named:"checkBlack") : UIImage(named: "trash"), for: .normal)
+            }
         }
     }
     

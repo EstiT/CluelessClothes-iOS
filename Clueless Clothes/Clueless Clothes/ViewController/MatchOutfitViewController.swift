@@ -51,7 +51,6 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         if showTops == nil {
             showTops = true
         }
@@ -67,18 +66,20 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         if showShoes == nil {
             showShoes = false
         }
-        setComboEnum()
-        setUpCollectionViews()
-        viewDidAppear(false)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         setComboEnum()
-        showHideCollectionElements()
-        setUpCollectionViews()
         checkColorTheme()
         enableDisableMatchButton()
         setButtonIcons()
+    }
+    
+    override func viewWillLayoutSubviews() {
+        self.view.layoutIfNeeded()
+        showHideCollectionElements()
+        setUpCollectionViews()
+        self.view.layoutIfNeeded()
     }
     
     func setButtonIcons() {
@@ -184,13 +185,11 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         default:
             print("uh oh unknown case")
         }
-        
         setUpCollectionView(cv: topsCollection, frame: CGRect(x: 0, y: 0, width: collectionsHolder.frame.width, height: collectionsHolder.frame.height * CGFloat(topsCollectionHeight)))
         setUpCollectionView(cv: bottomsCollection, frame: CGRect(x: 0, y: collectionsHolder.frame.height * CGFloat(topsCollectionHeight)+12, width: collectionsHolder.frame.width, height: collectionsHolder.frame.height * CGFloat(bottomsCollectionHeight)))
         setUpCollectionView(cv: dressesCollection, frame: CGRect(x: 0, y: 0, width: collectionsHolder.frame.width, height: collectionsHolder.frame.height * CGFloat(dressCollectionHeight)))
         setUpCollectionView(cv: shoesCollection, frame: CGRect(x: 0, y: shoesY, width: collectionsHolder.frame.width, height: collectionsHolder.frame.height * CGFloat(shoesCollectionHeight)))
         //        setUpCollectionView(bottomsCollection) TODO Jacket
-        
         setNoClothesLabelY()
     }
     
@@ -240,7 +239,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         showShoes = shoes
         
         setComboEnum()
-        showHideCollectionElements()
+        viewWillLayoutSubviews()
     }
     
     func enableDisableMatchButton(){
@@ -379,76 +378,45 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     
     //https://stackoverflow.com/questions/56568967/detecting-sheet-was-dismissed-on-ios-13
     func presentationControllerDidDismiss(_ presentationController: UIPresentationController){
-        viewDidAppear(false)
+        viewWillAppear(false)
     }
 
     func presentationControllerWillDismiss(_ presentationController: UIPresentationController) {
-        viewDidAppear(false)
+        viewWillAppear(false)
      }
 
     
     //MARK:- CollectionView
     
     func showHideCollectionElements(){
-        if dressesCollection.isHidden == showDresses {
-            dressesCollection.isHidden = !showDresses
-        }
-        if bottomsCollection.isHidden == showBottoms {
-            bottomsCollection.isHidden = !showBottoms
-        }
-        if shoesCollection.isHidden == showShoes {
-            shoesCollection.isHidden = !showShoes
-        }
-        if topsCollection.isHidden == showTops {
-            topsCollection.isHidden = !showTops
-        }
+        dressesCollection.isHidden = !showDresses
+        bottomsCollection.isHidden = !showBottoms
+        shoesCollection.isHidden = !showShoes
+        topsCollection.isHidden = !showTops
         showHideLabels()
     }
     
     func showHideLabels() {
-        if showTops{
-            if Closet.shared.tops.count > 0 {
-                noTopsLabel.isHidden = true
-            }
-            else {
-                noTopsLabel.isHidden = false
-            }
+        if showTops {
+            noTopsLabel.isHidden = (Closet.shared.tops.count > 0)
         }
         else {
             noTopsLabel.isHidden = true
         }
-        
-        if showDresses{
-            if Closet.shared.dresses.count > 0 {
-                noDressesLabel.isHidden = true
-            }
-            else {
-                noDressesLabel.isHidden = false
-            }
+        if showDresses {
+            noDressesLabel.isHidden = (Closet.shared.dresses.count > 0)
         }
         else {
             noDressesLabel.isHidden = true
         }
-        
-        if showBottoms{
-            if Closet.shared.bottoms.count > 0 {
-                noBottomsLabel.isHidden = true
-            }
-            else{
-                noBottomsLabel.isHidden = false
-            }
+        if showBottoms {
+            noBottomsLabel.isHidden = (Closet.shared.bottoms.count > 0)
         }
         else {
             noBottomsLabel.isHidden = true
         }
-        
-        if showShoes{
-            if Closet.shared.shoes.count > 0 {
-                noShoesLabel.isHidden = true
-            }
-            else{
-                noShoesLabel.isHidden = false
-            }
+        if showShoes {
+            noShoesLabel.isHidden = (Closet.shared.shoes.count > 0)
         }
         else {
             noShoesLabel.isHidden = true
@@ -547,9 +515,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         let confirmAlert = UIAlertController(title: "Delete image?", message: "Are you sure you want to delete this image?", preferredStyle: UIAlertController.Style.alert)
         
         confirmAlert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (action: UIAlertAction!) in
-            print("confirmed delete")
             guard let cell = sender.superview?.superview as? ImageCell else {
-                print("couldnt get imageCell")
                 return
             }
             Utility.removeImage(imageName: cell.id) // may not want to ??
