@@ -31,6 +31,9 @@
 		2285B1D0217BFBA200E14D15 /* ClothingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2285B1CF217BFBA200E14D15 /* ClothingItem.swift */; };
 		2285B1D2217C1A3100E14D15 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2285B1D1217C1A3100E14D15 /* ImageCell.swift */; };
 		22D1C80E23331961005B6A69 /* WLCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D1C80D23331961005B6A69 /* WLCollectionViewLayout.swift */; };
+		22D413D424CFD2FA00944126 /* UploadClothes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D413D324CFD2FA00944126 /* UploadClothes.storyboard */; };
+		22D413D624CFD30B00944126 /* MatchOutfit.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D413D524CFD30B00944126 /* MatchOutfit.storyboard */; };
+		22D413D824CFD31600944126 /* Outfits.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D413D724CFD31600944126 /* Outfits.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,9 @@
 		2285B1CF217BFBA200E14D15 /* ClothingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClothingItem.swift; sourceTree = "<group>"; };
 		2285B1D1217C1A3100E14D15 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		22D1C80D23331961005B6A69 /* WLCollectionViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLCollectionViewLayout.swift; sourceTree = "<group>"; };
+		22D413D324CFD2FA00944126 /* UploadClothes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UploadClothes.storyboard; sourceTree = "<group>"; };
+		22D413D524CFD30B00944126 /* MatchOutfit.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MatchOutfit.storyboard; sourceTree = "<group>"; };
+		22D413D724CFD31600944126 /* Outfits.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Outfits.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,12 +119,12 @@
 		22345E0821758B4600E2FC9B /* Clueless Clothes */ = {
 			isa = PBXGroup;
 			children = (
+				22D413D224CFD2D000944126 /* Storyboards */,
 				226CA87E22F3DC8D00FE4D87 /* View */,
 				226CA87D22F3DC7C00FE4D87 /* ViewController */,
 				229D575F247A016B0060027A /* Cell */,
 				226CA87822F37A7700FE4D87 /* Model */,
 				22345E0921758B4600E2FC9B /* AppDelegate.swift */,
-				22345E0F21758B4600E2FC9B /* Main.storyboard */,
 				22345E1221758B4700E2FC9B /* Assets.xcassets */,
 				22345E1421758B4700E2FC9B /* LaunchScreen.storyboard */,
 				22345E1721758B4700E2FC9B /* Info.plist */,
@@ -180,6 +186,17 @@
 				2273AB072334799B00FFB173 /* MultiImageCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		22D413D224CFD2D000944126 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				22345E0F21758B4600E2FC9B /* Main.storyboard */,
+				22D413D324CFD2FA00944126 /* UploadClothes.storyboard */,
+				22D413D524CFD30B00944126 /* MatchOutfit.storyboard */,
+				22D413D724CFD31600944126 /* Outfits.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -265,9 +282,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22D413D624CFD30B00944126 /* MatchOutfit.storyboard in Resources */,
 				22345E1621758B4700E2FC9B /* LaunchScreen.storyboard in Resources */,
 				22345E1321758B4700E2FC9B /* Assets.xcassets in Resources */,
+				22D413D424CFD2FA00944126 /* UploadClothes.storyboard in Resources */,
 				22345E1121758B4600E2FC9B /* Main.storyboard in Resources */,
+				22D413D824CFD31600944126 /* Outfits.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
