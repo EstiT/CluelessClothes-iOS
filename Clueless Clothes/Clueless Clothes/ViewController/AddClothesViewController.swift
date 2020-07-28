@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  AddClothesViewController.swift
 //  Clueless Clothes
 //
 //  Created by Esti Tweg on 2018-10-15.

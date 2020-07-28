@@ -36,6 +36,17 @@ class Closet{
     
     private init() {
         if UserDefaults.standard.object(forKey: "outfits") != nil {
+            let decoded  = UserDefaults.standard.object(forKey: "outfits") as? Data
+            if let data = decoded {
+                outfits = NSKeyedUnarchiver.unarchiveObject(with: data) as! [Outfit]
+            }
+            else {
+                outfits = [Outfit]()
+                defaults.set(outfits, forKey: "outfits")
+            }
+             
+            
+            /*
             let data: Data? = UserDefaults.standard.data(forKey: "outfits")
             if let decoded = data {
                 do {
@@ -50,6 +61,7 @@ class Closet{
                 outfits = [Outfit]()
                 defaults.set(outfits, forKey: "outfits")
             }
+             */
         }
         else {
             outfits = [Outfit]()
@@ -85,7 +97,6 @@ class Closet{
                         print("unknown type \(name)")
                 }
             }
-            
         } catch {
             print("Error while enumerating files \(documentsURL.path): \(error.localizedDescription)")
         }

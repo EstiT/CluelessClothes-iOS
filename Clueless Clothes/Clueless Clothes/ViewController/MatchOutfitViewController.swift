@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  MatchOutfitViewController.swift
 //  Clueless Clothes
 //
 //  Created by Esti Tweg on 2018-10-15.
@@ -72,32 +72,14 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         setComboEnum()
         checkColorTheme()
         enableDisableMatchButton()
-        setButtonIcons()
     }
     
     override func viewWillLayoutSubviews() {
         self.view.layoutIfNeeded()
         showHideCollectionElements()
         setUpCollectionViews()
+        enableDisableMatchButton()
         self.view.layoutIfNeeded()
-    }
-    
-    func setButtonIcons() {
-        if #available(iOS 13.0, *) {
-            editButton.setImage(deleteView ? UIImage(systemName: "checkmark") : UIImage(systemName: "trash"), for: .normal)
-        } else {
-            if #available(iOS 12.0, *) {
-                if self.traitCollection.userInterfaceStyle == .dark {
-                    editButton.setImage(deleteView ? UIImage(named:"checkWhite") : UIImage(named: "trash"), for: .normal)
-                }
-                else {
-                    editButton.setImage(deleteView ? UIImage(named:"checkBlack") : UIImage(named: "trash"), for: .normal)
-                }
-            }
-            else {
-                editButton.setImage(deleteView ? UIImage(named:"checkBlack") : UIImage(named: "trash"), for: .normal)
-            }
-        }
     }
     
     func checkColorTheme(){
@@ -350,7 +332,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     
     @IBAction func editButtonClicked(_ sender: Any) {
         deleteView = !deleteView
-        setButtonIcons()
+        editButton.setImage(deleteView ? UIImage(systemName: "checkmark") : UIImage(systemName: "trash"), for: .normal)
         showHideCollectionElements()
         enableDisableMatchButton()
         setUpCollectionViews()

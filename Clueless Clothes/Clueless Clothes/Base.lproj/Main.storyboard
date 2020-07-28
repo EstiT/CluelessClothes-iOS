@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="49e-Tb-3d3">
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -139,14 +138,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wl5-eC-3fX">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="111"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Upload Clothes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKJ-MD-JBc">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Upload Clothes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KKJ-MD-JBc">
                                         <rect key="frame" x="20" y="30" width="203" height="34"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Take a picture of..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcG-PH-eQ7">
-                                        <rect key="frame" x="20" y="74" width="140" height="20.666666666666671"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Take a picture of..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcG-PH-eQ7">
+                                        <rect key="frame" x="20" y="74" width="140" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -387,35 +386,41 @@
                                                     </collectionViewCell>
                                                 </cells>
                                             </collectionView>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="no bottoms in closet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JN8-Hq-5VW" userLabel="no bottoms in closet">
-                                                <rect key="frame" x="95" y="172" width="184" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no bottoms in closet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JN8-Hq-5VW" userLabel="no bottoms in closet">
+                                                <rect key="frame" x="68" y="143.5" width="184" height="26"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="no tops in closet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcG-Z5-ejz">
-                                                <rect key="frame" x="113" y="172" width="148" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no tops in closet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZcG-Z5-ejz">
+                                                <rect key="frame" x="86" y="143.5" width="148" height="26"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="no shoes in closet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWI-jp-JlQ">
-                                                <rect key="frame" x="106" y="172" width="163" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no shoes in closet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWI-jp-JlQ">
+                                                <rect key="frame" x="78.5" y="143.5" width="163" height="26"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="no dresses in closet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0M-Gn-Spz">
-                                                <rect key="frame" x="98" y="172" width="179" height="26"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="no dresses in closet" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0M-Gn-Spz">
+                                                <rect key="frame" x="70.5" y="143.5" width="179" height="26"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="ZcG-Z5-ejz" firstAttribute="centerX" secondItem="Kp1-qO-lQZ" secondAttribute="centerX" id="33U-9Q-B6M"/>
+                                            <constraint firstItem="ZcG-Z5-ejz" firstAttribute="centerY" secondItem="Kp1-qO-lQZ" secondAttribute="centerY" id="DWX-lj-NxF"/>
+                                            <constraint firstItem="JN8-Hq-5VW" firstAttribute="centerX" secondItem="Kp1-qO-lQZ" secondAttribute="centerX" id="JvX-CM-nne"/>
+                                            <constraint firstItem="AWI-jp-JlQ" firstAttribute="centerX" secondItem="Kp1-qO-lQZ" secondAttribute="centerX" id="Tvp-kk-8qk"/>
+                                            <constraint firstItem="AWI-jp-JlQ" firstAttribute="centerY" secondItem="Kp1-qO-lQZ" secondAttribute="centerY" id="XIn-gJ-KI2"/>
+                                            <constraint firstItem="JN8-Hq-5VW" firstAttribute="centerY" secondItem="Kp1-qO-lQZ" secondAttribute="centerY" id="avD-Ex-V89"/>
+                                            <constraint firstItem="o0M-Gn-Spz" firstAttribute="centerY" secondItem="Kp1-qO-lQZ" secondAttribute="centerY" id="inP-rD-uIy"/>
+                                            <constraint firstItem="o0M-Gn-Spz" firstAttribute="centerX" secondItem="Kp1-qO-lQZ" secondAttribute="centerX" id="woT-2g-nEr"/>
+                                        </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rPU-Mn-s3n">
                                         <rect key="frame" x="0.0" y="382" width="320" height="10"/>
@@ -538,7 +543,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="suit.heart" catalog="system" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="" image="personalhotspot" catalog="system" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -743,9 +748,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qyd-Mx-U0B">
                                 <rect key="frame" x="0.0" y="80" width="320" height="439"/>
                                 <subviews>
-                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itz-Ee-1ML">
-                                        <rect key="frame" x="0.0" y="53" width="375" height="411"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="itz-Ee-1ML">
+                                        <rect key="frame" x="60" y="194.5" width="200" height="50.5"/>
                                         <string key="text">match outfits for them
  to appear here</string>
                                         <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="21"/>
@@ -838,7 +842,9 @@
                                     <constraint firstAttribute="bottom" secondItem="S9Q-BT-SUX" secondAttribute="bottom" id="5KJ-DZ-9WM"/>
                                     <constraint firstAttribute="trailing" secondItem="hFE-jr-dRM" secondAttribute="trailing" id="7Er-03-J5B"/>
                                     <constraint firstItem="hFE-jr-dRM" firstAttribute="leading" secondItem="qyd-Mx-U0B" secondAttribute="leading" id="9LK-xO-bUV"/>
+                                    <constraint firstItem="itz-Ee-1ML" firstAttribute="centerY" secondItem="qyd-Mx-U0B" secondAttribute="centerY" id="Fqg-YJ-NBh"/>
                                     <constraint firstAttribute="trailing" secondItem="S9Q-BT-SUX" secondAttribute="trailing" id="Ns8-lp-q0Z"/>
+                                    <constraint firstItem="itz-Ee-1ML" firstAttribute="centerX" secondItem="qyd-Mx-U0B" secondAttribute="centerX" id="Xak-Qs-3KO"/>
                                     <constraint firstItem="hFE-jr-dRM" firstAttribute="top" secondItem="qyd-Mx-U0B" secondAttribute="top" constant="20" id="k1W-nk-h2W"/>
                                     <constraint firstItem="S9Q-BT-SUX" firstAttribute="top" secondItem="hFE-jr-dRM" secondAttribute="bottom" constant="12" id="qhZ-gc-18C"/>
                                     <constraint firstItem="S9Q-BT-SUX" firstAttribute="leading" secondItem="qyd-Mx-U0B" secondAttribute="leading" id="uy8-Ff-Zs0"/>
@@ -857,7 +863,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="5e4-gY-z1m"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="cube.box" catalog="system" id="g0x-mH-CAo"/>
+                    <tabBarItem key="tabBarItem" title="" image="heart" catalog="system" id="g0x-mH-CAo"/>
                     <connections>
                         <outlet property="editButton" destination="sYB-Mz-1W7" id="mls-Zm-UaM"/>
                         <outlet property="mainView" destination="qyd-Mx-U0B" id="tDY-O2-nXw"/>
@@ -899,8 +905,9 @@
         <image name="blazer" width="128" height="128"/>
         <image name="bottom" width="137.5" height="178"/>
         <image name="camera" catalog="system" width="128" height="96"/>
-        <image name="cube.box" catalog="system" width="128" height="124"/>
         <image name="dress2" width="137.5" height="178"/>
+        <image name="heart" catalog="system" width="128" height="109"/>
+        <image name="personalhotspot" catalog="system" width="128" height="75"/>
         <image name="shoes" width="137.5" height="106"/>
         <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
         <image name="suit.heart" catalog="system" width="128" height="109"/>
