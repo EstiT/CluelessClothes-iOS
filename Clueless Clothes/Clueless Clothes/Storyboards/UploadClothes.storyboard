@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nba-v6-GSm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nba-v6-GSm">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,7 +11,6 @@
         <!--Add Clothes View Controller-->
         <scene sceneID="Dgk-4I-thh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="erX-UK-p1f" sceneMemberID="firstResponder"/>
                 <viewController id="nba-v6-GSm" customClass="AddClothesViewController" customModule="Clueless_Clothes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9vO-5n-EId">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -180,12 +180,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GLi-YD-NMJ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="camera" catalog="system" selectedImage="camera" id="ncF-Uf-jcR"/>
+                    <tabBarItem key="tabBarItem" title="" image="camera" selectedImage="camera" id="ncF-Uf-jcR"/>
                     <connections>
                         <outlet property="mainView" destination="Juh-sh-np7" id="UkE-ek-eah"/>
                         <outlet property="topView" destination="0yi-4n-yy5" id="6yQ-S6-baK"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="erX-UK-p1f" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
         </scene>
@@ -193,7 +194,7 @@
     <resources>
         <image name="blazer" width="128" height="128"/>
         <image name="bottom" width="137.5" height="178"/>
-        <image name="camera" catalog="system" width="128" height="96"/>
+        <image name="camera" width="33.5" height="33.5"/>
         <image name="dress2" width="137.5" height="178"/>
         <image name="shoes" width="137.5" height="106"/>
         <image name="top2" width="115" height="128"/>

@@ -57,44 +57,45 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     func checkColorTheme(){
-            if #available(iOS 12.0, *) {
-    //            https://stackoverflow.com/questions/56457395/how-to-check-for-ios-dark-mode
-                var statusbarColor = UIColor()
-                if self.traitCollection.userInterfaceStyle == .dark {
-                    topView.backgroundColor = .darkGray
-                    mainView.backgroundColor = Utility.deepMagenta
-                    statusbarColor = .darkGray
-                }
-                else {
-                    topView.backgroundColor = Utility.softYellow
-                    mainView.backgroundColor = Utility.brightYellow
-                    statusbarColor = Utility.softYellow
-                }
-    //            https://freakycoder.com/ios-notes-13-how-to-change-status-bar-color-1431c185e845
-                if #available(iOS 13.0, *) {
-                    let app = UIApplication.shared
-                    let statusBarHeight: CGFloat = app.statusBarFrame.size.height
-                    
-                    let statusbarView = UIView()
-                    statusbarView.backgroundColor = statusbarColor
-                    view.addSubview(statusbarView)
-                  
-                    statusbarView.translatesAutoresizingMaskIntoConstraints = false
-                    statusbarView.heightAnchor
-                        .constraint(equalToConstant: statusBarHeight).isActive = true
-                    statusbarView.widthAnchor
-                        .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
-                    statusbarView.topAnchor
-                        .constraint(equalTo: view.topAnchor).isActive = true
-                    statusbarView.centerXAnchor
-                        .constraint(equalTo: view.centerXAnchor).isActive = true
-                }
-                else {
-                    let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
-                    statusBar?.backgroundColor = statusbarColor
-                }
+        if #available(iOS 12.0, *) {
+            setEditButtonImageColour()
+//            https://stackoverflow.com/questions/56457395/how-to-check-for-ios-dark-mode
+            var statusbarColor = UIColor()
+            if self.traitCollection.userInterfaceStyle == .dark {
+                topView.backgroundColor = .darkGray
+                mainView.backgroundColor = Utility.deepMagenta
+                statusbarColor = .darkGray
+            }
+            else {
+                topView.backgroundColor = Utility.softYellow
+                mainView.backgroundColor = Utility.brightYellow
+                statusbarColor = Utility.softYellow
+            }
+//            https://freakycoder.com/ios-notes-13-how-to-change-status-bar-color-1431c185e845
+            if #available(iOS 13.0, *) {
+                let app = UIApplication.shared
+                let statusBarHeight: CGFloat = app.statusBarFrame.size.height
+                
+                let statusbarView = UIView()
+                statusbarView.backgroundColor = statusbarColor
+                view.addSubview(statusbarView)
+              
+                statusbarView.translatesAutoresizingMaskIntoConstraints = false
+                statusbarView.heightAnchor
+                    .constraint(equalToConstant: statusBarHeight).isActive = true
+                statusbarView.widthAnchor
+                    .constraint(equalTo: view.widthAnchor, multiplier: 1.0).isActive = true
+                statusbarView.topAnchor
+                    .constraint(equalTo: view.topAnchor).isActive = true
+                statusbarView.centerXAnchor
+                    .constraint(equalTo: view.centerXAnchor).isActive = true
+            }
+            else {
+                let statusBar = UIApplication.shared.value(forKeyPath: "statusBarWindow.statusBar") as? UIView
+                statusBar?.backgroundColor = statusbarColor
             }
         }
+    }
         
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         checkColorTheme()
@@ -190,9 +191,23 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
     
     @IBAction func editButtonClicked(_ sender: Any) {
         deleteView = !deleteView
-        editButton.setImage(deleteView ? UIImage(systemName: "checkmark") : UIImage(systemName: "trash"), for: .normal)
+        if #available(iOS 13.0, *) {
+            editButton.setImage(deleteView ? UIImage(systemName: "checkmark") : UIImage(systemName: "trash"), for: .normal)
+        } else {
+            setEditButtonImageColour()
+        }
         pruneOutfits()
         outfitsCollection.reloadData()
+    }
+    
+    func setEditButtonImageColour() {
+        if #available(iOS 12.0, *) {
+            if self.traitCollection.userInterfaceStyle == .dark {
+                editButton.setImage(deleteView ? UIImage(named: "checkWhite") : UIImage(named: "trashWhite"), for: .normal)
+            }
+        } else {
+            editButton.setImage(deleteView ? UIImage(named: "checkBlack") : UIImage(named: "trash"), for: .normal)
+        }
     }
     
     @IBAction func deleteButtonClicked(_ sender: UIButton) {

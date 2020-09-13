@@ -38,6 +38,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     @IBOutlet weak var collectionsHolder: UIView!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var matchButton: UIButton!
+    @IBOutlet weak var sliderButton: UIButton!
     
     var showTops: Bool!
     var showDresses: Bool!
@@ -83,18 +84,23 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     }
     
     func checkColorTheme(){
+        setEditButtonImageColour()
         if #available(iOS 12.0, *) {
-//          https://stackoverflow.com/questions/56457395/how-to-check-for-ios-dark-mode
+//            https://stackoverflow.com/questions/56457395/how-to-check-for-ios-dark-mode
             var statusbarColor = UIColor()
             if self.traitCollection.userInterfaceStyle == .dark {
                 topView.backgroundColor = .darkGray
                 mainView.backgroundColor = Utility.deepMagenta
                 statusbarColor = .darkGray
+                sliderButton.setImage(UIImage(named: "sliderWhite"), for: .normal)
+                matchButton.setImage(UIImage(named: "heartWhite"), for: .normal)
             }
             else {
                 topView.backgroundColor = Utility.softYellow
                 mainView.backgroundColor = Utility.brightYellow
                 statusbarColor = Utility.softYellow
+                sliderButton.setImage(UIImage(named: "slider"), for: .normal)
+                matchButton.setImage(UIImage(named: "heart"), for: .normal)
             }
 //          https://freakycoder.com/ios-notes-13-how-to-change-status-bar-color-1431c185e845
             if #available(iOS 13.0, *) {
@@ -332,13 +338,36 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     
     @IBAction func editButtonClicked(_ sender: Any) {
         deleteView = !deleteView
-        editButton.setImage(deleteView ? UIImage(systemName: "checkmark") : UIImage(systemName: "trash"), for: .normal)
+        print("match delete \(editButton.imageEdgeInsets)")
+        setEditButtonImage()
         showHideCollectionElements()
         enableDisableMatchButton()
         setUpCollectionViews()
     }
     
-    @objc func alertControllerBackgroundTapped(){
+    func setEditButtonImage() {
+        if #available(iOS 13.0, *) {
+            editButton.setImage(deleteView ? UIImage(systemName: "checkmark") : UIImage(systemName: "trash"), for: .normal)
+        } else {
+            if #available(iOS 12.0, *) {
+                setEditButtonImageColour()
+            } else {
+                editButton.setImage(deleteView ? UIImage(named: "checkBlack") : UIImage(named: "trash"), for: .normal)
+            }
+        }
+    }
+    
+    func setEditButtonImageColour() {
+        if #available(iOS 12.0, *) {
+            if self.traitCollection.userInterfaceStyle == .dark {
+                editButton.setImage(deleteView ? UIImage(named: "checkWhite") : UIImage(named: "trashWhite"), for: .normal)
+            }
+        } else {
+            editButton.setImage(deleteView ? UIImage(named: "checkBlack") : UIImage(named: "trash"), for: .normal)
+        }
+    }
+    
+    @objc func alertControllerBackgroundTapped() {
         self.dismiss(animated: true, completion: nil)
     }
     

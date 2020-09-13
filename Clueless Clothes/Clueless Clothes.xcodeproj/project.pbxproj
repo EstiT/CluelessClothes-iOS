@@ -130,6 +130,7 @@
 				22345E1721758B4700E2FC9B /* Info.plist */,
 				22D1C80D23331961005B6A69 /* WLCollectionViewLayout.swift */,
 				2273AB0923347C3F00FFB173 /* Utility.swift */,
+				24DFF542E4828CA2A2F0D4A5 /* HappyCodingSupport */,
 			);
 			path = "Clueless Clothes";
 			sourceTree = "<group>";
@@ -197,6 +198,13 @@
 				22D413D724CFD31600944126 /* Outfits.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		24DFF542E4828CA2A2F0D4A5 /* HappyCodingSupport */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HappyCodingSupport;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -491,7 +499,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TMD2D7PWT9;
 				INFOPLIST_FILE = "Clueless Clothes/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -510,7 +518,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = TMD2D7PWT9;
 				INFOPLIST_FILE = "Clueless Clothes/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

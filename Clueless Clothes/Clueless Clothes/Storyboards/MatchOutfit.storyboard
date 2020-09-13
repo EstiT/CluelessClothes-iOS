@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nGW-ln-cNF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nGW-ln-cNF">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -36,11 +37,11 @@
                                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A8N-Wx-mXt">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 </imageView>
-                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QNo-3C-yft">
+                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QNo-3C-yft">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                     <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                                    <state key="normal" image="trash.circle" catalog="system">
+                                                                    <state key="normal" image="largeTrashCircle">
                                                                         <attributedString key="attributedTitle"/>
                                                                     </state>
                                                                     <connections>
@@ -82,11 +83,11 @@
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="k4G-kx-33N">
                                                                     <rect key="frame" x="0.0" y="0.0" width="124" height="135"/>
                                                                 </imageView>
-                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l5O-yT-gG0">
+                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l5O-yT-gG0">
                                                                     <rect key="frame" x="0.0" y="0.0" width="124" height="135"/>
                                                                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                     <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                                    <state key="normal" image="trash.circle" catalog="system">
+                                                                    <state key="normal" image="largeTrashCircle">
                                                                         <attributedString key="attributedTitle"/>
                                                                     </state>
                                                                     <connections>
@@ -128,11 +129,11 @@
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rfs-SV-F6P">
                                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                                 </imageView>
-                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rkj-3l-hG5">
+                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rkj-3l-hG5">
                                                                     <rect key="frame" x="0.0" y="0.0" width="150" height="150"/>
                                                                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                     <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                                    <state key="normal" image="trash.circle" catalog="system">
+                                                                    <state key="normal" image="largeTrashCircle">
                                                                         <attributedString key="attributedTitle"/>
                                                                     </state>
                                                                     <connections>
@@ -174,11 +175,11 @@
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="I2T-0m-i7y">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                 </imageView>
-                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ru6-5R-n1M">
+                                                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ru6-5R-n1M">
                                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                     <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                                    <state key="normal" image="trash.circle" catalog="system">
+                                                                    <state key="normal" image="largeTrashCircle">
                                                                         <attributedString key="attributedTitle"/>
                                                                     </state>
                                                                     <connections>
@@ -258,7 +259,7 @@
                                             <constraint firstAttribute="width" constant="80" id="uU8-NH-EPb"/>
                                         </constraints>
                                         <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <state key="normal" image="suit.heart" catalog="system">
+                                        <state key="normal" image="heart">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -304,7 +305,8 @@
                                             <constraint firstAttribute="width" constant="40" id="waK-Nl-U9a"/>
                                         </constraints>
                                         <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <state key="normal" image="trash" catalog="system">
+                                        <inset key="imageEdgeInsets" minX="5" minY="2" maxX="5" maxY="2"/>
+                                        <state key="normal" image="trash">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -324,7 +326,8 @@
                                             <constraint firstAttribute="width" constant="40" id="f8z-Of-lx5"/>
                                         </constraints>
                                         <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <state key="normal" image="slider.horizontal.3" catalog="system">
+                                        <inset key="imageEdgeInsets" minX="5" minY="6" maxX="5" maxY="6"/>
+                                        <state key="normal" image="slider">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -361,7 +364,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6aO-Zy-7eA"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="personalhotspot" catalog="system" selectedImage="personalhotspot" id="py3-0t-zOv"/>
+                    <tabBarItem key="tabBarItem" title="" image="link" selectedImage="link" id="py3-0t-zOv"/>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -376,6 +379,7 @@
                         <outlet property="noShoesLabel" destination="4nO-MQ-5w2" id="aeP-AN-ivK"/>
                         <outlet property="noTopsLabel" destination="p52-Op-7ri" id="bML-F5-nmj"/>
                         <outlet property="shoesCollection" destination="tka-bn-M6e" id="6k2-mQ-2dw"/>
+                        <outlet property="sliderButton" destination="bDl-Jz-12E" id="tcI-2N-0Jw"/>
                         <outlet property="topView" destination="1cB-8E-dJ0" id="OQr-wY-Isy"/>
                         <outlet property="topsCollection" destination="Wzi-A0-OEn" id="U69-jV-otW"/>
                     </connections>
@@ -403,7 +407,7 @@
                                 </textAttributes>
                                 <items>
                                     <navigationItem title="Change Outfit Components" id="5oj-2P-NWL">
-                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="done" id="z94-jf-Wi0">
+                                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="z94-jf-Wi0">
                                             <connections>
                                                 <action selector="donePressed:" destination="R6B-px-48f" id="zme-ij-fqU"/>
                                             </connections>
@@ -515,10 +519,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="personalhotspot" catalog="system" width="128" height="75"/>
-        <image name="slider.horizontal.3" catalog="system" width="128" height="100"/>
-        <image name="suit.heart" catalog="system" width="128" height="109"/>
-        <image name="trash" catalog="system" width="121" height="128"/>
-        <image name="trash.circle" catalog="system" width="128" height="121"/>
+        <image name="heart" width="33.5" height="33.5"/>
+        <image name="largeTrashCircle" width="233.5" height="235"/>
+        <image name="link" width="33.5" height="30"/>
+        <image name="slider" width="33.5" height="32"/>
+        <image name="trash" width="33.5" height="33.5"/>
     </resources>
 </document>

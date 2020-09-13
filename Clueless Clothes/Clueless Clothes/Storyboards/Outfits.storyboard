@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ngU-Ln-2Qe">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ngU-Ln-2Qe">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,7 +36,8 @@
                                             <constraint firstAttribute="height" constant="34" id="qvV-cx-GlS"/>
                                         </constraints>
                                         <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <state key="normal" image="trash" catalog="system">
+                                        <inset key="imageEdgeInsets" minX="5" minY="2" maxX="5" maxY="2"/>
+                                        <state key="normal" image="trash">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>
@@ -104,11 +106,11 @@
                                                                 <constraint firstAttribute="height" constant="100" id="avT-Ih-Mla"/>
                                                             </constraints>
                                                         </imageView>
-                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6kx-lc-bBr">
+                                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6kx-lc-bBr">
                                                             <rect key="frame" x="24" y="-1" width="328" height="497"/>
                                                             <color key="backgroundColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                             <color key="tintColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                                            <state key="normal" image="trash.circle" catalog="system">
+                                                            <state key="normal" image="largeTrashCircle">
                                                                 <attributedString key="attributedTitle"/>
                                                             </state>
                                                             <connections>
@@ -175,7 +177,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ua0-s3-ne4"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="heart" catalog="system" selectedImage="heart" id="c4M-kf-ejU"/>
+                    <tabBarItem key="tabBarItem" title="" image="heart" selectedImage="heart" id="c4M-kf-ejU"/>
                     <connections>
                         <outlet property="editButton" destination="dGh-wb-5VO" id="G9C-Nu-laH"/>
                         <outlet property="mainView" destination="dLg-c4-fgh" id="f5H-Hj-kTh"/>
@@ -190,8 +192,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart" catalog="system" width="128" height="109"/>
-        <image name="trash" catalog="system" width="121" height="128"/>
-        <image name="trash.circle" catalog="system" width="128" height="121"/>
+        <image name="heart" width="33.5" height="33.5"/>
+        <image name="largeTrashCircle" width="233.5" height="235"/>
+        <image name="trash" width="33.5" height="33.5"/>
     </resources>
 </document>
