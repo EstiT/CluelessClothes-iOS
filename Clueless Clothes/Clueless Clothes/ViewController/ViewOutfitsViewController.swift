@@ -204,6 +204,8 @@ class ViewOutfitsViewController: UIViewController, UICollectionViewDataSource, U
         if #available(iOS 12.0, *) {
             if self.traitCollection.userInterfaceStyle == .dark {
                 editButton.setImage(deleteView ? UIImage(named: "checkWhite") : UIImage(named: "trashWhite"), for: .normal)
+            } else {
+                editButton.setImage(deleteView ? UIImage(named: "checkBlack") : UIImage(named: "trash"), for: .normal)
             }
         } else {
             editButton.setImage(deleteView ? UIImage(named: "checkBlack") : UIImage(named: "trash"), for: .normal)
