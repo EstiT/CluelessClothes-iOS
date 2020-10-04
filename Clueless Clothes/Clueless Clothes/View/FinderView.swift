@@ -13,6 +13,7 @@ class FinderView : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.isOpaque = false
     }
     
     required init?(coder aDecoder: NSCoder) {
