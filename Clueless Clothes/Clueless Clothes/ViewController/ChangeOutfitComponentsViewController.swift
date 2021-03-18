@@ -29,7 +29,7 @@ class ChangeOutfitComponentsViewController: UIViewController {
     var shoes: Bool!
     
     var delegate: ShowCollectionsDelegate?
-    
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad(){
         topSwitch.setOn(tops, animated: false)
@@ -72,6 +72,11 @@ class ChangeOutfitComponentsViewController: UIViewController {
     }
     
     @IBAction func donePressed(_ sender: Any) {
+        defaults.set(topSwitch.isOn, forKey: "topIsOn")
+        defaults.set(dressSwitch.isOn, forKey: "dressIsOn")
+        defaults.set(jacketSwitch.isOn, forKey: "jacketIsOn")
+        defaults.set(bottomsSwitch.isOn, forKey: "bottomIsOn")
+        defaults.set(shoesSwitch.isOn, forKey: "shoeIsOn")
         delegate?.updateShowCollectons(tops: topSwitch.isOn, dresses: dressSwitch.isOn, jackets: jacketSwitch.isOn, bottoms: bottomsSwitch.isOn, shoes: shoesSwitch.isOn)
         (presentationController?.delegate as! MatchOutfitViewController).viewDidAppear(false)
         dismiss(animated: true, completion: nil)

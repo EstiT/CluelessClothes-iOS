@@ -48,25 +48,16 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
     var deleteView: Bool = false
     
     var selectedCombo: clothesItemCombination!
+    let defaults = UserDefaults.standard
     ///to try: https://adoptioncurve.net/2013/07/02/building-a-circular-gallery-with-a-uicollectionview/
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        if showTops == nil {
-            showTops = true
-        }
-        if showDresses == nil {
-            showDresses = false
-        }
-        if showJackets == nil {
-            showJackets = false
-        }
-        if showBottoms == nil {
-            showBottoms = true
-        }
-        if showShoes == nil {
-            showShoes = false
-        }
+        showTops = defaults.optionalBool(forKey: "topIsOn") ?? true
+        showDresses = defaults.optionalBool(forKey: "dressIsOn") ?? false
+        showJackets = defaults.optionalBool(forKey: "jacketIsOn") ?? false
+        showBottoms = defaults.optionalBool(forKey: "bottomIsOn") ?? true
+        showShoes = defaults.optionalBool(forKey: "shoeIsOn") ?? false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -555,3 +546,23 @@ extension UIView {
         self.layer.add(transformAnim, forKey: "shake")
     }
 }
+
+//https://stackoverflow.com/questions/37830558/swift-how-to-set-initial-value-for-nsuserdefaults
+extension UserDefaults {
+    public func optionalInt(forKey defaultName: String) -> Int? {
+        let defaults = self
+        if let value = defaults.value(forKey: defaultName) {
+            return value as? Int
+        }
+        return nil
+    }
+    
+    public func optionalBool(forKey defaultName: String) -> Bool? {
+        let defaults = self
+        if let value = defaults.value(forKey: defaultName) {
+            return value as? Bool
+        }
+        return nil
+    }
+}
+
