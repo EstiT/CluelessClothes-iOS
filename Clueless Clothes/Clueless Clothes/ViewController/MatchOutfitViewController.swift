@@ -71,6 +71,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         showHideCollectionElements()
         setUpCollectionViews()
         enableDisableMatchButton()
+        collectionsHolder.sendSubviewToBack(topsCollection)
         self.view.layoutIfNeeded()
     }
     
@@ -127,16 +128,18 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         var topsCollectionHeight = 0.0
         var bottomsCollectionHeight = 0.0
         var dressCollectionHeight = 0.0
-        //var jacketCollectionHeight = 0.0 TODO
+        var jacketCollectionHeight = 0.0
         var shoesCollectionHeight = 0.0
         var shoesY:CGFloat = 0.0
         
         switch selectedCombo {
         case .JacketDressShoes?: //TODO
+            jacketCollectionHeight = 0.5
             dressCollectionHeight = 0.76
             shoesCollectionHeight = 0.12
             shoesY = CGFloat((collectionsHolder.frame.height * CGFloat(dressCollectionHeight)))
         case .JacketDress?: //TODO
+            jacketCollectionHeight = 0.5
             dressCollectionHeight = 1.0
         case .Dress?:
             dressCollectionHeight = 1.0
@@ -146,11 +149,13 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
             shoesY = CGFloat((collectionsHolder.frame.height * CGFloat(dressCollectionHeight))+(collectionsHolder.frame.height * CGFloat(0.0275)))
         //(collectionsHolder.frame.height * CGFloat(6))
         case .JacketTopBottomShoes?: //TODO
+            jacketCollectionHeight = 0.3
             topsCollectionHeight = 0.32
             bottomsCollectionHeight = 0.47
             shoesCollectionHeight = 0.15
             shoesY = collectionsHolder.frame.height * CGFloat(topsCollectionHeight)+(collectionsHolder.frame.height * CGFloat(0.0275)) + collectionsHolder.frame.height * CGFloat(bottomsCollectionHeight)+(collectionsHolder.frame.height * CGFloat(0.0275))
         case .JacketTopBottom?:  //TODO
+            jacketCollectionHeight = 0.32
             topsCollectionHeight = 0.35
             bottomsCollectionHeight = 0.55
         case .TopBottom?:
@@ -168,7 +173,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         setUpCollectionView(cv: bottomsCollection, frame: CGRect(x: 0, y: collectionsHolder.frame.height * CGFloat(topsCollectionHeight)+12, width: collectionsHolder.frame.width, height: collectionsHolder.frame.height * CGFloat(bottomsCollectionHeight)))
         setUpCollectionView(cv: dressesCollection, frame: CGRect(x: 0, y: 0, width: collectionsHolder.frame.width, height: collectionsHolder.frame.height * CGFloat(dressCollectionHeight)))
         setUpCollectionView(cv: shoesCollection, frame: CGRect(x: 0, y: shoesY, width: collectionsHolder.frame.width, height: collectionsHolder.frame.height * CGFloat(shoesCollectionHeight)))
-        //        setUpCollectionView(bottomsCollection) TODO Jacket
+        setUpCollectionView(cv: jacketsCollection, frame: CGRect(x: 0, y: 0, width: collectionsHolder.frame.width, height: collectionsHolder.frame.height * CGFloat(jacketCollectionHeight)))
         setNoClothesLabelY()
     }
     
@@ -267,11 +272,16 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
                 dressName = cell.id
             }
         }
-        /* TODO
+        
         if !jacketsCollection.isHidden{
+            let visibleRect = CGRect(origin: jacketsCollection.contentOffset, size: jacketsCollection.bounds.size)
+            let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+            if let visibleIndexPath = jacketsCollection.indexPathForItem(at: visiblePoint){
+                let cell = jacketsCollection.cellForItem(at: visibleIndexPath) as! JacketCell
+                jacketName = cell.id
+            }
          
-         
-        }*/
+        }
         if !shoesCollection.isHidden{
             let visibleRect = CGRect(origin: shoesCollection.contentOffset, size: shoesCollection.bounds.size)
             let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
@@ -397,6 +407,7 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         bottomsCollection.isHidden = !showBottoms
         shoesCollection.isHidden = !showShoes
         topsCollection.isHidden = !showTops
+        jacketsCollection.isHidden = !showJackets
         showHideLabels()
     }
     
@@ -463,48 +474,61 @@ class MatchOutfitViewController: UIViewController, UICollectionViewDataSource, U
         else if collectionView == self.shoesCollection{
             return Closet.shared.shoes.count
         }
+        else if collectionView == self.jacketsCollection{
+            return Closet.shared.tops.count // todo jackets
+        }
         return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
-        cell.image.isUserInteractionEnabled = true
-        
-        //set image for colection view
-        var name = ""
-        if collectionView == self.topsCollection {
-            name = Closet.shared.tops[indexPath.row].imageName
-        }
-        else if collectionView == self.dressesCollection {
-            name = Closet.shared.dresses[indexPath.row].imageName
-        }
-        else if collectionView == self.bottomsCollection {
-            name = Closet.shared.bottoms[indexPath.row].imageName
-        }
-        else if collectionView == self.shoesCollection {
-            name = Closet.shared.shoes[indexPath.row].imageName
-        }
-        
-        //TESTING
-        let regex = try! NSRegularExpression(pattern: "[0-9]$")
-        let range = NSRange(location: 0, length: name.utf16.count)
-        if regex.firstMatch(in: name, options: [], range: range) != nil {
-            cell.image.image = Utility.getImage(imageName: name)
-        }
-        else{
-            cell.image.image = UIImage(named: name)
-        }
-        cell.image.contentMode = .scaleAspectFill //.scaleAspectFit //.scaleToFill
-        cell.id = name
-        cell.deleteOverlay.imageView?.contentMode = .scaleAspectFit
-        if deleteView {
-             cell.deleteOverlay.isHidden = false
+        if collectionView == self.jacketsCollection {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "JacketCell", for: indexPath) as! JacketCell
+            print("jacket scrolled::")
+            print("jackets collection:: \(collectionView)")
+            let name = Closet.shared.tops[indexPath.row].imageName //TODO /2
+//            cell.leftImage.contentMode = .scaleAspectFill //.scaleAspectFit //.scaleToFill
+//            cell.rightImage.contentMode = .scaleAspectFill //.scaleAspectFit //.scaleToFill
+            cell.id = name
+            cell.leftImage.image = Utility.getImage(imageName: name ?? "")
+            cell.rightImage.image = Utility.getImage(imageName: name ?? "")
+//            cell.deleteOverlay.imageView?.contentMode = .scaleAspectFit
+            return cell
         }
         else {
-            cell.deleteOverlay.isHidden = true
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as! ImageCell
+            cell.image.isUserInteractionEnabled = true
+            //set image for colection view
+            var name = ""
+            if collectionView == self.topsCollection {
+                print("top scrolled::")
+                name = Closet.shared.tops[indexPath.row].imageName
+            }
+            else if collectionView == self.dressesCollection {
+                print("dress scrolled::")
+                name = Closet.shared.dresses[indexPath.row].imageName
+            }
+            else if collectionView == self.bottomsCollection {
+                print("bottom scrolled::")
+                name = Closet.shared.bottoms[indexPath.row].imageName
+            }
+            else if collectionView == self.shoesCollection {
+                print("shoes scrolled::")
+                name = Closet.shared.shoes[indexPath.row].imageName
+            }
+            cell.image.image = Utility.getImage(imageName: name)
+            
+            cell.image.contentMode = .scaleAspectFill //.scaleAspectFit //.scaleToFill
+            cell.id = name
+            cell.deleteOverlay.imageView?.contentMode = .scaleAspectFit
+            if deleteView {
+                cell.deleteOverlay.isHidden = false
+            }
+            else {
+                cell.deleteOverlay.isHidden = true
+            }
+            
+            return cell
         }
-  
-        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){

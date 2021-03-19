@@ -48,18 +48,5 @@ class WLCollectionViewLayout: UICollectionViewFlowLayout {
         
         return CGPoint(x: updatedOffset, y: proposedContentOffset.y);
     }
-    
-    /*
-    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
-        let attributes: [AnyObject] = super.layoutAttributesForElements(in: rect)!
-        let newAttributes: NSMutableArray = NSMutableArray(capacity: attributes.count)
-        for attribute in attributes {
-            if (attribute.frame.origin.x+attribute.frame.size.width <= self.collectionViewContentSize.width) && (attribute.frame.origin.y+attribute.frame.size.height <= self.collectionViewContentSize.height) {
-                newAttributes.add(attribute)
-            }
-        }
-        return newAttributes as? [UICollectionViewLayoutAttributes]
-
-    }*/
 
 }
